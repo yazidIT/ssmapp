@@ -1,0 +1,11 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Users/zainoz/Desktop/SSM/APK/ionicTEST/ssmMobile/www/lib/ionic/js/ionic.min.js",
+        "/Users/zainoz/Desktop/SSM/APK/ionicTEST/ssmMobile/www/js/app.js",
+        "/Users/zainoz/Desktop/SSM/APK/ionicTEST/ssmMobile/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/resolve.js",
+        "/Users/zainoz/Desktop/SSM/APK/ionicTEST/ssmMobile/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/state.js",
+        "/Users/zainoz/Desktop/SSM/APK/ionicTEST/ssmMobile/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/stateDirectives.js",
+        "/Users/zainoz/Desktop/SSM/APK/ionicTEST/ssmMobile/www/js/translate.js",
+        "/Users/zainoz/Desktop/SSM/DEV/ssmMobile/www/js/controllers.js"
+    ]
+}

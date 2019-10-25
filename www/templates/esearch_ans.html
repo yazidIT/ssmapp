@@ -1,0 +1,69 @@
+<ion-view>
+  <ion-nav-title>{{ 'ESEARCH_RSLT'|translate }}</ion-nav-title>
+<ion-content>
+  <div class="bgtukar">
+  <div class="list">
+  <br>
+  <center><div translate="eSearch_01">SSM Registration Checking</div></center>
+  <br>
+
+  <div class="list" ng-app="starter.controllers" ng-controller="SearchResult">
+
+  <ion-item class="item-text-wrap">	<!--text wrap untuk ayat-ayat yang panjang sangat-->
+    <label class="item item-input" border="#2E2F83">
+      <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNO">Entity No:</font></span>
+      <font size="2px"> {{userData[0].registrationNo}}</font>
+    </label>
+    <label class="item item-input" border="#2E2F83">
+      <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNAME">Entity Name:</font></span>
+      <font size="2px"> {{userData[0].entityName}}</font>
+    </label>
+    <label class="item item-input" border="#2E2F83">
+      <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
+      <font size="2px"> {{userData[0].status}}</font>
+    </label>
+    <label class="item item-input" border="#2E2F83">
+        <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
+        <font size="2px"> {{userData[0].gstNo[0].vchgstnumber}}</font>
+    </label>
+    <!--
+    <div class="item" ng-if="userData.data.length > 0">{{userData.data}}</div>
+    <div class="item" ng-if="userData.data.length > 0" ng-repeat="user in userData.data">
+      <p>{{user}}
+    </div>
+    -->
+    <br>
+    <!--{{userData.data[0].gstNo}}-->
+    <br>
+    <label style="font-size:13px;">{{'ASAT'|translate}}: {{userData[0].asAt}}</label><br>
+    <label style="font-size:13px;">{{'GST_ASAT'|translate}}: {{userData[0].gstNoAsAt}}</label><br>
+    <!--
+    <div class="item" ng-if="userData[0].gstNo.length > 0" ng-repeat="gst in userData[0].gstNo">
+      <!-- GST Number ----
+      <label class="item item-input" border="#2E2F83">
+        <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
+        <font size="2px"> {{gst.vchgstnumber}}</font>
+      </label>
+      <!-- Date of DTAS ---
+      <label class="item item-input" border="#2E2F83">
+        <span class="input-label"><font color="#2E2F83" size="2px" translate="DTASDATE">Date of DTAS:</font></span>
+        <font size="2px"> {{gst.dtasofdate}}</font>
+      </label>
+    <!-- Registration Number ---
+    <label class="item item-input" border="#2E2F83">
+      <span class="input-label"><font color="#2E2F83" size="2px" translate="REGNUMBER">Registration Number:</font></span>
+      <font size="2px"> {{gst.vchregistrationnumber}}</font>
+    </label>
+  </div>
+      -->
+    <label ng-hide="userData.length > 0">{{'NODATAFOUND'|translate}}</label>
+   
+    
+
+  </ion-item>
+  </div>
+  </div>
+  </div>
+</ion-content>
+    <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+</ion-view>

@@ -1,0 +1,63 @@
+	
+
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-energized ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" enable-menu-with-back-views="false">
+      <ion-header-bar class="bar bar-positive menu-logo">
+        <div class="menu-logo-wrapper"></div>
+        <div class="menu-logo"></div>
+    </ion-header-bar>
+    <ion-content class="custom">
+      <div class="ssmmenu-left">
+      <ion-list>        
+        <div ng-controller="BMCtrl">
+            <ion-item nav-clear menu-close href="#/app/main">
+              <div translate="MENU_04">HOME</div>
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/news">
+              <div translate="MENU_01">News & Announcement</div>
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/esearch">
+              <div translate="MENU_07">e-Search</div>
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/equery">
+              <div translate="MENU_05">e-Query</div>
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/ecompound">
+              <div translate="MENU_06">e-Compound</div>
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/status308">
+              Status 308
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/contactus">
+              <div translate="MENU_02">Contact Us</div>
+            </ion-item>
+            <ion-item nav-clear menu-close>
+              <div ng-if="langSelected == 'en'"><div href="#" ng-click="ChangeLanguage('ms')">Bahasa Melayu</div></div>
+              <div ng-hide="langSelected == 'en'"><div href="#" ng-click="ChangeLanguage('en')">English</div></div>
+            </ion-item>
+            <!--
+            <ion-item nav-clear menu-close ng-controller="LogoutCtrl" ng-click="logOut()">
+              LogOut
+            </ion-item>
+            -->
+        </div>
+        
+      </ion-list>
+      </div>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

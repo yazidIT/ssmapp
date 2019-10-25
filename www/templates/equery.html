@@ -1,0 +1,57 @@
+<ion-view>
+  <ion-nav-title>
+    {{ 'MENU_05'|translate }}
+  </ion-nav-title>
+  <ion-nav-font class="bar-energized">
+  <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-font>
+
+<ion-content>
+<div class="bgtukar">
+<br>
+<p><center><div translate="eQuery_01">List of Company that have queried document under <br>
+  Section 11(8) & (9) of the Companies Act 1965.</div></center></p>
+
+<br>
+<center><font color="grey">{{'FILLIN'|translate}}</font></center>
+<div class="list" ng-apps="starter.controllers" ng-controller="QueryInfo">
+
+<p class="list" border="#2E2F83">
+<label class="item item-input">
+<span class="input-label"><strong><font color="#2E2F83" translate="COMPANYNO">Company No./MyCoID:</font></strong></span>
+<input type="text" font="#2E2F83" placeholder="{{'placeHolderCOMPANYNO'|translate}}" ng-model="data.input">
+</label>
+
+<center>
+	<button class="button button-medium button-positive findbutton" ng-click="searchInfo(data.input)">
+		<font color="F9EC00"><strong><div translate="FIND">Find</div></strong></font>
+	</button>
+</center>
+
+<p aligned:"left" style="margin:20px">
+<font color="#2E2F83"><strong translate="NOTE">Note:</strong></font>
+<p aligned:"left" style="margin:20px" translate="eQuery_02">1. Please enter "944751" for company/MyCoID number 944751-A in the field above.
+<br>
+<br>
+2. Any inquiries regarding queried document will be not entertained by telephone. Please go to the nearest SSM office for further information.
+<br>
+<br>
+3. SSM shall not be held liable and responsible for any misuse of the information by irresponsible person.
+   
+</div>
+</div>
+</ion-content>
+
+  <div ng-app="starter.controllers" ng-controller="FloatMenuCtrl as fmc">
+    <nav mfb-menu position="br" effect="zoomin" label="{{'SERVICES'|translate}}" menu-state="mfb"
+         active-icon="ion-chevron-down" resting-icon="ion-chevron-up" toggling-method="click">
+      <!--<button mfb-button icon="paper-airplane" label="menu item"></button>-->
+      <button mfb-button label="{{button.label}}" icon="{{button.icon}}" nav-clear
+              ng-repeat="button in buttons" ng-click="goBack(button.dest)"></button>
+    </nav>
+  </div>
+    
+    <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+
+
+</ion-view>

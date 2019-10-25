@@ -1,0 +1,74 @@
+<ion-view>
+  <ion-nav-title>
+    {{ 'MENU_07'|translate }}
+  </ion-nav-title>
+
+<ion-content ng-app="starter.controllers" ng-controller="CmpndMenuCtrl as mc">
+
+<div class="bgtukar">
+
+  <br>
+  <center><div translate="eSearch_01">SSM Registration Checking</div></center>
+  <br>
+
+<center><font color="grey">{{'FILLIN'|translate}}</font></center>
+<div class="list" >
+  <!-- <label class="item item-input item-select">  -->
+  <div class="list" border="#2E2F83">
+  <style>
+    .item-select select{
+        width: 100%;
+        direction: ltr;
+        position: inherit;
+        padding-left: 0px;
+    }
+</style>
+  <label class="item item-input item-select">
+    <span class="input-label"><strong><font color="#2E2F83" translate="ENTITYTYPE">Entity Type:</font></strong></span>
+    <select ng-model="input.entityType" ng-change="entityTypeSelect()">
+      <option value="ROC" ng-selected="true" translate="optEntityCRegNo">Company Registration No.</option>
+      <option value="ROB" translate="optEntityBRegNo">Business Registration No.</option>
+      <option value="LLP" translate="optEntityLLP">LLP Registration No.</option>
+    </select>
+  </label>
+
+  <label class="item item-input">
+    <span class="input-label"><strong><font color="#2E2F83" translate="ENTITYNO">Entity Number:</font></strong></span>
+    <input type="text" font="#FF0000" placeholder="{{placeHolder}}" ng-model="input.entityNo">
+    <!--<input type="text" font="#2E2F83" placeholder="Example: 123456" ng-model="data.input">-->
+  </label>
+  </div>
+
+
+  <center>
+    <div class="centered" ng-controller="SearchInfo">
+      <button class="button button-medium button-positive findbutton" ng-click="searchInfo(input.entityNo)">
+        <strong><font color="F9EC00"><div translate="FIND">Find</div></font></strong>
+      </button>
+    </div>
+  </center>
+
+	<!--<div class="text-center">
+    <a href="#/app/"><img class="avatar relative" ng-src="img/ssm_logo.png" size="60,60" /></a>
+  </div> -->
+</div>
+
+<div ng-controller="BrowseLink" class="item" align="center" target="_blank"
+   ng-click="openXLink('https://www.ssm.com.my/sites/default/files/basic_pages/esearch_bi_bm.pdf')">
+  <font color="#2E2F83">{{'DOWNLOAD'|translate}} : <u>{{'MANUALDESC'|translate}}</u></font>
+</div>
+</div>
+</ion-content>
+
+  <div ng-app="starter.controllers" ng-controller="FloatMenuCtrl as fmc">
+    <nav mfb-menu position="br" effect="zoomin" label="{{'SERVICES'|translate}}" menu-state="mfb"
+         active-icon="ion-chevron-down" resting-icon="ion-chevron-up" toggling-method="click">
+      <!--<button mfb-button icon="paper-airplane" label="menu item"></button>-->
+      <button mfb-button label="{{button.label}}" icon="{{button.icon}}" nav-clear
+              ng-repeat="button in buttons" ng-click="goBack(button.dest)"></button>
+    </nav>
+  </div>
+    
+    <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+    
+</ion-view>

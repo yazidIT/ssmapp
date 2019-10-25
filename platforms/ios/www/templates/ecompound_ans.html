@@ -1,0 +1,32 @@
+<ion-view>
+  <ion-nav-title>{{ 'ECMPND_RSLT'|translate }}</ion-nav-title>
+<ion-content>
+<div class="bgtukar">
+<div class="list">
+  <br>
+<center><div translate="eCompound_01"></div></center>
+<br>
+  <ion-item class="item-text-wrap">	<!--text wrap untuk ayat-ayat yang panjang sangat-->
+    <div class="list" ng-controller="CmpndResult">
+
+      <label class="item item-input" border="#2E2F83">
+        <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNO">Entity Number:</font></span>
+        <font size="2px"> {{userData.entityNo}}</font>
+      </label>
+
+      <div ng-if="userData.entityNo.length > 0" ng-repeat="compound in userData">
+        <!--Compound document-->
+        <div ng-if="compound.compoundNo.length > 0">
+        <label class="item item-input" border="#2E2F83">
+          <span class="input-label"><font color="#2E2F83" size="2px" translate="COMPNDNO">Compound Number:</font></span>
+          <font size="2px"> {{compound.compoundNo}}</font>
+        </label>
+        </div>
+      </div>
+  </div>
+  </ion-item>
+</div>
+</div>
+</ion-content>
+   <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+</ion-view>

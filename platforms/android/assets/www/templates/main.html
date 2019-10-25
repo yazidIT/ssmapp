@@ -1,0 +1,74 @@
+
+<ion-view >    
+<ion-nav-bar class="home-topbar"></ion-nav-bar>
+   <style ng-if="'app.main' | isState"
+ type="text/css">
+	.pane{
+	 background:url('img/background.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+		}
+	</style>
+<ion-nav-buttons side="left" >
+    <button class="button button-icon button-energized ion-navicon my" style="background-color:rgba(47,47,131,0.9);border:10px;" menu-toggle="left"></button>
+</ion-nav-buttons>
+<ion-content style="overflow:visible;" scroll="false">
+
+<div class="bgtukar bgtukar-main">
+<div class="titlenews-main">
+    
+<strong><div class="maintitle">{{'MENU_01'|translate}}</div></strong>
+</div>
+
+<div ng-app="starter.controllers" ng-controller="MainController">
+  <div class="left">
+    <button class="button button-positive button-clear no-animation icon ion-chevron-left"
+            ng-click="previous()" ng-if="!slideIndex">
+    </button>
+    <button class="button button-positive button-clear no-animation icon ion-chevron-left"
+            ng-click="previous()" ng-if="slideIndex > 0">
+    </button>
+  </div>
+
+  <div class="right">
+    <button class="button button-positive button-clear no-animation icon ion-chevron-right"
+            ng-click="next()" ng-if="!slideIndex">
+    </button>
+    <button class="button button-positive button-clear no-animation icon ion-chevron-right"
+            ng-click="next()" ng-if="slideIndex>0">
+    </button>
+  </div>
+  <ion-slide-box show-pager="true" on-slide-changed="slideChanged(index)">
+    <ion-slide ng-repeat="news in userData">
+      <div class="box1" ng-click="getDetailNews(news.url)">
+          <div class="newscontent">
+            <div style="color:#2e2f83;"><strong>{{news.title}}</strong></div>
+              <br>
+            <div  ng-bind-html="news.content"></div>
+          </div>
+          <div class="main-readmore"><i class="icon ion-forward"></i></div>
+      </div>
+    <br><br><br><br><br>
+    </ion-slide>
+  </ion-slide-box>
+  <center ng-if="userData.length" class="slider-page-info" style="font-size:11px;">{{slideIndex + 1}} {{'OF'|translate}} {{userData.length}}</center>
+  <center ng-if="!userData.length" class="empty-news-main"><div class="title">SSM</div>{{'SSM'|translate}}</center>
+
+<center class="icon-bottom">
+<a href="#/app/esearch"><img class="avatar relative" ng-src="img/eSearch.png"  /></a>
+<a href="#/app/equery"><img class="avatar relative" ng-src="img/eQuery.png"/></a>
+<a href="#/app/ecompound"><img class="avatar relative" ng-src="img/eCompound.png"/></a>
+<a href="#/app/status308"><img class="avatar relative" ng-src="img/Status308.png"  /></a>
+</center>
+</div>
+<div class="text-center">
+<!--        <a href="#/app/main"><img class="avatar relative" ng-src="img/ssmlogo.png" width="40" height="40" /></a>-->
+  </div>
+</div>
+
+</ion-content>
+     <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+</ion-view>
+
+

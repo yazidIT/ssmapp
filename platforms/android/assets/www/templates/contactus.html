@@ -1,0 +1,182 @@
+<ion-view>
+  <ion-nav-title>
+    {{ 'MENU_02'|translate }}
+  </ion-nav-title>
+<ion-content>
+<div class="bgtukar">
+    
+    <div  class="list" ng-controller="ContactUs">
+         <div class="list" id="map" data-tap-disabled="true" ng-disabled="contactIsEmpty"></div>
+      <center ng-hide="contactIsEmpty" ><font size="4px" color="#2E2F83"><strong>{{'SSMOFFICES'|translate}}</strong></font>
+            <br>
+            <br>
+          <label class="item item-input item-select">
+              {{'OFFICELOCATION'|translate}} :
+            <select name="mySelect" id="mySelect"
+              ng-options="option.placeHolderName for option in offices track by option.id"
+              ng-model="selectedOption" ng-change="changeMarker()">
+            </select>
+          </label>
+
+          <br>
+          <br>
+      </center>
+
+    <!--
+      <div class="item indented">
+        <strong><font color="#2E2F83">{{selectedOption.name}}</font></strong>
+        <div ng-bind-html="selectedOption.address"></div>
+        <br>
+        Tel: {{selectedOption.tel}}<br>
+        Fax: {{selectedOption.fax}}<br>
+        Email: {{selectedOption.email}}<br>
+        Map: {{selectedOption.map}}<br>
+
+    </div>
+    -->
+
+    <div ng-hide="contactIsEmpty" class="item info-item" ng-click="gotoLocation()">
+
+        <div class="info-container">
+            <div class="info-title">
+             {{selectedOption.placeHolderName}} - {{'ADDRESS'|translate}}</div>
+            <div class="info-details" style="margin-top:10px;">
+                <span ng-bind-html="myHtmlAddr"></span>
+            </div>
+        </div>
+
+        <div class="info-icon">
+            <i class="positive icon ion-ios-location"></i>
+        </div>
+
+
+    </div>
+
+    <div ng-hide="selectedOption.operationHour==undefined && selectedOption.operationHourMs ==undefined" class="item info-item">
+        <div class="info-container" style="width:80%;">
+            <div class="info-title">SSM {{selectedOption.placeHolderName}} - {{'OPERATIONHOUR'|translate}}</div>
+            <div class="info-details">
+                <br>
+                <span ng-if="langSelected == 'en'" ng-bind-html="myHtmlOperation">{{selectedOption.operationHour}}</span>
+                <span ng-hide="langSelected == 'en'" ng-bind-html="myHtmlOperation">{{selectedOption.operationHourMs}}</span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div ng-hide="selectedOption.tel ==undefined && selectedOption.fax ==undefined" class="item info-item" ng-click="call()">
+        <div class="info-container" >
+            <div class="info-title">SSM {{selectedOption.placeHolderName}} - {{'CONTACT'|translate}}</div>
+                <div class="info-details telfax">
+                  <br>Tel: <span ng-bind-html="myHtmlTel">{{selectedOption.tel}}</span>
+                  <br>{{'FAX'|translate}}:<span ng-bind-html="myHtmlFax"> {{selectedOption.fax}}</span>
+                </div>
+        </div>
+
+        <div class="info-icon">
+            <i class="positive icon ion-ios-telephone"></i>
+        </div>
+
+    </div>
+        
+
+    <div ng-hide="selectedOption.email==undefined" class="item info-item" ng-click="email()">
+        <div class="info-container" >
+            <div class="info-title">SSM {{selectedOption.placeHolderName}} - {{'EMAIL'|translate}}</div>
+            <div class="info-details">
+                <br><span ng-hide="selectedOption.pic==undefined">{{selectedOption.pic}}</span>
+                <br>{{'EMAIL'|translate}}: {{selectedOption.email}}
+            </div>
+        </div>
+
+        <div class="info-icon">
+            <i class="positive icon ion-email"></i>
+        </div>
+
+    </div>
+
+    <div class="item info-item" ng-click="openXLink('tel:{{generalLine.tel}}')">
+        <div class="info-container" >
+            <div class="info-title">SSM {{'GENERALLINE'|translate}}</div>
+            <div class="info-details">
+                <br>Tel: {{generalLine.tel}}
+                <br>{{'FAX'|translate}}: {{generalLine.fax}}
+            </div>
+        </div>
+        <div class="info-icon">
+            <i class="positive icon ion-ios-telephone"></i>
+        </div>
+    </div>
+
+
+
+
+    <!--ORI
+        <p class="indented"><u><strong><font color="#2E2F83">Head Office</font></strong></u>
+    <br>Menara SSM@Sentral,
+    <br>No. 7, Jalan Stesen Sentral 5,
+    <br>Kuala Lumpur Sentral,
+    <br>50623 Kuala Lumpur, Malaysia.
+    </p>
+
+    <p class="item item-icon-center" target="_blank" ng-click="openXLink('tel:+60377214000')">
+      <strong><font color="#2E2F83"><u>SSM Contact Center</u>  &nbsp; &nbsp;</font></strong>
+      <i class="positive icon ion-ios-telephone"></i>
+    <br>Tel: 03-7721 4000
+    <br>Fax: 03-7721 4001
+    </p>
+
+    <p class="item item-icon-center" target="_blank" ng-click="openXLink('tel:+60322994400')">
+      <strong><font color="#2E2F83"><u>SSM General Line</u>  &nbsp; &nbsp;</font></strong>
+      <i class="positive icon ion-ios-telephone"></i>
+    <br>Tel: 03-2299 4400
+    <br>Fax: 03-2299 4411
+    </p>
+
+    <p class="item item-icon-center" target="_blank" ng-click="openXLink('mailto:enquiry@ssm.com.my')">
+      <strong><font color="#2E2F83"><u>SSM Email</u>  &nbsp;  &nbsp;</font>
+      </strong><i class="positive icon ion-email"></i>
+
+    <br>Email: enquiry@ssm.com.my
+    </p>
+    -->
+    <br>
+    <div ng-hide="contactIsEmpty" class="list" border="#2E2F83">
+        <div class="social-title info-title">{{'OURSOCIAL'|translate}}</div>
+    </div>
+
+    <center ng-hide="contactIsEmpty">
+        <a ng-click="openXLink('https://www.facebook.com/ssmofficialpage')"><img class="soscial-link" ng-src="img/facebook.png" /></a>
+        <a ng-click="openXLink('https://twitter.com/ssmofficialpage')"><img class="soscial-link" ng-src="img/twitter.png"  /></a>
+        <a ng-click="openXLink('https://www.instagram.com/suruhanjaya_syarikat_malaysia/')"><img class="avatar relative soscial-link" ng-src="img/instagram.png" /></a>
+        <a ng-click="openXLink('http://www.youtube.com/user/ssmofficialpage')"><img class="soscial-link" ng-src="img/youtube.png" /></a>
+    </center>
+    <br>
+    <br>
+    <!--
+      <div class="indented">
+      <p><center>Follow SSM on Social Media:</center><p/>
+      <div class="item item-icon-left" target="_blank" ng-click="openInLink('https://www.facebook.com/ssmofficialpage')">
+      <i class="positive icon ion-social-facebook"></i>
+      <div class="item item-icon-left" target="_blank" ng-click="openInLink('https://twitter.com/ssmofficialpage')"></p>
+      <i class="calm icon ion-social-twitter"></i>
+      <div class="item item-icon-left" target="_blank" ng-click="openInLink('http://www.instagram.com/ssmofficialpage')"></p>
+      <i class="dark icon ion-social-instagram"></i>
+      <div class="item item-icon-left" target="_blank" ng-click="openInLink('http://www.youtube.com/user/ssmofficialpage')"></p>
+      <i class="assertive icon ion-social-youtube"></i>
+      </div>
+    </div>
+    -->
+    <!--
+      <div class="item item-icon-left" ng-repeat="list in contactlist">
+        <i class="{{list.mood}} icon {{list.icon}}" ng-click="openInLink(list.dest)"><h3>{{list.label}}</h3></i>
+      </div>
+    -->
+        </div>
+</div>
+  </ion-content>
+
+<div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+    
+</ion-view>
