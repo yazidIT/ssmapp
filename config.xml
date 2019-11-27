@@ -73,4 +73,5 @@
         <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <engine name="android" spec="~5.1.1" />
 </widget>
