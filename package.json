@@ -4,6 +4,7 @@
   "description": "ssmMobile: Suruhanjaya Syarikat Malaysia",
   "dependencies": {
     "@ionic-native/network": "^3.1.1",
+    "cordova-android": "^8.1.0",
     "gulp": "^3.5.6",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.2.0",
@@ -33,5 +34,20 @@
   "cordovaPlatforms": [
     "ios",
     "android"
-  ]
+  ],
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-console": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {}
+    }
+  }
 }
