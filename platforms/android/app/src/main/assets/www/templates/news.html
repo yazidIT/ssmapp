@@ -1,0 +1,37 @@
+<ion-view>
+  <ion-nav-title>
+    {{ 'MENU_01'|translate }}
+  </ion-nav-title>
+
+
+<ion-content>
+
+<div class="bgtukar">
+
+<div class="list" ng-app="starter.controllers" ng-controller="NewsCtrl">
+<!--
+  <ion-slide-box>
+
+    <ion-slide ng-repeat="news in userData.data">
+      <div class="box1">
+        <h5><strong><p class="calm">{{news.title}}</p></strong></h5>
+        <div ng-bind-html="news.content"></div>
+      </div>
+    <br><br><br><br><br>
+    </ion-slide>
+
+  </ion-slide-box>
+-->
+    <center ng-if="!userData.length" class="empty-news-main" style="margin-top:50%;">{{'NONEWS'|translate}}</center>
+  <div class="item item-text-wrap" ng-repeat="news in userData" ng-click="getDetailNews(news.url)">
+    <div class="positive titlenews-list"><strong>{{news.title}}</strong>
+        <br>
+        <span class="news-readmore"><i class="icon ion-ios-more"></i></span></div>
+      <br>
+<!--    <div class="more-read">{{'full_news' | translate}}</div>-->
+  </div>
+</div>
+</div>
+</ion-content>
+    <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+</ion-view>
