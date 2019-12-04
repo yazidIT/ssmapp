@@ -12,9 +12,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     "12":"optEntityAuditor",
     "15":"optEntityOthers",
     "17":"optEntityArmyID",
-    "ROC":"optEntityCRegNo",
-    "ROB":"optEntityBRegNo",
+    "ROC":"optEntityCRegNoOld",
+    "ROB":"optEntityBRegNoOld",
     "LLP":"optEntityLLP",
+    "ROCN":"optEntityCRegNoNew",
+    "ROBN":"optEntityBRegNoNew"
 })
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicViewService,$ionicConfigProvider) {
 
@@ -383,7 +385,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
   }
 //  $scope.entityType = "Company Registration No.";
 //  $scope.compound = "Registrar of Companies (ROC)";
-  $scope.input.entityType = "01";//default value
+  $scope.input.entityType = "ROC";//default value
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang[eVar[$scope.input.entityType]];
