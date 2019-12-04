@@ -5,6 +5,7 @@
   "dependencies": {
     "@ionic-native/network": "^3.1.1",
     "cordova-android": "^8.1.0",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
@@ -20,6 +21,7 @@
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "ionic-minify": "^2.0.10",
     "ionic-plugin-keyboard": "^2.2.1",
     "semver": "^6.3.0"
   },
@@ -48,7 +50,8 @@
   ],
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-device": {},
