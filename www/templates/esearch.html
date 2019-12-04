@@ -26,8 +26,10 @@
   <label class="item item-input item-select">
     <span class="input-label"><strong><font color="#2E2F83" translate="ENTITYTYPE">Entity Type:</font></strong></span>
     <select ng-model="input.entityType" ng-change="entityTypeSelect()">
-      <option value="ROC" ng-selected="true" translate="optEntityCRegNo">Company Registration No.</option>
-      <option value="ROB" translate="optEntityBRegNo">Business Registration No.</option>
+      <option value="ROC" ng-selected="true" translate="optEntityCRegNoOld">Company Registration No. Old</option>
+      <option value="ROB" translate="optEntityBRegNoOld">Business Registration No. Old</option>
+      <option value="ROCN" ng-selected="true" translate="optEntityCRegNoNew">Company Registration No. New</option>
+      <option value="ROBN" translate="optEntityBRegNoNew">Business Registration No. New</option>
       <option value="LLP" translate="optEntityLLP">LLP Registration No.</option>
     </select>
   </label>
