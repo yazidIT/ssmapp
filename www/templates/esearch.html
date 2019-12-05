@@ -24,7 +24,7 @@
     }
 </style>
   <label class="item item-input item-select">
-    <span class="input-label"><strong><font color="#2E2F83" translate="ENTITYTYPE">Entity Type:</font></strong></span>
+    <span class="input-label"><strong><font color="#2E2F83" translate="REGISTYPE">Registration Type:</font></strong></span>
     <select ng-model="input.entityType" ng-change="entityTypeSelect()">
       <option value="ROC" ng-selected="true" translate="optEntityCRegNoOld">Company Registration No. Old</option>
       <option value="ROB" translate="optEntityBRegNoOld">Business Registration No. Old</option>
@@ -35,7 +35,7 @@
   </label>
 
   <label class="item item-input">
-    <span class="input-label"><strong><font color="#2E2F83" translate="ENTITYNO">Entity Number:</font></strong></span>
+    <span class="input-label"><strong><font color="#2E2F83" translate="REGISNO">Registration Number:</font></strong></span>
     <input type="text" font="#FF0000" placeholder="{{placeHolder}}" ng-model="input.entityNo">
     <!--<input type="text" font="#2E2F83" placeholder="Example: 123456" ng-model="data.input">-->
   </label>

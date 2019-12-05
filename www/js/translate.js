@@ -107,6 +107,9 @@ var translations = {
         "NONEWS":"Sorry! There is no news or announcement at this time",
         "VERSION":"Version",
         "PIC":"PIC",
+        "REGISTYPE": "Registration Type:",
+        "REGISNO": "Registration Number:",
+        "REGISNONEW": "New Registration Number:"
     },
     
     
@@ -218,5 +221,8 @@ var translations = {
         "NONEWS":"Maaf, tiada berita dan pengumuman pada masa ini",
         "VERSION":"Versi",
         "PIC":"PIC",
+        "REGISTYPE": "Jenis Daftar:",
+        "REGISNO": "Nombor Daftar:",
+        "REGISNONEW": "Nombor Daftar Baru:"
 	}
 }
