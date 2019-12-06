@@ -444,9 +444,17 @@ angular.module('myServices', [])
     var queryData = eQuerySvc.getData();
 //    console.log(devInfo.token + " : " +queryData.first + " : " + queryData.query);
     loadingShow();
+
+    // cater for new comp/business registration number
+    var queryUrl;
+    if(queryData.first === "ROCN" | queryData.first === "ROBN") {
+      queryUrl = 'esearchNew';
+    } else {
+      queryUrl = 'esearch'
+    }
     var postUsers = $http({
       method: 'POST',
-      url: config.apiUrl + 'esearch',
+      url: config.apiUrl + queryUrl,
       data: { "token" : devInfo.token, "type": queryData.first, "value": queryData.query }
     }).success(function(result) {
         if (result.data.length === 0) {
