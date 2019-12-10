@@ -88,7 +88,7 @@ var translations = {
         "GAZETTE308_2":"Date of Gazette (2) 308(4)/Gazette 551(3):",
         "GAZETTE308_NO":"Gazzette No:",
         "OF":" of ",
-        ATTACHMENT: "Attachment",
+        "ATTACHMENT": "Attachment",
         "OFFICELOCATION":"Office Location",
         "SSMOFFICES" : "SSM Offices",
         "FAX":"Fax",
@@ -109,7 +109,8 @@ var translations = {
         "PIC":"PIC",
         "REGISTYPE": "Registration Type:",
         "REGISNO": "Registration Number:",
-        "REGISNONEW": "New Registration Number:"
+        "REGISNONEW": "New Registration Number:",
+        "S308_RSLT": "Status 308 Result"
     },
     
     
@@ -202,7 +203,7 @@ var translations = {
         "GAZETTE308_2":"Tarikh Warta (2) 308(4)/Warta 551(3):",
         "GAZETTE308_NO":"No Warta:",
         "OF":" daripada ",
-        ATTACHMENT: "Lampiran",
+        "ATTACHMENT": "Lampiran",
         "OFFICELOCATION":"Lokasi Pejabat",
         "SSMOFFICES" : "Pejabat-pejabat SSM",
         "FAX":"Faks",
@@ -223,6 +224,7 @@ var translations = {
         "PIC":"PIC",
         "REGISTYPE": "Jenis Daftar:",
         "REGISNO": "Nombor Daftar:",
-        "REGISNONEW": "Nombor Daftar Baru:"
+        "REGISNONEW": "Nombor Daftar Baru:",
+        "S308_RSLT": "Keputusan Status 308"
 	}
 }
