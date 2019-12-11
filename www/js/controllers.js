@@ -15,8 +15,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     "ROC":"optEntityCRegNoOld",
     "ROB":"optEntityBRegNoOld",
     "LLP":"optEntityLLP",
-    "ROCN":"optEntityCRegNoNew",
-    "ROBN":"optEntityBRegNoNew"
+    "ROCNEW":"optEntityCRegNoNew",
+    "ROBNEW":"optEntityBRegNoNew"
 })
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicViewService,$ionicConfigProvider) {
 
