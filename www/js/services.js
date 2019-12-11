@@ -447,7 +447,7 @@ angular.module('myServices', [])
 
     // cater for new comp/business registration number
     var queryUrl;
-    if(queryData.first === "ROCN" | queryData.first === "ROBN") {
+    if(queryData.first === "ROCNEW" | queryData.first === "ROBNEW") {
       queryUrl = 'esearchNew';
     } else {
       queryUrl = 'esearch'
