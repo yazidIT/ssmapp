@@ -9,6 +9,10 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <access launch-external="yes" origin="http://*" />
+    <access launch-external="yes" origin="tel:*" />
+    <access launch-external="yes" origin="mailto:*" />
+    <access launch-external="yes" origin="https://*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
