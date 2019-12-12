@@ -392,6 +392,11 @@ angular.module('myServices', [])
     var queryData = eQuerySvc.getData();
     //alert(devInfo.token + " " +queryData.first + " " + queryData.second + " " + queryData.query);
     loadingShow();
+    console.log("Url: " + config.apiUrl + 'ecompound');
+    console.log("token: " + devInfo.token);
+    console.log("type: " + queryData.first);
+    console.log("entityType: " + queryData.second);
+    console.log("entityNo: " + queryData.query);
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'ecompound',
