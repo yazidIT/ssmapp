@@ -3,7 +3,10 @@ Note : Repeatable functions - Just continue from previuos
 **/
 angular.module('myServices', [])
 .constant('config', {
-    apiUrl: /*'http://192.168.1.115:8888/api/'//'http://128.199.251.250:8883/api/'*/'https://m.ssm.com.my/api/',
+    apiUrl: 'https://m.ssm.com.my/api/',
+    rssToJsonUrl: 'https://api.rss2json.com/v1/api.json',
+    ssmRssUrl: 'https://www.ssm.com.my/_layouts/15/listfeed.aspx?List=b3fb9033-7696-4a56-a3d4-e14538bcac53&View=921199fa-db8b-4770-8c2d-146cb7b2f781',
+    rss2JsonApiKey: 'q1mz50egdw9b1m8iqvkyq1m2u7si2ax9rwieugri'
 })
 .factory('popupError',function($ionicPopup,$ionicHistory){
     var noInternet = function(title){
@@ -44,7 +47,7 @@ angular.module('myServices', [])
             }
           ]
         });
-    }
+    };
     
     var noRecord = function(title){
         var alertPopup = $ionicPopup.alert({
@@ -59,8 +62,7 @@ angular.module('myServices', [])
               }
             ]
           });
-    }
-    
+    };
     
     return {
         noInternet  : noInternet,
@@ -294,6 +296,26 @@ angular.module('myServices', [])
     return postUsers;
   };
 
+  function getRssFeed(title) {
+    loadingShow();
+    var urlFinal = config.rssToJsonUrl + '?rss_url=' + config.ssmRssUrl + '&api_key=' + config.rss2JsonApiKey;
+    console.log(urlFinal);
+
+    var postUsers = $http({
+      method: 'GET',
+      url: urlFinal
+    }).success(function(result) {
+        return result.data;
+    }).error(function(data, status) {
+      // Do something on error
+      popupError.serverFail(title);
+    }).finally(function() {
+      // On both cases hide the loading
+      loadingHide();
+    });
+    return postUsers;
+  };
+
   function getDetailNews(title) {
     var queryData = eQuerySvc.getData();
     //alert(queryData.query);
@@ -315,7 +337,8 @@ angular.module('myServices', [])
 
   return {
     getNews : getNews,
-    getDetailNews : getDetailNews
+    getDetailNews : getDetailNews,
+    getRssFeed : getRssFeed
   }
 })
 

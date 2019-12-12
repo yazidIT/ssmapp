@@ -232,8 +232,31 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
           }
         }, 1000);
   }
+
+  function doUpdateRssFeed(){
+    var data;
+    var lang = currTranslateSvc.getData();
+    newsSvc.getRssFeed(lang.MENU_01).then(
+        function successCallback(result) {
+          console.log(JSON.stringify(result));
+        },function errorCallback(response) {
+
+        })
+    .finally(function(){
+          // $scope.userData = data.data[langSvc.getLang()];
+          // newsStoreSvc.setData(data.data[langSvc.getLang()]);
+          // $ionicSlideBoxDelegate.update();
+    });
+    
+    setTimeout(function() {
+        if (window.cordova){
+          navigator.splashscreen.hide();
+        }
+      }, 1000);
+  }
     
   doUpdateNews();
+  doUpdateRssFeed();
     
   $rootScope.$on('reloadOnLanguageChange', function() {
     doUpdateNews();
