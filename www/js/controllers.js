@@ -512,7 +512,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
           return;
       }
       
-      if(result.data.data.length == 0){
+      if(result.length == 0){
           console.log("Data empty");
           $scope.input.entityNo = ""; 
           return;
@@ -552,7 +552,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
 
 .controller('SearchResult', function($scope, getSearch, eQuerySvc) {
     $scope.userData = getSearch.getData();
-//    console.log(getSearch.getData());
+    console.log(JSON.stringify(getSearch.getData()));
 })
 
 .controller('S308Info', function($scope, $ionicPopup, $ionicHistory, $state, eQuerySvc,currTranslateSvc,getS308,$rootScope,popupError,$cordovaNetwork) {

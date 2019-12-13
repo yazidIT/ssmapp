@@ -3,7 +3,8 @@ Note : Repeatable functions - Just continue from previuos
 **/
 angular.module('myServices', [])
 .constant('config', {
-    apiUrl: /*'http://192.168.1.115:8888/api/'//'http://128.199.251.250:8883/api/'*/'https://m.ssm.com.my/api/',
+    apiUrl: 'https://m.ssm.com.my/api/',
+    apiv2url: 'https://m.ssm.com.my/apiv2/index.php/'
 })
 .factory('popupError',function($ionicPopup,$ionicHistory){
     var noInternet = function(title){
@@ -446,22 +447,26 @@ angular.module('myServices', [])
     loadingShow();
 
     // cater for new comp/business registration number
-    var queryUrl;
-    if(queryData.first === "ROCNEW" | queryData.first === "ROBNEW") {
-      queryUrl = 'esearchNew';
+    var queryUrl = 'esearch/';
+    var findUrl;
+    if(queryData.first === "ROC" | queryData.first === "ROCNEW") {
+      findUrl = 'findRoc/';
+    } else if (queryData.first === "ROB" | queryData.first === "ROBNEW"){
+      findUrl = 'findRob/';
     } else {
-      queryUrl = 'esearch'
+      findUrl = 'findLlp/';
     }
+    console.log("API TO SERVER ====> " + config.apiv2url + queryUrl + findUrl + queryData.query);
     var postUsers = $http({
-      method: 'POST',
-      url: config.apiUrl + queryUrl,
-      data: { "token" : devInfo.token, "type": queryData.first, "value": queryData.query }
+      method: 'GET',
+      url: config.apiv2url + queryUrl + findUrl + queryData.query
     }).success(function(result) {
-        if (result.data.length === 0) {
+        if (result.length === 0) {
           popupError.noRecord(title);
         }
-        resultData = result.data;
-        return result.data;
+        console.log("SEARCH RESULT: ====> " + JSON.stringify(result));
+        resultData = result;
+        return result;
     }).error(function(data, status) {
       // Do something on error
       popupError.serverFail(title,false,status);
