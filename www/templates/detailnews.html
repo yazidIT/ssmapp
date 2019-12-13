@@ -53,25 +53,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 </div>
 
 <div class="list" ng-app="starter.controllers" ng-controller="DetailNewsResult">
-<strong><p class="positive titlenews">{{userData.data.title}}</p></strong>
-  <div class="item item-text-wrap detail-news-container">
-        <div ng-bind-html="userData.data.content.article"></div>
-        <!--Attachment-->
-        <div ng-if="userData.data.content.attachments.length > 0" class="attachment">
-        {{'ATTACHMENT'|translate}}
-       </div>
-        <div ng-if="userData.data.content.attachments.length > 0" ng-repeat="attachment in userData.data.content.attachments" >
-                <div class="attachment attachment-items ">
-                    <div ng-controller="BrowseLink" class="attachment-item" target="_blank"
-                       ng-click="openXLink('{{attachment.url}}')">
-                      <font color="#2E2F83"><u>{{attachment.title}}</u></font>
-                    </div>
-                </div>
-                
-
-        </div>
-  </div>
-</div>
+<div ng-bind-html="detailNews"></div>
 </div>
 </ion-content>
      <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
