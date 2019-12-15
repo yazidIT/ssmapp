@@ -12,57 +12,57 @@
   <ion-item class="item-text-wrap">	<!--text wrap untuk ayat-ayat yang panjang sangat-->
 
   <!--   REGISTER OF COMPANY -->
-  <div ng-hide="!userData.companyEntry">
+  <div ng-hide="!userData.result.companyNo">
     <label class="item item-input" border="#2E2F83">
     <span class="input-label"><font color="#2E2F83" size="2px" translate="REGISNO">Registration Number:</font></span>
-    <font size="2px"> {{userData.companyEntry.companyNo}}-{{userData.companyEntry.chkDigit}}</font>
+    <font size="2px"> {{userData.result.oldFormatNo}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="REGISNONEW">New Registration Number:</font></span>
-      <font size="2px"> XXXXXXXXXXXX </font>
+      <font size="2px"> {{userData.result.newFormatNo}} </font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNAME">Entity Name:</font></span>
-      <font size="2px"> {{userData.companyEntry.companyName}}</font>
+      <font size="2px"> {{userData.result.companyName}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
-      <font size="2px"> {{userData.companyEntry.comStatus}}</font>
+      <font size="2px"> {{userData.result.comStatus}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
-        <font size="2px"> {{userData.companyEntry.findGSTRegNoList.GSTRegNo.vchgstnumber}} </font>
+        <font size="2px"> {{userData.result.findGSTRegNoList.GSTRegNo.vchgstnumber}} </font>
     </label>
     <br>
 
     <br>
     <label style="font-size:13px;">{{'ASAT'|translate}}: </label><br>
-    <label style="font-size:13px;">{{'GST_ASAT'|translate}}: {{userData.companyEntry.findGSTRegNoList.GSTRegNo.dtasofdate}}</label><br>
+    <label style="font-size:13px;">{{'GST_ASAT'|translate}}: {{userData.result.findGSTRegNoList.GSTRegNo.dtasofdate}}</label><br>
 
-    <label ng-hide="userData.companyEntry">{{'NODATAFOUND'|translate}}</label>
+    <label ng-hide="userData.result.companyNo">{{'NODATAFOUND'|translate}}</label>
   </div>
 
   <!-- REGISTER OF BUSINESS -->
-  <div ng-hide="!userData.businessEntry">
+  <div ng-hide="!userData.result.bizRegNo">
     <label class="item item-input" border="#2E2F83">
     <span class="input-label"><font color="#2E2F83" size="2px" translate="REGISNO">Registration Number:</font></span>
-    <font size="2px"> {{userData.businessEntry.bizRegNo}}-{{userData.businessEntry.chkDigit}}</font>
+    <font size="2px"> {{userData.result.oldFormatNo}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="REGISNONEW">New Registration Number:</font></span>
-      <font size="2px"> XXXXXXXXXXXX </font>
+      <font size="2px"> {{userData.result.newFormatNo}} </font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNAME">Entity Name:</font></span>
-      <font size="2px"> {{userData.businessEntry.bizName}}</font>
+      <font size="2px"> {{userData.result.bizName}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
-      <font size="2px"> {{userData.businessEntry.bizStatus}}</font>
+      <font size="2px"> {{userData.result.bizStatus}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
-        <font size="2px"> {{userData.businessEntry.findGSTRegNoList.GSTRegNo.vchgstnumber}} </font>
+        <font size="2px"> {{userData.result.findGSTRegNoList.GSTRegNo.vchgstnumber}} </font>
     </label>
     <br>
 
@@ -70,7 +70,7 @@
     <label style="font-size:13px;">{{'ASAT'|translate}}: </label><br>
     <label style="font-size:13px;">{{'GST_ASAT'|translate}}: {{userData.businessEntry.findGSTRegNoList.GSTRegNo.dtasofdate}}</label><br>
 
-    <label ng-hide="userData.businessEntry">{{'NODATAFOUND'|translate}}</label>
+    <label ng-hide="userData.result.bizRegNo">{{'NODATAFOUND'|translate}}</label>
   </div>
   
   <!-- REGISTER OF LLP -->
@@ -78,10 +78,6 @@
     <label class="item item-input" border="#2E2F83">
     <span class="input-label"><font color="#2E2F83" size="2px" translate="REGISNO">Registration Number:</font></span>
     <font size="2px"> {{userData.llpEntry.llpNo}}</font>
-    </label>
-    <label class="item item-input" border="#2E2F83">
-      <span class="input-label"><font color="#2E2F83" size="2px" translate="REGISNONEW">New Registration Number:</font></span>
-      <font size="2px"> XXXXXXXXXXXX </font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNAME">Entity Name:</font></span>

@@ -461,8 +461,14 @@ angular.module('myServices', [])
       method: 'GET',
       url: config.apiv2url + queryUrl + findUrl + queryData.query
     }).success(function(result) {
-        if (result.length === 0) {
-          popupError.noRecord(title);
+        if (queryData.first === "LLP") {
+          if (result.length === 0) {
+            popupError.noRecord(title);
+          }
+        } else {
+          if (result.length === 0 | !result.success) {
+            popupError.noRecord(title);
+          }
         }
         console.log("SEARCH RESULT: ====> " + JSON.stringify(result));
         resultData = result;
