@@ -61,12 +61,28 @@ angular.module('myServices', [])
             ]
           });
     }
+
+    var serverBusy = function(title){
+      var alertPopup = $ionicPopup.alert({
+          title: title,
+          template: '<center><div translate="serverbusy"></div></center>',
+          buttons: [
+            { text: '<b class="title-class">OK</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                 $ionicHistory.goBack();
+              }
+            }
+          ]
+        });
+  }
     
     
     return {
         noInternet  : noInternet,
         serverFail  : serverFail,
-        noRecord    : noRecord
+        noRecord    : noRecord,
+        serverBusy  : serverBusy
     };
 })
 .factory('licInfo', function($ionicPopup, $interval) {
@@ -466,8 +482,10 @@ angular.module('myServices', [])
             popupError.noRecord(title);
           }
         } else {
-          if (result.length === 0 | !result.success) {
+          if (result.length === 0) {
             popupError.noRecord(title);
+          } else if (!result.success) {
+            popupError.serverBusy(title);
           }
         }
         console.log("SEARCH RESULT: ====> " + JSON.stringify(result));
