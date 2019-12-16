@@ -237,15 +237,17 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
     var data;
     var lang = currTranslateSvc.getData();
     newsSvc.getRssFeed(lang.MENU_01).then(
-        function successCallback(result) {
-          console.log(JSON.stringify(result));
+        function successCallback(newsData) {
+          console.log(JSON.stringify(newsData.data));
+          data = newsData.data; // new from RSS feed
+          $localStorage.news = newsData.data;
         },function errorCallback(response) {
-
+          data = $localStorage.news;
         })
     .finally(function(){
-          // $scope.userData = data.data[langSvc.getLang()];
-          // newsStoreSvc.setData(data.data[langSvc.getLang()]);
-          // $ionicSlideBoxDelegate.update();
+          $scope.userData = data.items;
+          newsStoreSvc.setData(data.items);
+          $ionicSlideBoxDelegate.update();
     });
     
     setTimeout(function() {
@@ -255,29 +257,13 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
       }, 1000);
   }
     
-  doUpdateNews();
+  // doUpdateNews();
   doUpdateRssFeed();
     
   $rootScope.$on('reloadOnLanguageChange', function() {
-    doUpdateNews();
+    // doUpdateNews();
+    doUpdateRssFeed();
   });
-    
-  
-/*
-  $scope.showNews = function(content) {
-    var alertPopup = $ionicPopup.alert({
-      title: '<h4 class="title-assertive">News</h4>',
-      template: content,
-      buttons: [
-        { text: '<b class="title-class">Close</b>',
-          type: 'button-positive button-small',
-          onTap: function(e) {
-            alertPopup.close();
-          }
-        }
-      ]
-    });
-  }*/
 
   $scope.getDetailNews = function(newsLink) {
     var lang = currTranslateSvc.getData();
@@ -287,7 +273,6 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
         return;
     }
       
-    //alert(newsLink);
     var queryData = {
       first : "",
       second : "",
@@ -317,7 +302,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
 
 .controller('NewsCtrl', function($scope, $state, eQuerySvc, newsStoreSvc ,currTranslateSvc,$rootScope,popupError,$cordovaNetwork) {
   
-  $scope.userData =newsStoreSvc.getData(); //<--already updated by main control
+  $scope.userData = newsStoreSvc.getData(); //<--already updated by main control
   $scope.getDetailNews = function(newsLink) {
     //OfflineCheck
     var lang = currTranslateSvc.getData();
@@ -334,16 +319,15 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
     eQuerySvc.setData(queryData);
     $state.go('app.detailnews');
   }
-    
-    
 })
 
-.controller('DetailNewsResult', function($scope, newsSvc,currTranslateSvc) {
+.controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc) {
   var defaultData = [];
   $scope.userData = defaultData;
+  $scope.detailNews = defaultData;
   var lang = currTranslateSvc.getData();
   newsSvc.getDetailNews(lang.MENU_01).then(function(result) {
-    $scope.userData = result.data;
+    $scope.detailNews = result.data;
   });
 })
 

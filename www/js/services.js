@@ -318,13 +318,13 @@ angular.module('myServices', [])
 
   function getDetailNews(title) {
     var queryData = eQuerySvc.getData();
-    //alert(queryData.query);
+    console.log("Detail News: ====> " + queryData.query);
     loadingShow();
     var postUsers = $http({
       method: 'GET',
       url: queryData.query
     }).success(function(result) {
-        return result.data;
+        return result;
     }).error(function(data, status) {
       // Do something on error
        popupError.serverFail(title,true);
