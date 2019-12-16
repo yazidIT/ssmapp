@@ -2,11 +2,13 @@
 Note : Repeatable functions - Just continue from previuos
 **/
 angular.module('myServices', [])
+
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
     apiv2url: 'https://m.ssm.com.my/apiv2/index.php/'
 })
-.factory('popupError',function($ionicPopup,$ionicHistory){
+
+.factory('popupError',function($ionicPopup, $ionicHistory){
     var noInternet = function(title){
         var alertPopup = $ionicPopup.alert({
           title: title,
@@ -22,7 +24,7 @@ angular.module('myServices', [])
         });
     };
     
-    var serverFail = function(title,isBack,errNo){
+    var serverFail = function(title, isBack, errNo){
         msg = "<center>{{'ERROR_QUERY'|translate}}</center>"
         if(errNo === 401){
             msg = "<center>{{'ERROR_AUTHORIZED'|translate}}</center>"    
@@ -75,8 +77,7 @@ angular.module('myServices', [])
             }
           ]
         });
-  }
-    
+    }
     
     return {
         noInternet  : noInternet,
@@ -85,6 +86,7 @@ angular.module('myServices', [])
         serverBusy  : serverBusy
     };
 })
+
 .factory('licInfo', function($ionicPopup, $interval) {
   var stop;
   function startInfo() {
@@ -162,7 +164,7 @@ angular.module('myServices', [])
   {
     // label: 'Subscribe our Channel on Youtube',
     icon: 'ion-social-youtube',
-    dest: 'http://www.youtube.com/user/ssmofficialpage',
+    dest: 'https://www.youtube.com/user/ssmofficialpage',
     mood: 'assertive'
   },
   {
@@ -187,7 +189,7 @@ angular.module('myServices', [])
 })
 
 // only one for all queries because can only ask one per time
-.factory('eQuerySvc', function($ionicPopup,langSvc) {
+.factory('eQuerySvc', function($ionicPopup, langSvc) {
   var queryData = {
     first: "",
     second: "",
@@ -222,7 +224,7 @@ angular.module('myServices', [])
   };
 })
 
-.factory('deviceAuth', function($http, $ionicHistory, $ionicLoading, $ionicPopup,config) {
+.factory('deviceAuth', function($http, $ionicLoading, config) {
   var uuid = "";
   var platform = "";
   var token = "";
@@ -278,7 +280,7 @@ angular.module('myServices', [])
   }
 })
 
-.factory('newsSvc', function($http, $ionicPopup, $ionicLoading, $ionicHistory, eQuerySvc, langSvc,config,$cordovaNetwork,popupError) {
+.factory('newsSvc', function($http, $ionicLoading, eQuerySvc, config, popupError) {
     
   var loadingShow = function() {
     $ionicLoading.show({
@@ -294,7 +296,6 @@ angular.module('myServices', [])
         
     loadingShow();
     var urlFinal = config.apiUrl + 'news/'+'multi';
-    //alert(urlFinal);
 
     var postUsers = $http({
       method: 'GET',
@@ -302,10 +303,8 @@ angular.module('myServices', [])
     }).success(function(result) {
         return result.data;
     }).error(function(data, status) {
-      // Do something on error
       popupError.serverFail(title);
     }).finally(function() {
-      // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
@@ -313,7 +312,7 @@ angular.module('myServices', [])
 
   function getDetailNews(title) {
     var queryData = eQuerySvc.getData();
-    //alert(queryData.query);
+
     loadingShow();
     var postUsers = $http({
       method: 'GET',
@@ -321,10 +320,8 @@ angular.module('myServices', [])
     }).success(function(result) {
         return result.data;
     }).error(function(data, status) {
-      // Do something on error
        popupError.serverFail(title,true);
     }).finally(function() {
-      // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
@@ -336,7 +333,7 @@ angular.module('myServices', [])
   }
 })
 
-.factory('getQuery', function($http, $ionicPopup, $ionicLoading, $ionicHistory, deviceAuth, eQuerySvc, langSvc,config,popupError) {
+.factory('getQuery', function($http, $ionicLoading, deviceAuth, eQuerySvc, langSvc, config, popupError) {
 
   var resultData;
     
@@ -355,14 +352,13 @@ angular.module('myServices', [])
     var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
     var outLang = langSvc.getLang();
-    //alert(devInfo.token + " " + queryData.query);
+
     loadingShow();
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'equery',
       data: { "token" : devInfo.token, "documentNo" : queryData.query, lang : outLang }
     }).success(function(result) {
-        //alert(result.data);
         if (result.data.length === 0) {
           popupError.noRecord(title);
         }
@@ -381,7 +377,6 @@ angular.module('myServices', [])
     return resultData;
   };
 
-  
   return {
     loadUserData : loadUserData,
     getData: getData
@@ -389,7 +384,7 @@ angular.module('myServices', [])
   
 })
 
-.factory('getCmpnd', function($http, $ionicPopup, $ionicLoading, $ionicHistory, deviceAuth, eQuerySvc,config,popupError) {
+.factory('getCmpnd', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
     
   var resultData;
 
@@ -407,7 +402,7 @@ angular.module('myServices', [])
 
     var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
-    //alert(devInfo.token + " " +queryData.first + " " + queryData.second + " " + queryData.query);
+
     loadingShow();
     var postUsers = $http({
       method: 'POST',
@@ -421,10 +416,8 @@ angular.module('myServices', [])
         resultData = result.data;
         return result.data;
     }).error(function(data, status) {
-        // Do something on error
         popupError.serverFail(title,false,status);
     }).finally(function() {
-      // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
@@ -441,7 +434,7 @@ angular.module('myServices', [])
   }
 })
 
-.factory('getSearch', function($http, $ionicPopup, $ionicLoading, $ionicHistory, deviceAuth, eQuerySvc,config,popupError) {
+.factory('getSearch', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
 
   var resultData;
     
@@ -459,7 +452,7 @@ angular.module('myServices', [])
 
     var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
-//    console.log(devInfo.token + " : " +queryData.first + " : " + queryData.query);
+
     loadingShow();
 
     // cater for new comp/business registration number
@@ -492,10 +485,8 @@ angular.module('myServices', [])
         resultData = result;
         return result;
     }).error(function(data, status) {
-      // Do something on error
       popupError.serverFail(title,false,status);
     }).finally(function() {
-      // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
@@ -511,7 +502,7 @@ angular.module('myServices', [])
   }
 })
 
-.factory('getS308', function($http, $ionicPopup, $ionicLoading, $ionicHistory, deviceAuth, eQuerySvc, config, popupError) {
+.factory('getS308', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
 
   var resultData;
 
@@ -529,7 +520,7 @@ angular.module('myServices', [])
 
     var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
-    //alert(devInfo.token + " " + queryData.query);
+
     loadingShow();
     var postUsers = $http({
       method: 'POST',
@@ -542,12 +533,9 @@ angular.module('myServices', [])
         
         resultData = result.data;
         return result.data;
-        
     }).error(function(data, status) {
-      // Do something on error
       popupError.serverFail(title,false,status);
     }).finally(function() {
-      // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
@@ -619,7 +607,7 @@ angular.module('myServices', [])
 
 
 //Service List Of Offices
-.factory('SSMOfficesService', function($http,$ionicLoading,config,popupError) {
+.factory('SSMOfficesService', function($http, $ionicLoading, config, popupError) {
     
    var loadingShow = function() {
     $ionicLoading.show({
@@ -636,7 +624,6 @@ angular.module('myServices', [])
       
       loadingShow(); 
         var urlFinal = config.apiUrl + 'contact_us';
-        //alert(urlFinal);
 
         var offices = $http({
               method: 'GET',
@@ -644,17 +631,14 @@ angular.module('myServices', [])
             }).success(function(result) {
                 return result.data;
             }).error(function(data, status) {
-              // Do something on error
               popupError.serverFail(title,false);
             }).finally(function() {
-              // On both cases hide the loading
               loadingHide();
             });
       
       return offices;
   };
     
-
   return {
     list: getOffices
   }
