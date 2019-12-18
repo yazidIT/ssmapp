@@ -5,7 +5,7 @@ angular.module('myServices', [])
 
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
-    apiv2url: 'https://m.ssm.com.my/apiv2/index.php/'
+    apiv2url: 'https://m.ssm.com.my/apiv2/index.php/',
     apiUrl: 'https://m.ssm.com.my/api/',
     rssToJsonUrl: 'https://api.rss2json.com/v1/api.json',
     ssmRssUrl: 'https://www.ssm.com.my/_layouts/15/listfeed.aspx?List=b3fb9033-7696-4a56-a3d4-e14538bcac53&View=921199fa-db8b-4770-8c2d-146cb7b2f781',

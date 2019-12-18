@@ -210,6 +210,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $state.go('app.detailnews');
   }
 
+  $scope.showDetailNews = function(newsData) {
+    console.log(newsData);
+    eQuerySvc.setData(newsData);
+    $state.go('app.detailnews');
+  }
+
   $scope.next = function() {
     $ionicSlideBoxDelegate.next();
   };
@@ -244,16 +250,23 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     eQuerySvc.setData(queryData);
     $state.go('app.detailnews');
   }
+
+  $scope.showDetailNews = function(newsData) {
+    console.log(newsData);
+    eQuerySvc.setData(newsData);
+    $state.go('app.detailnews');
+  }
 })
 
-.controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc) {
-  var defaultData = [];
-  $scope.userData = defaultData;
-  $scope.detailNews = defaultData;
-  var lang = currTranslateSvc.getData();
-  newsSvc.getDetailNews(lang.MENU_01).then(function(result) {
-    $scope.detailNews = result.data;
-  });
+.controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc, eQuerySvc) {
+  // var defaultData = [];
+  // $scope.userData = defaultData;
+  // $scope.detailNews = defaultData;
+  // var lang = currTranslateSvc.getData();
+  // newsSvc.getDetailNews(lang.MENU_01).then(function(result) {
+  //   $scope.detailNews = result.data;
+  // });
+  $scope.detailNews = eQuerySvc.getData().content;
 })
 
 .controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,
