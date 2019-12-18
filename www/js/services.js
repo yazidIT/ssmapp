@@ -623,7 +623,7 @@ angular.module('myServices', [])
   function getOffices() {
       
       loadingShow(); 
-        var urlFinal = config.apiUrl + 'contact_us';
+        var urlFinal = config.apiv2url + 'contact_us';
 
         var offices = $http({
               method: 'GET',
