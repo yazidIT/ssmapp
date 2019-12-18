@@ -143,14 +143,14 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       var lang = currTranslateSvc.getData();
       newsSvc.getNews(lang.MENU_01).then(
           function successCallback(result) {
-            data = result.data;
-            $localStorage.news = result.data;
-          },function errorCallback(response) {
-                data = $localStorage.news;
+            data = result.data.channel.item;
+            $localStorage.news = data;
+          }, function errorCallback(response) {
+            data = $localStorage.news;
           })
       .finally(function(){
-            $scope.userData = data.data[langSvc.getLang()];
-            newsStoreSvc.setData(data.data[langSvc.getLang()]);
+            $scope.userData = data;
+            newsStoreSvc.setData(data);
             $ionicSlideBoxDelegate.update();
       });
       
@@ -160,37 +160,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           }
         }, 1000);
   }
-
-  function doUpdateRssFeed(){
-    var data;
-    var lang = currTranslateSvc.getData();
-    newsSvc.getRssFeed(lang.MENU_01).then(
-        function successCallback(newsData) {
-          console.log(JSON.stringify(newsData.data));
-          data = newsData.data; // new from RSS feed
-          $localStorage.news = newsData.data;
-        },function errorCallback(response) {
-          data = $localStorage.news;
-        })
-    .finally(function(){
-          $scope.userData = data.items;
-          newsStoreSvc.setData(data.items);
-          $ionicSlideBoxDelegate.update();
-    });
     
-    setTimeout(function() {
-        if (window.cordova){
-          navigator.splashscreen.hide();
-        }
-      }, 1000);
-  }
-    
-  // doUpdateNews();
-  doUpdateRssFeed();
+  doUpdateNews();
     
   $rootScope.$on('reloadOnLanguageChange', function() {
-    // doUpdateNews();
-    doUpdateRssFeed();
+    doUpdateNews();
   });
 
   $scope.getDetailNews = function(newsLink) {
@@ -207,12 +181,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       query : newsLink
     };
     eQuerySvc.setData(queryData);
-    $state.go('app.detailnews');
-  }
-
-  $scope.showDetailNews = function(newsData) {
-    console.log(newsData);
-    eQuerySvc.setData(newsData);
     $state.go('app.detailnews');
   }
 
@@ -251,22 +219,17 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $state.go('app.detailnews');
   }
 
-  $scope.showDetailNews = function(newsData) {
-    console.log(newsData);
-    eQuerySvc.setData(newsData);
-    $state.go('app.detailnews');
-  }
 })
 
-.controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc, eQuerySvc) {
-  // var defaultData = [];
-  // $scope.userData = defaultData;
-  // $scope.detailNews = defaultData;
-  // var lang = currTranslateSvc.getData();
-  // newsSvc.getDetailNews(lang.MENU_01).then(function(result) {
-  //   $scope.detailNews = result.data;
-  // });
-  $scope.detailNews = eQuerySvc.getData().content;
+.controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc) {
+
+  var defaultData = [];
+  $scope.userData = defaultData;
+  $scope.detailNews = defaultData;
+  var lang = currTranslateSvc.getData();
+  newsSvc.getDetailNews(lang.MENU_01).then(function(result) {
+    $scope.detailNews = result.data;
+  });
 })
 
 .controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,

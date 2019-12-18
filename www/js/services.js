@@ -6,10 +6,9 @@ angular.module('myServices', [])
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
     apiv2url: 'https://m.ssm.com.my/apiv2/index.php/',
-    apiUrl: 'https://m.ssm.com.my/api/',
-    rssToJsonUrl: 'https://api.rss2json.com/v1/api.json',
-    ssmRssUrl: 'https://www.ssm.com.my/_layouts/15/listfeed.aspx?List=b3fb9033-7696-4a56-a3d4-e14538bcac53&View=921199fa-db8b-4770-8c2d-146cb7b2f781',
-    rss2JsonApiKey: 'q1mz50egdw9b1m8iqvkyq1m2u7si2ax9rwieugri'
+    // rssToJsonUrl: 'https://api.rss2json.com/v1/api.json',
+    // ssmRssUrl: 'https://www.ssm.com.my/_layouts/15/listfeed.aspx?List=b3fb9033-7696-4a56-a3d4-e14538bcac53&View=921199fa-db8b-4770-8c2d-146cb7b2f781',
+    // rss2JsonApiKey: 'q1mz50egdw9b1m8iqvkyq1m2u7si2ax9rwieugri'
 })
 
 .factory('popupError',function($ionicPopup, $ionicHistory){
@@ -299,36 +298,15 @@ angular.module('myServices', [])
   function getNews(title) {
         
     loadingShow();
-    var urlFinal = config.apiUrl + 'news/'+'multi';
-
+    var urlFinal = config.apiv2url + 'rss';
     var postUsers = $http({
       method: 'GET',
       url: urlFinal
     }).success(function(result) {
-        return result.data;
+      return result;
     }).error(function(data, status) {
       popupError.serverFail(title);
     }).finally(function() {
-      loadingHide();
-    });
-    return postUsers;
-  };
-
-  function getRssFeed(title) {
-    loadingShow();
-    var urlFinal = config.rssToJsonUrl + '?rss_url=' + config.ssmRssUrl + '&api_key=' + config.rss2JsonApiKey;
-    console.log(urlFinal);
-
-    var postUsers = $http({
-      method: 'GET',
-      url: urlFinal
-    }).success(function(result) {
-        return result.data;
-    }).error(function(data, status) {
-      // Do something on error
-      popupError.serverFail(title);
-    }).finally(function() {
-      // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
@@ -336,7 +314,6 @@ angular.module('myServices', [])
 
   function getDetailNews(title) {
     var queryData = eQuerySvc.getData();
-    console.log("Detail News: ====> " + queryData.query);
     loadingShow();
     var postUsers = $http({
       method: 'GET',
@@ -353,8 +330,7 @@ angular.module('myServices', [])
 
   return {
     getNews : getNews,
-    getDetailNews : getDetailNews,
-    getRssFeed : getRssFeed
+    getDetailNews : getDetailNews
   }
 })
 
