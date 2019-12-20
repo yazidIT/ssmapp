@@ -5,7 +5,10 @@ angular.module('myServices', [])
 
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
-    apiv2url: 'https://m.ssm.com.my/apiv2/index.php/'
+    apiv2url: 'https://m.ssm.com.my/apiv2/index.php/',
+    // rssToJsonUrl: 'https://api.rss2json.com/v1/api.json',
+    // ssmRssUrl: 'https://www.ssm.com.my/_layouts/15/listfeed.aspx?List=b3fb9033-7696-4a56-a3d4-e14538bcac53&View=921199fa-db8b-4770-8c2d-146cb7b2f781',
+    // rss2JsonApiKey: 'q1mz50egdw9b1m8iqvkyq1m2u7si2ax9rwieugri'
 })
 
 .factory('popupError',function($ionicPopup, $ionicHistory){
@@ -47,7 +50,7 @@ angular.module('myServices', [])
             }
           ]
         });
-    }
+    };
     
     var noRecord = function(title){
         var alertPopup = $ionicPopup.alert({
@@ -295,13 +298,12 @@ angular.module('myServices', [])
   function getNews(title) {
         
     loadingShow();
-    var urlFinal = config.apiUrl + 'news/'+'multi';
-
+    var urlFinal = config.apiv2url + 'rss';
     var postUsers = $http({
       method: 'GET',
       url: urlFinal
     }).success(function(result) {
-        return result.data;
+      return result;
     }).error(function(data, status) {
       popupError.serverFail(title);
     }).finally(function() {
@@ -312,13 +314,12 @@ angular.module('myServices', [])
 
   function getDetailNews(title) {
     var queryData = eQuerySvc.getData();
-
     loadingShow();
     var postUsers = $http({
       method: 'GET',
       url: queryData.query
     }).success(function(result) {
-        return result.data;
+        return result;
     }).error(function(data, status) {
        popupError.serverFail(title,true);
     }).finally(function() {
@@ -404,6 +405,11 @@ angular.module('myServices', [])
     var queryData = eQuerySvc.getData();
 
     loadingShow();
+    console.log("Url: " + config.apiUrl + 'ecompound');
+    console.log("token: " + devInfo.token);
+    console.log("type: " + queryData.first);
+    console.log("entityType: " + queryData.second);
+    console.log("entityNo: " + queryData.query);
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'ecompound',
@@ -623,7 +629,7 @@ angular.module('myServices', [])
   function getOffices() {
       
       loadingShow(); 
-        var urlFinal = config.apiUrl + 'contact_us';
+        var urlFinal = config.apiv2url + 'contact_us';
 
         var offices = $http({
               method: 'GET',
