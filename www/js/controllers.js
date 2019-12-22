@@ -134,6 +134,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.devData = result.data;
     deviceAuth.setToken($scope.devData.token);
     $scope.dev2Data = deviceAuth.getDevInfo();
+    console.log(JSON.stringify($scope.dev2Data));
+    doUpdateNews();
   });
 
   currTranslateSvc.setData(translations[langSvc.getLang()]);
@@ -160,9 +162,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           }
         }, 1000);
   }
-    
-  doUpdateNews();
-    
+
   $rootScope.$on('reloadOnLanguageChange', function() {
     doUpdateNews();
   });

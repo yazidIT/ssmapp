@@ -305,7 +305,7 @@ angular.module('myServices', [])
   }
 })
 
-.factory('newsSvc', function($http, $ionicLoading, eQuerySvc, config, popupError) {
+.factory('newsSvc', function($http, $ionicLoading, eQuerySvc, config, popupError, deviceAuth) {
     
   var loadingShow = function() {
     $ionicLoading.show({
@@ -318,12 +318,20 @@ angular.module('myServices', [])
   };
 
   function getNews(title) {
-        
+
     loadingShow();
+
+    var devData = deviceAuth.getDevInfo();
+    console.log("Dev Info: ===> " + JSON.stringify(devData));
+    var authHeader = 'Bearer' + ' ' + devData.token;
+    console.log("Auth Header : ==> " + JSON.stringify(authHeader));
+    var header = { "Authorization" : authHeader };
+
     var urlFinal = config.apiv2url + 'rss';
     var postUsers = $http({
       method: 'GET',
-      url: urlFinal
+      url: urlFinal,
+      headers: header
     }).success(function(result) {
       return result;
     }).error(function(data, status) {
