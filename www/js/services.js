@@ -227,7 +227,7 @@ angular.module('myServices', [])
   };
 })
 
-.factory('deviceAuth', function($http, $ionicLoading, config) {
+.factory('deviceAuth', function($http, $ionicLoading, config, md5) {
   var uuid = "";
   var platform = "";
   var token = "";
@@ -256,14 +256,36 @@ angular.module('myServices', [])
     $ionicLoading.hide();
   };
 
+  // function registerDevice() {
+  //   loadingShow();
+  //   var postUsers = $http({
+  //     method: 'POST',
+  //     url: config.apiUrl + 'register-device',
+  //     data: { "uuid" : uuid, "type" : platform }
+  //   }).success(function(result) {
+  //       return result.data;
+  //   }).error(function(data, status) {
+  //     // Do something on error
+  //       console.log("Device registration failed.");
+  //   }).finally(function() {
+  //     // On both cases hide the loading
+  //     loadingHide();
+  //   });
+  //   return postUsers;
+  // };
+
   function registerDevice() {
     loadingShow();
+    var secKey = 'ZMVbSD0CZwdRDxTd3DzvfDT8xy60ZgwX';
+    var timeNow = Math.floor(new Date().getTime()/100000);
+    var calculatedHash = md5.createHash(uuid+platform+timeNow+secKey);
+
     var postUsers = $http({
       method: 'POST',
-      url: config.apiUrl + 'register-device',
-      data: { "uuid" : uuid, "type" : platform }
+      url: config.apiv2url + 'device/register',
+      data: { "uuid" : uuid, "os" : platform, "hash" : calculatedHash }
     }).success(function(result) {
-        return result.data;
+        return result;
     }).error(function(data, status) {
       // Do something on error
         console.log("Device registration failed.");

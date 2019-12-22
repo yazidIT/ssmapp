@@ -19,7 +19,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     "ROBNEW":"optEntityBRegNoNew"
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicViewService, $ionicConfigProvider) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicHistory, $state, $ionicViewService, $ionicConfigProvider) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -132,7 +132,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   deviceAuth.registerDevice().then(function(result) {
     $scope.devData = result.data;
-    deviceAuth.setToken($scope.devData.data.token);
+    deviceAuth.setToken($scope.devData.token);
     $scope.dev2Data = deviceAuth.getDevInfo();
   });
 
