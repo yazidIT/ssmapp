@@ -216,6 +216,7 @@ angular.module('myServices', [])
   var uuid = "";
   var platform = "";
   var token = "";
+  var tokenV1 = "";
 
   function setUUID(val) { uuid = val; }
 
@@ -223,11 +224,14 @@ angular.module('myServices', [])
 
   function setToken(val) { token = val; }
 
+  function setTokenV1(val) { tokenV1 = val; }
+
   function getDevInfo() {
     return {
       "uuid" : uuid,
       "platform" : platform,
-      "token" : token
+      "token" : token,
+      "tokenV1" : tokenV1
     }
   }
 
@@ -240,6 +244,24 @@ angular.module('myServices', [])
   var loadingHide = function(){
     $ionicLoading.hide();
   };
+
+  function registerDeviceV1() { 
+    loadingShow(); 
+    var postUsers = $http({ 
+      method: 'POST', 
+      url: config.apiUrl + 'register-device', 
+      data: { "uuid" : uuid, "type" : platform } 
+    }).success(function(result) { 
+        return result.data; 
+    }).error(function(data, status) { 
+      // Do something on error 
+        console.log("Device registration failed."); 
+    }).finally(function() { 
+      // On both cases hide the loading 
+      loadingHide(); 
+    }); 
+    return postUsers; 
+  }; 
 
   function registerDevice() {
     loadingShow();
@@ -268,7 +290,9 @@ angular.module('myServices', [])
     setPlatform : setPlatform,
     registerDevice : registerDevice,
     getDevInfo : getDevInfo,
-    setToken : setToken
+    setToken : setToken,
+    registerDeviceV1 : registerDeviceV1,
+    setTokenV1 : setTokenV1
   }
 })
 
@@ -351,11 +375,13 @@ angular.module('myServices', [])
     var queryData = eQuerySvc.getData();
     var outLang = langSvc.getLang();
 
+    console.log("eQuery v1 token: ===> " + devInfo.tokenV1);
+
     loadingShow();
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'equery',
-      data: { "token" : devInfo.token, "documentNo" : queryData.query, lang : outLang }
+      data: { "token" : devInfo.tokenV1, "documentNo" : queryData.query, lang : outLang }
     }).success(function(result) {
         if (result.data.length === 0) {
           popupError.noRecord(title);
@@ -406,7 +432,7 @@ angular.module('myServices', [])
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'ecompound',
-      data: { "token" : devInfo.token, "type": queryData.first,
+      data: { "token" : devInfo.tokenV1, "type": queryData.first,
               "entityType": queryData.second, "entityNo": queryData.query }
     }).success(function(result) {
       if (result.data.length === 0) {
@@ -527,7 +553,7 @@ angular.module('myServices', [])
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'strikeoff',
-      data: { "token" : devInfo.token, "companyNo": queryData.query }
+      data: { "token" : devInfo.tokenV1, "companyNo": queryData.query }
     }).success(function(result) {
         if (result.data.length === 0) {
           popupError.noRecord(title);

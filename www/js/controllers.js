@@ -130,6 +130,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.initDevice();
   });
 
+  deviceAuth.registerDeviceV1().then(function(result) {
+    deviceAuth.setTokenV1(result.data.data.token);
+  });
+
   deviceAuth.registerDevice().then(function(result) {
     $scope.devData = result.data;
     deviceAuth.setToken($scope.devData.token);
