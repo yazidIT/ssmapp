@@ -29,13 +29,10 @@
     if (window.cordova){
         cordova.getAppVersion.getVersionNumber().then(function (version) {
             $rootScope.appversion = version;
-
         });
     }
     
-      
   });
-     
      
   $ionicPlatform.registerBackButtonAction(function(e) {
     e.preventDefault();

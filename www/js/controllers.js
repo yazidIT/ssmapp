@@ -134,7 +134,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.devData = result.data;
     deviceAuth.setToken($scope.devData.token);
     $scope.dev2Data = deviceAuth.getDevInfo();
-    console.log(JSON.stringify($scope.dev2Data));
     doUpdateNews();
   });
 
@@ -287,11 +286,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {
   $scope.input = {
-    entityType :  "Company Registration No.",
-    compound :    "Registrar of Companies (ROC)"
+    entityType :  "01",
+    compound :    "ROC"
   }
 
-  $scope.input.entityType = "ROC";//default value
+  // $scope.input.entityType = "ROC";//default value
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang[eVar[$scope.input.entityType]];
@@ -304,9 +303,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   
   changePlaceHolder();
   
-  $scope.cmpndData = "ROC";
-  $scope.entityData = $scope.cmpndData;
-    
+  $scope.entityData = $scope.input.compound;
+  $scope.cmpndData = $scope.input.compound;
   $scope.compoundSelect = function() {
       $scope.cmpndData = $scope.input.compound; //dont know why...huhu
   }
@@ -315,24 +313,23 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     var lang = currTranslateSvc.getData();
     $scope.placeHolder = lang[eVar[$scope.input.entityType]];
     $scope.entityData =  $scope.input.entityType;
+    console.log($scope.input.entityType);
   }
 })
 
 .controller('CompoundInfo', function($scope, $state, getCmpnd, eQuerySvc, currTranslateSvc, popupError, $cordovaNetwork) {
-  
-  $scope.input.compound = "ROC";
-    
+
   $scope.showResult = function() {
-      var lang = currTranslateSvc.getData();
-      //OfflineCheck
-     if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
-        return;
-     }
+    var lang = currTranslateSvc.getData();
+    //OfflineCheck
+    if(window.cordova && $cordovaNetwork.isOffline()){
+      popupError.noInternet(lang.ERROR_TITLE);
+      return;
+    }
       
-      getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+    getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
       if(result.status != 200){
-          console.log("Error - "+result.status);
+          console.log("Error - " + result.status);
           $scope.input.entityNo = ""; 
           return;
       }
@@ -379,14 +376,14 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     langSvc.setLang(lang);
     $scope.langSelected = lang;
       
-      //set scope variable & refresh floating
-      currTranslateSvc.setData(translations[langSvc.getLang()]);
-      myFmFactory.getButtons(currTranslateSvc.getData());
-      
-      //reload all related placeHolder by broadcast on other controller
-      $rootScope.$broadcast('reloadOnLanguageChange');
-      
-      $state.go('app.main');//just simple go
+    //set scope variable & refresh floating
+    currTranslateSvc.setData(translations[langSvc.getLang()]);
+    myFmFactory.getButtons(currTranslateSvc.getData());
+    
+    //reload all related placeHolder by broadcast on other controller
+    $rootScope.$broadcast('reloadOnLanguageChange');
+    
+    $state.go('app.main');//just simple go
   }
 })
 
@@ -395,12 +392,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.input.entityType = "ROC";
 
   $scope.showResult = function() {
-     var lang = currTranslateSvc.getData();
+    var lang = currTranslateSvc.getData();
     //OfflineCheck
-     if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
-        return;
-     }
+    if(window.cordova && $cordovaNetwork.isOffline()){
+      popupError.noInternet(lang.ERROR_TITLE);
+      return;
+    }
    
     getSearch.loadUserData(lang.MENU_07).then(function(result) {
 
@@ -447,7 +444,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('SearchResult', function($scope, getSearch, eQuerySvc) {
     $scope.userData = getSearch.getData();
-    console.log(JSON.stringify(getSearch.getData()));
 })
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope, popupError, $cordovaNetwork) {
@@ -485,7 +481,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           return;
       }
     
-        $state.go('app.status308_ans');
+      $state.go('app.status308_ans');
 
     });
 
