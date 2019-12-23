@@ -166,18 +166,6 @@ angular.module('myServices', [])
     icon: 'ion-social-youtube',
     dest: 'https://www.youtube.com/user/ssmofficialpage',
     mood: 'assertive'
-  },
-  {
-    // label: 'Email Us: enquiry@ssm.com.my',
-    // icon: 'ion-email',
-    // dest: 'mailto:enquiry@ssm.com.my',
-    // mood: 'dark'
-  },
-  {
-    // label: 'Call Us: 03 2299 4400',
-    // icon: 'ion-ios-telephone',
-    // dest: 'tel:03-2299-4400',
-    // mood: 'positive'
   }
   ];
 
@@ -252,24 +240,6 @@ angular.module('myServices', [])
   var loadingHide = function(){
     $ionicLoading.hide();
   };
-
-  // function registerDevice() {
-  //   loadingShow();
-  //   var postUsers = $http({
-  //     method: 'POST',
-  //     url: config.apiUrl + 'register-device',
-  //     data: { "uuid" : uuid, "type" : platform }
-  //   }).success(function(result) {
-  //       return result.data;
-  //   }).error(function(data, status) {
-  //     // Do something on error
-  //       console.log("Device registration failed.");
-  //   }).finally(function() {
-  //     // On both cases hide the loading
-  //     loadingHide();
-  //   });
-  //   return postUsers;
-  // };
 
   function registerDevice() {
     loadingShow();
@@ -432,11 +402,7 @@ angular.module('myServices', [])
     var queryData = eQuerySvc.getData();
 
     loadingShow();
-    console.log("Url: " + config.apiUrl + 'ecompound');
-    console.log("token: " + devInfo.token);
-    console.log("type: " + queryData.first);
-    console.log("entityType: " + queryData.second);
-    console.log("entityNo: " + queryData.query);
+
     var postUsers = $http({
       method: 'POST',
       url: config.apiUrl + 'ecompound',
@@ -500,7 +466,7 @@ angular.module('myServices', [])
     } else {
       findUrl = 'findLlp/';
     }
-    console.log("API TO SERVER ====> " + config.apiv2url + queryUrl + findUrl + queryData.query);
+
     var postUsers = $http({
       method: 'GET',
       url: config.apiv2url + queryUrl + findUrl + queryData.query,
@@ -517,7 +483,7 @@ angular.module('myServices', [])
             popupError.serverBusy(title);
           }
         }
-        console.log("SEARCH RESULT: ====> " + JSON.stringify(result));
+        
         resultData = result;
         return result;
     }).error(function(data, status) {
