@@ -6,9 +6,6 @@ angular.module('myServices', [])
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
     apiv2url: 'https://m.ssm.com.my/apiv2/index.php/',
-    // rssToJsonUrl: 'https://api.rss2json.com/v1/api.json',
-    // ssmRssUrl: 'https://www.ssm.com.my/_layouts/15/listfeed.aspx?List=b3fb9033-7696-4a56-a3d4-e14538bcac53&View=921199fa-db8b-4770-8c2d-146cb7b2f781',
-    // rss2JsonApiKey: 'q1mz50egdw9b1m8iqvkyq1m2u7si2ax9rwieugri'
 })
 
 .factory('popupError',function($ionicPopup, $ionicHistory){
@@ -321,10 +318,7 @@ angular.module('myServices', [])
 
     loadingShow();
 
-    var devData = deviceAuth.getDevInfo();
-    console.log("Dev Info: ===> " + JSON.stringify(devData));
-    var authHeader = 'Bearer' + ' ' + devData.token;
-    console.log("Auth Header : ==> " + JSON.stringify(authHeader));
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
     var header = { "Authorization" : authHeader };
 
     var urlFinal = config.apiv2url + 'rss';
@@ -344,10 +338,13 @@ angular.module('myServices', [])
 
   function getDetailNews(title) {
     var queryData = eQuerySvc.getData();
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
     loadingShow();
     var postUsers = $http({
       method: 'GET',
-      url: queryData.query
+      url: queryData.query,
+      headers: header
     }).success(function(result) {
         return result;
     }).error(function(data, status) {
@@ -494,6 +491,8 @@ angular.module('myServices', [])
     // cater for new comp/business registration number
     var queryUrl = 'esearch/';
     var findUrl;
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
     if(queryData.first === "ROC" | queryData.first === "ROCNEW") {
       findUrl = 'findRoc/';
     } else if (queryData.first === "ROB" | queryData.first === "ROBNEW"){
@@ -504,7 +503,8 @@ angular.module('myServices', [])
     console.log("API TO SERVER ====> " + config.apiv2url + queryUrl + findUrl + queryData.query);
     var postUsers = $http({
       method: 'GET',
-      url: config.apiv2url + queryUrl + findUrl + queryData.query
+      url: config.apiv2url + queryUrl + findUrl + queryData.query,
+      headers: header
     }).success(function(result) {
         if (queryData.first === "LLP") {
           if (result.length === 0) {
@@ -643,7 +643,7 @@ angular.module('myServices', [])
 
 
 //Service List Of Offices
-.factory('SSMOfficesService', function($http, $ionicLoading, config, popupError) {
+.factory('SSMOfficesService', function($http, $ionicLoading, config, popupError, deviceAuth) {
     
    var loadingShow = function() {
     $ionicLoading.show({
@@ -658,19 +658,22 @@ angular.module('myServices', [])
 
   function getOffices() {
       
-      loadingShow(); 
-        var urlFinal = config.apiv2url + 'contact_us';
+      loadingShow();
+      var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+      var header = { "Authorization" : authHeader };
+      var urlFinal = config.apiv2url + 'contact_us';
 
-        var offices = $http({
-              method: 'GET',
-              url: urlFinal
-            }).success(function(result) {
-                return result.data;
-            }).error(function(data, status) {
-              popupError.serverFail(title,false);
-            }).finally(function() {
-              loadingHide();
-            });
+      var offices = $http({
+        method: 'GET',
+        url: urlFinal,
+        headers: header
+      }).success(function(result) {
+          return result.data;
+      }).error(function(data, status) {
+        popupError.serverFail(title,false);
+      }).finally(function() {
+        loadingHide();
+      });
       
       return offices;
   };
