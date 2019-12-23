@@ -246,7 +246,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         popupError.noInternet(lang.ERROR_TITLE);
         return;
       }
-      var lang = currTranslateSvc.getData();
+
       // 1. Get companyNo result from api v2 esearch
       // 2. Use (1) to search document
       var queryData1 = eQuerySvc.getData();
@@ -286,25 +286,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
               $state.go('app.equery_ans');
 
           });
-          
+
       });
-
-      // getQuery.loadUserData(lang.MENU_05).then(function(result) {
-      //     if(result.status != 200){
-      //         console.log("Error - "+result.status);
-      //         $scope.data.input = ""; 
-      //         return;
-      //     }
-
-      //     if(result.data.data.length == 0){
-      //         console.log("Data empty");
-      //         $scope.data.input = ""; 
-      //         return;
-      //     }
-
-      //     $state.go('app.equery_ans');
-
-      // });
 
       $scope.queryData = eQuerySvc.getData();
   }
@@ -492,7 +475,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.userData = getSearch.getData();
 })
 
-.controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope, popupError, $cordovaNetwork) {
+.controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
+            popupError, $cordovaNetwork, getSearch) {
     
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
@@ -507,31 +491,54 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   changePlaceHolder();
 
   $scope.showResult = function() {
-    var lang = currTranslateSvc.getData();
-    //OfflineCheck
-    if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
-        return;
-    }
-    
-    getS308.loadUserData(lang.MENU_08).then(function(result) {
-        if(result.status != 200){
-          console.log("Error - "+result.status);
-          $scope.data.input = ""; 
+      var lang = currTranslateSvc.getData();
+      //OfflineCheck
+      if(window.cordova && $cordovaNetwork.isOffline()){
+          popupError.noInternet(lang.ERROR_TITLE);
           return;
       }
-      
-      if(result.data.data.length == 0){
-          console.log("Data empty");
-          $scope.data.input = ""; 
-          return;
-      }
-    
-      $state.go('app.status308_ans');
 
-    });
+      var queryData1 = eQuerySvc.getData();
+      queryData1.first = "ROC";
+      eQuerySvc.setData(queryData1);
+      getSearch.loadUserData(lang.MENU_05).then(function(result) {
+          if(result.status != 200){
+              console.log("Error - " + result.status);
+              $scope.data.input = ""; 
+              return;
+          }
+          if(result.length == 0){
+              console.log("Data empty");
+              $scope.input.entityNo = ""; 
+              return;
+          }
+          console.log(JSON.stringify(result));
+          var comRegNo = result.data.result.companyNo;
+          console.log(comRegNo);
 
-    $scope.queryData = eQuerySvc.getData();
+          queryData1.query = comRegNo;
+          eQuerySvc.setData(queryData1);
+
+          getS308.loadUserData(lang.MENU_08).then(function(result) {
+              if(result.status != 200){
+                  console.log("Error - "+result.status);
+                  $scope.data.input = ""; 
+                  return;
+              }
+              
+              if(result.data.data.length == 0){
+                  console.log("Data empty");
+                  $scope.data.input = ""; 
+                  return;
+              }
+            
+              $state.go('app.status308_ans');
+
+          });
+
+      });
+
+      $scope.queryData = eQuerySvc.getData();
   }
 
   $scope.s308Info = function(data) {
