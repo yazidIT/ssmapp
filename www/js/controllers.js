@@ -236,51 +236,93 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 })
 
 .controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,
-            popupError,$cordovaNetwork) {
+            popupError, $cordovaNetwork, getSearch) {
 
   $scope.placeHolder = "Comp. No / MyCoID";
   $scope.showResult = function() {
-     var lang = currTranslateSvc.getData();
-     //OfflineCheck
-     if(window.cordova && $cordovaNetwork.isOffline()){
+      var lang = currTranslateSvc.getData();
+      //OfflineCheck
+      if(window.cordova && $cordovaNetwork.isOffline()){
         popupError.noInternet(lang.ERROR_TITLE);
         return;
-     }
-     var lang = currTranslateSvc.getData();
-      getQuery.loadUserData(lang.MENU_05).then(function(result) {
-         if(result.status != 200){
-              console.log("Error - "+result.status);
+      }
+      var lang = currTranslateSvc.getData();
+      // 1. Get companyNo result from api v2 esearch
+      // 2. Use (1) to search document
+      var queryData1 = eQuerySvc.getData();
+      queryData1.first = "ROC";
+      eQuerySvc.setData(queryData1);
+      getSearch.loadUserData(lang.MENU_05).then(function(result) {
+          if(result.status != 200){
+              console.log("Error - " + result.status);
               $scope.data.input = ""; 
               return;
           }
-
-          if(result.data.data.length == 0){
+          if(result.length == 0){
               console.log("Data empty");
-              $scope.data.input = ""; 
+              $scope.input.entityNo = ""; 
               return;
           }
+          console.log(JSON.stringify(result));
+          var comRegNo = result.data.result.companyNo;
+          console.log(comRegNo);
 
-          $state.go('app.equery_ans');
+          queryData1.query = comRegNo;
+          eQuerySvc.setData(queryData1);
 
+          getQuery.loadUserData(lang.MENU_05).then(function(result) {
+              if(result.status != 200){
+                  console.log("Error - "+result.status);
+                  $scope.data.input = ""; 
+                  return;
+              }
+
+              if(result.data.data.length == 0){
+                  console.log("Data empty");
+                  $scope.data.input = ""; 
+                  return;
+              }
+
+              $state.go('app.equery_ans');
+
+          });
+          
       });
+
+      // getQuery.loadUserData(lang.MENU_05).then(function(result) {
+      //     if(result.status != 200){
+      //         console.log("Error - "+result.status);
+      //         $scope.data.input = ""; 
+      //         return;
+      //     }
+
+      //     if(result.data.data.length == 0){
+      //         console.log("Data empty");
+      //         $scope.data.input = ""; 
+      //         return;
+      //     }
+
+      //     $state.go('app.equery_ans');
+
+      // });
 
       $scope.queryData = eQuerySvc.getData();
   }
 
   $scope.searchInfo = function(data) {
-    if (data === undefined ) {
-      eQuerySvc.emptySearch();
-    } else if (data.length == 0) {
-      eQuerySvc.emptySearch();
-    } else {
-      var queryData = {
-        first : "",
-        second : "",
-        query : data
-      };
-      eQuerySvc.setData(queryData);
-      $scope.showResult();
-    }
+      if (data === undefined ) {
+          eQuerySvc.emptySearch();
+      } else if (data.length == 0) {
+          eQuerySvc.emptySearch();
+      } else {
+          var queryData = {
+              first : "",
+              second : "",
+              query : data
+          };
+          eQuerySvc.setData(queryData);
+          $scope.showResult();
+      }
   }
 })
 
