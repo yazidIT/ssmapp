@@ -410,53 +410,53 @@ angular.module('myServices', [])
 
 .factory('getCmpnd', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
     
-  var resultData;
+    var resultData;
 
-  var loadingShow = function() {
-    $ionicLoading.show({
-      template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
-    });
-  };
+    var loadingShow = function() {
+        $ionicLoading.show({
+          template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
+        });
+    };
 
-  var loadingHide = function(){
-    $ionicLoading.hide();
-  };
+    var loadingHide = function(){
+        $ionicLoading.hide();
+    };
 
-  function loadUserData(title) {
+    function loadUserData(title) {
 
-    var devInfo = deviceAuth.getDevInfo();
-    var queryData = eQuerySvc.getData();
+        var devInfo = deviceAuth.getDevInfo();
+        var queryData = eQuerySvc.getData();
 
-    loadingShow();
+        loadingShow();
 
-    var postUsers = $http({
-      method: 'POST',
-      url: config.apiUrl + 'ecompound',
-      data: { "token" : devInfo.tokenV1, "type": queryData.first,
-              "entityType": queryData.second, "entityNo": queryData.query }
-    }).success(function(result) {
-      if (result.data.length === 0) {
-        popupError.noRecord(title);
-      }
-        resultData = result.data;
-        return result.data;
-    }).error(function(data, status) {
-        popupError.serverFail(title,false,status);
-    }).finally(function() {
-      loadingHide();
-    });
-    return postUsers;
-  };
+        var postUsers = $http({
+            method: 'POST',
+            url: config.apiUrl + 'ecompound',
+            data: { "token" : devInfo.tokenV1, "type": queryData.first,
+                    "entityType": queryData.second, "entityNo": queryData.query }
+        }).success(function(result) {
+            if (result.data.length === 0) {
+                popupError.noRecord(title);
+            }
+            resultData = result.data;
+            return result.data;
+        }).error(function(data, status) {
+            popupError.serverFail(title,false,status);
+        }).finally(function() {
+            loadingHide();
+        });
+        return postUsers;
+    };
 
 
-  function getData(){
-    return resultData;
-  };
-    
-  return {
-    loadUserData : loadUserData,
-    getData: getData
-  }
+    function getData(){
+        return resultData;
+    };
+      
+    return {
+        loadUserData : loadUserData,
+        getData: getData
+    }
 })
 
 .factory('getSearch', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {

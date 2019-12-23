@@ -346,52 +346,98 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
-.controller('CompoundInfo', function($scope, $state, getCmpnd, eQuerySvc, currTranslateSvc, popupError, $cordovaNetwork) {
+.controller('CompoundInfo', function($scope, $state, getCmpnd, eQuerySvc, currTranslateSvc, popupError,
+                                      $cordovaNetwork, getSearch) {
 
-  $scope.showResult = function() {
-    var lang = currTranslateSvc.getData();
-    //OfflineCheck
-    if(window.cordova && $cordovaNetwork.isOffline()){
-      popupError.noInternet(lang.ERROR_TITLE);
-      return;
-    }
+    $scope.showResult = function() {
+        var lang = currTranslateSvc.getData();
+        //OfflineCheck
+        if(window.cordova && $cordovaNetwork.isOffline()){
+            popupError.noInternet(lang.ERROR_TITLE);
+            return;
+        }
+
+        // Only do esearch first for queryData.second = "01"
+        var queryDataFromUser = eQuerySvc.getData();
+        console.log("queryData ===> " + JSON.stringify(queryDataFromUser));
+
+        if(queryDataFromUser.second === "01") {
+            var queryData1 = eQuerySvc.getData();
+            queryData1.first = "ROC";
+            eQuerySvc.setData(queryData1);
+            getSearch.loadUserData(lang.MENU_05).then(function(result) {
+                if(result.status != 200){
+                    console.log("Error - " + result.status);
+                    $scope.data.input = ""; 
+                    return;
+                }
+                if(result.length == 0){
+                    console.log("Data empty");
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+                console.log(JSON.stringify(result));
+                var comRegNo = result.data.result.companyNo;
+                console.log(comRegNo);
       
-    getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
-      if(result.status != 200){
-          console.log("Error - " + result.status);
-          $scope.input.entityNo = ""; 
-          return;
-      }
-      
-      if(result.data.data.length == 0){
-          console.log("Data empty");
-          $scope.input.entityNo = ""; 
-          return;
-      }
-          
-      $state.go('app.ecompound_ans');
-    });
+                queryDataFromUser.query = comRegNo;
+                eQuerySvc.setData(queryDataFromUser);
 
-    $scope.queryData = eQuerySvc.getData();
-  }
+                getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+                  if(result.status != 200){
+                      console.log("Error - " + result.status);
+                      $scope.input.entityNo = ""; 
+                      return;
+                  }
+              
+                  if(result.data.data.length == 0){
+                      console.log("Data empty");
+                      $scope.input.entityNo = ""; 
+                      return;
+                  }
+                  
+                  $state.go('app.ecompound_ans');
+                });
+            });
+        } else {
 
-  $scope.compoundInfo = function(data1, data2) {
+            getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+                if(result.status != 200){
+                    console.log("Error - " + result.status);
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+            
+                if(result.data.data.length == 0){
+                    console.log("Data empty");
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+                
+                $state.go('app.ecompound_ans');
+            });
+        }
 
-    if (data1 === undefined ) {
-      eQuerySvc.emptySearch();
-    } else if (data1.length == 0) {
-      eQuerySvc.emptySearch();
-    } else {
-      var entityTypeID = data2;
-      var queryData = {
-        first: $scope.cmpndData,
-        second: entityTypeID,
-        query: data1
-      };
-      eQuerySvc.setData(queryData);
-      $scope.showResult();
+        $scope.queryData = eQuerySvc.getData();
     }
-  }
+
+    $scope.compoundInfo = function(data1, data2) {
+
+        if (data1 === undefined ) {
+            eQuerySvc.emptySearch();
+        } else if (data1.length == 0) {
+            eQuerySvc.emptySearch();
+        } else {
+            var entityTypeID = data2;
+            var queryData = {
+                first: $scope.cmpndData,
+                second: entityTypeID,
+                query: data1
+            };
+            eQuerySvc.setData(queryData);
+            $scope.showResult();
+        }
+    }
 })
 
 .controller('CmpndResult', function($scope, getCmpnd) {
