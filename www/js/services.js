@@ -423,17 +423,22 @@ angular.module('myServices', [])
     };
 
     function loadUserData(title) {
-
         var devInfo = deviceAuth.getDevInfo();
         var queryData = eQuerySvc.getData();
 
+        var queryUrl = 'esearch/ecompound/';
+        var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+        var header = { "Authorization" : authHeader };
+
         loadingShow();
+
+        var queryData = { "token" : devInfo.tokenV1, "type": queryData.first,
+        "entityType": queryData.second, "entityNo": queryData.query };
 
         var postUsers = $http({
             method: 'POST',
-            url: config.apiUrl + 'ecompound',
-            data: { "token" : devInfo.tokenV1, "type": queryData.first,
-                    "entityType": queryData.second, "entityNo": queryData.query }
+            url: config.apiv2url + queryUrl,
+            data: queryData
         }).success(function(result) {
             if (result.data.length === 0) {
                 popupError.noRecord(title);
@@ -475,7 +480,6 @@ angular.module('myServices', [])
 
   function loadUserData(title) {
 
-    var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
 
     loadingShow();

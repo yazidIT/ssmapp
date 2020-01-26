@@ -111,7 +111,9 @@ var translations = {
         "REGISTYPE": "Registration Type:",
         "REGISNO": "Registration Number:",
         "REGISNONEW": "New Registration Number:",
-        "S308_RSLT": "Status 308 Result"
+        "S308_RSLT": "Status 308 Result",
+        "COMPNDSTATUS": "Compound Status:",
+        "AMOUNT": "Amount:"
     },
     
     
@@ -227,6 +229,8 @@ var translations = {
         "REGISTYPE": "Jenis Daftar:",
         "REGISNO": "Nombor Daftar:",
         "REGISNONEW": "Nombor Daftar Baru:",
-        "S308_RSLT": "Keputusan Status 308"
+        "S308_RSLT": "Keputusan Status 308",
+        "COMPNDSTATUS": "Status Kompaun:",
+        "AMOUNT": "Jumlah:"
 	}
 }
