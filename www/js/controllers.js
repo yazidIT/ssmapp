@@ -605,6 +605,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('S308Result', function($scope, getS308, eQuerySvc) {
     $scope.userData = getS308.getData();
+    $scope.userCos = getS308.getCos();
 })
 
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {

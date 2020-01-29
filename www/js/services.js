@@ -537,6 +537,7 @@ angular.module('myServices', [])
 .factory('getS308', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
 
   var resultData;
+  var resultCos;
 
   var loadingShow = function() {
     $ionicLoading.show({
@@ -552,18 +553,21 @@ angular.module('myServices', [])
 
     var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
+    var queryUrl = 'esearch/status308/';
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
 
     loadingShow();
     var postUsers = $http({
-      method: 'POST',
-      url: config.apiUrl + 'strikeoff',
-      data: { "token" : devInfo.tokenV1, "companyNo": queryData.query }
+      method: 'GET',
+      url: config.apiv2url + queryUrl + queryData.query
     }).success(function(result) {
         if (result.data.length === 0) {
           popupError.noRecord(title);
         }
         
         resultData = result.data;
+        resultCos = result.cos;
         return result.data;
     }).error(function(data, status) {
       popupError.serverFail(title,false,status);
@@ -577,9 +581,14 @@ angular.module('myServices', [])
     return resultData;
   };
 
+  function getCos() {
+    return resultCos;
+  }
+
   return {
     loadUserData : loadUserData,
-    getData: getData
+    getData: getData,
+    getCos: getCos
   }
 })
 
