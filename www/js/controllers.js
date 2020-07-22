@@ -18,7 +18,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     "ROCNEW":"optEntityCRegNoNew",
     "ROBNEW":"optEntityBRegNoNew"
 })
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicHistory, $state, $ionicViewService,$ionicConfigProvider) {
+
+.controller('AppCtrl', function($scope, $ionicModal, $ionicHistory, $state, $ionicViewService, $ionicConfigProvider) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -49,54 +50,27 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-//    console.log('Doing login', $scope.loginData);
     if ($scope.loginData.username === "test") {
-      //$location.path("/app/main");
       window.localStorage.setItem("password", $scope.loginData.username);
       $ionicViewService.nextViewOptions({
           disableAnimate: true,
           disableBack: true
       });
-      //$location.path("/protected");
       $state.go('app.news');
     }
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    //$timeout(function() {
-    //  $scope.closeLogin();
-    //}, 5000);
   };
 
   $scope.goBack = function(){
     $ionicHistory.goBack();
   };
     
-$ionicConfigProvider.backButton.previousTitleText(false);
-
-})
-
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'News & Announcements', id: 1 },
-    { title: 'e-Query', id: 2 },
-    { title: 'e-Compound', id: 3 },
-    { title: 'e-Search', id: 4 },
-    { title: 'Status 308', id: 5 },
-    { title: 'Contact Us', id: 6 },
-  	{ title: 'Bahasa Malaysia', id: 7 },
-  	{ title: 'Main', id: 8 },
-  	{ title: 'Equeer', id: 9 }
-  ];
-    
-
+  $ionicConfigProvider.backButton.previousTitleText(false);
 })
 
 .controller('MenuCtrl', function($scope) {
   $scope.mySelect = "Company Registration Number";
   $scope.placeHolder = "Company Registration";
   $scope.processSelectValue = function(myVal) {
-    //alert(myVal);
     $scope.placeHolder = myVal;
   }
 })
@@ -108,26 +82,22 @@ $ionicConfigProvider.backButton.previousTitleText(false);
   }
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})
-
-.controller('FloatMenuCtrl', function($scope, $state, $ionicHistory, myFmFactory,langSvc,currTranslateSvc,$rootScope) {
-      $scope.goBack = function(destval) {
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
-        $scope.mfb = 'closed';
-        $state.go(destval);
-
-      };
-    
-    //listen to chenge at current state
-    $rootScope.$on('reloadOnLanguageChange', function() {
-      $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
+.controller('FloatMenuCtrl', function($scope, $state, $ionicHistory, myFmFactory, currTranslateSvc, $rootScope) {
+  $scope.goBack = function(destval) {
+    $ionicHistory.nextViewOptions({
+      disableBack: true
     });
-    
-    $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
+    $scope.mfb = 'closed';
+    $state.go(destval);
 
+  };
+    
+  //listen to chenge at current state
+  $rootScope.$on('reloadOnLanguageChange', function() {
+    $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
+  });
+  
+  $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
 })
 
 .controller('BrowseLink', function($scope, myContactUs) {
@@ -139,35 +109,14 @@ $ionicConfigProvider.backButton.previousTitleText(false);
   $scope.openInLink = function(httpLink) {
     window.open(httpLink,'_blank');
   }
-  
- 
-  //$scope.openCordovaWebView = function()
-  //{
-   // Open cordova webview if the url is in the whitelist otherwise opens in app browser
-   //window.open('http://google.com','_self');
-  //};
 
   $scope.contactlist = myContactUs.getcontactlist();
-    
 })
 
-.controller("MainController",
-function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate, $state,
-        deviceAuth, newsSvc, licInfo, eQuerySvc, config,langSvc,currTranslateSvc,newsStoreSvc,$rootScope,$localStorage,popupError,$cordovaNetwork) {
-/*
-  if(window.localStorage.getItem("password") === "undefined" || window.localStorage.getItem("password") === null) {
-    $ionicViewService.nextViewOptions({
-      disableAnimate: true,
-      disableBack: true
-    });
-    //$location.path("/login");
-    $state.go('login');
-  }
-  $scope.status = "Making it this far means you are signed in";
-   licInfo.start();
-*/
+.controller("MainController", function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate, $state,
+            deviceAuth, newsSvc, eQuerySvc, langSvc, currTranslateSvc, newsStoreSvc, $rootScope, $localStorage, popupError,
+            $cordovaNetwork) {
 
- 
  //SSMHACK
     //ORI--->
   $ionicPlatform.ready(function() {
@@ -176,53 +125,37 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
       deviceAuth.setUUID(device.uuid);
       deviceAuth.setPlatform($filter('lowercase')(device.platform));
       var devInfo = deviceAuth.getDevInfo();
-      //alert(devInfo.devUUID + " " + devInfo.devPlatform);
-      //alert(device.uuid + " " + device.platform);
-
     }
 
     $scope.initDevice();
   });
 
+  deviceAuth.registerDeviceV1().then(function(result) {
+    deviceAuth.setTokenV1(result.data.data.token);
+  });
+
   deviceAuth.registerDevice().then(function(result) {
     $scope.devData = result.data;
-    deviceAuth.setToken($scope.devData.data.token);
+    deviceAuth.setToken($scope.devData.token);
     $scope.dev2Data = deviceAuth.getDevInfo();
+    doUpdateNews();
   });
 
   currTranslateSvc.setData(translations[langSvc.getLang()]);
-    //<-- END ORI
-    //< DUMMY-->
-//    $scope.dev2Data = {
-//        "platform":"android",
-//        "token":"1aa99f13bd05e1ae836a460533a1771acddf73c5",//-->external */"9d5cc6f7c381e5e44766a3c0f740c8511ef14899",
-//        "uuid": "9de21a1a1d456e5b"
-//    };
-//    
-//    deviceAuth.setToken("1aa99f13bd05e1ae836a460533a1771acddf73c5");//*/ deviceAuth.setToken("9d5cc6f7c381e5e44766a3c0f740c8511ef14899");
-//
-//
-//     //init lang var
-//    console.log("init curr lang");
-//    currTranslateSvc.setData(translations[langSvc.getLang()]);
-//    
-    //<--END DUMMY
-    //END - SSMHACK
-
 
   function doUpdateNews(){
       var data;
       var lang = currTranslateSvc.getData();
       newsSvc.getNews(lang.MENU_01).then(
           function successCallback(result) {
-            data = result.data;
-            $localStorage.news = result.data;
-          },function errorCallback(response) {
-                data = $localStorage.news;
+            data = result.data.channel.item;
+            $localStorage.news = data;
+          }, function errorCallback(response) {
+            data = $localStorage.news;
           })
       .finally(function(){
-            $scope.userData = data.data[langSvc.getLang()];
-            newsStoreSvc.setData(data.data[langSvc.getLang()]);
+            $scope.userData = data;
+            newsStoreSvc.setData(data);
             $ionicSlideBoxDelegate.update();
       });
       
@@ -232,29 +165,10 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
           }
         }, 1000);
   }
-    
-  doUpdateNews();
-    
+
   $rootScope.$on('reloadOnLanguageChange', function() {
     doUpdateNews();
   });
-    
-  
-/*
-  $scope.showNews = function(content) {
-    var alertPopup = $ionicPopup.alert({
-      title: '<h4 class="title-assertive">News</h4>',
-      template: content,
-      buttons: [
-        { text: '<b class="title-class">Close</b>',
-          type: 'button-positive button-small',
-          onTap: function(e) {
-            alertPopup.close();
-          }
-        }
-      ]
-    });
-  }*/
 
   $scope.getDetailNews = function(newsLink) {
     var lang = currTranslateSvc.getData();
@@ -263,8 +177,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
         popupError.noInternet(lang.ERROR_TITLE);
         return;
     }
-      
-    //alert(newsLink);
+
     var queryData = {
       first : "",
       second : "",
@@ -282,19 +195,16 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
     $ionicSlideBoxDelegate.previous();
   };
 
-  //$scope.slides = [{name:"1"},{name:"2"},{name:"3"},{name:"4"}];
-
   // Called each time the slide changes
   $scope.slideIndex = 0;
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
-    //console.log($scope.slideIndex);
   };
 })
 
-.controller('NewsCtrl', function($scope, $state, eQuerySvc, newsStoreSvc ,currTranslateSvc,$rootScope,popupError,$cordovaNetwork) {
+.controller('NewsCtrl', function($scope, $state, eQuerySvc, newsStoreSvc, currTranslateSvc, popupError, $cordovaNetwork) {
   
-  $scope.userData =newsStoreSvc.getData(); //<--already updated by main control
+  $scope.userData = newsStoreSvc.getData(); //<--already updated by main control
   $scope.getDetailNews = function(newsLink) {
     //OfflineCheck
     var lang = currTranslateSvc.getData();
@@ -311,45 +221,71 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
     eQuerySvc.setData(queryData);
     $state.go('app.detailnews');
   }
-    
-    
+
 })
 
-.controller('DetailNewsResult', function($scope, newsSvc,currTranslateSvc) {
+.controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc) {
+
   var defaultData = [];
   $scope.userData = defaultData;
+  $scope.detailNews = defaultData;
   var lang = currTranslateSvc.getData();
   newsSvc.getDetailNews(lang.MENU_01).then(function(result) {
-    $scope.userData = result.data;
+    $scope.detailNews = result.data;
   });
 })
 
-.controller('QueryInfo', function($scope, $ionicPopup, $ionicHistory, $state, getQuery, eQuerySvc,currTranslateSvc,popupError,$cordovaNetwork) {
+.controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,
+            popupError, $cordovaNetwork, getSearch) {
 
   $scope.placeHolder = "Comp. No / MyCoID";
   $scope.showResult = function() {
-     var lang = currTranslateSvc.getData();
-     //OfflineCheck
-     if(window.cordova && $cordovaNetwork.isOffline()){
+      var lang = currTranslateSvc.getData();
+      //OfflineCheck
+      if(window.cordova && $cordovaNetwork.isOffline()){
         popupError.noInternet(lang.ERROR_TITLE);
         return;
-     }
-     var lang = currTranslateSvc.getData();
-      getQuery.loadUserData(lang.MENU_05).then(function(result) {
-         if(result.status != 200){
-              console.log("Error - "+result.status);
-              $scope.data.input = ""; 
-              return;
-          }
+      }
 
-          if(result.data.data.length == 0){
-              console.log("Data empty");
+      // 1. Get companyNo result from api v2 esearch
+      // 2. Use (1) to search document
+      var queryData1 = eQuerySvc.getData();
+      queryData1.first = "ROC";
+      eQuerySvc.setData(queryData1);
+      getSearch.loadUserData(lang.MENU_05).then(function(result) {
+          if(result.status != 200){
+              console.log("Error - " + result.status);
               $scope.data.input = ""; 
               return;
           }
-        
-//          $scope.userData = result.data;
-            $state.go('app.equery_ans');
+          if(result.length == 0){
+              console.log("Data empty");
+              $scope.input.entityNo = ""; 
+              return;
+          }
+          console.log(JSON.stringify(result));
+          var comRegNo = result.data.result.companyNo;
+          console.log(comRegNo);
+
+          queryData1.query = comRegNo;
+          eQuerySvc.setData(queryData1);
+
+          getQuery.loadUserData(lang.MENU_05).then(function(result) {
+              if(result.status != 200){
+                  console.log("Error - "+result.status);
+                  $scope.data.input = ""; 
+                  return;
+              }
+
+              if(result.data.data.length == 0){
+                  console.log("Data empty");
+                  $scope.data.input = ""; 
+                  return;
+              }
+
+              $state.go('app.equery_ans');
+
+          });
 
       });
 
@@ -357,50 +293,47 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
   }
 
   $scope.searchInfo = function(data) {
-    if (data === undefined ) {
-      eQuerySvc.emptySearch();
-    } else if (data.length == 0) {
-      eQuerySvc.emptySearch();
-    } else {
-      var queryData = {
-        first : "",
-        second : "",
-        query : data
-      };
-      eQuerySvc.setData(queryData);
-      $scope.showResult();
-    }
+      if (data === undefined ) {
+          eQuerySvc.emptySearch();
+      } else if (data.length == 0) {
+          eQuerySvc.emptySearch();
+      } else {
+          var queryData = {
+              first : "",
+              second : "",
+              query : data
+          };
+          eQuerySvc.setData(queryData);
+          $scope.showResult();
+      }
   }
 })
 
-.controller('QueryResult', function($scope, getQuery, eQuerySvc) {
-   $scope.userData =getQuery.getData();
-  
+.controller('QueryResult', function($scope, getQuery) {
+   $scope.userData = getQuery.getData();
 })
 
-.controller('CmpndMenuCtrl', function($scope,eVar,currTranslateSvc,$rootScope) {
+.controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {
   $scope.input = {
-    entityType :  "Company Registration No.",
-    compound :    "Registrar of Companies (ROC)"
+    entityType :  "01",
+    compound :    "ROC"
   }
-//  $scope.entityType = "Company Registration No.";
-//  $scope.compound = "Registrar of Companies (ROC)";
-  $scope.input.entityType = "ROC";//default value
+
+  // $scope.input.entityType = "ROC";//default value
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang[eVar[$scope.input.entityType]];
   }
   
-  //broadcast
+  // listen to broadcast
   $rootScope.$on('reloadOnLanguageChange', function() {
     changePlaceHolder();
   });
   
   changePlaceHolder();
   
-  $scope.cmpndData = "ROC";
-  $scope.entityData = $scope.cmpndData;
-    
+  $scope.entityData = $scope.input.compound;
+  $scope.cmpndData = $scope.input.compound;
   $scope.compoundSelect = function() {
       $scope.cmpndData = $scope.input.compound; //dont know why...huhu
   }
@@ -409,100 +342,137 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
     var lang = currTranslateSvc.getData();
     $scope.placeHolder = lang[eVar[$scope.input.entityType]];
     $scope.entityData =  $scope.input.entityType;
+    console.log($scope.input.entityType);
   }
 })
 
-.controller('CompoundInfo', function($scope, $ionicPopup, $ionicHistory, $state,getCmpnd, eQuerySvc,currTranslateSvc,popupError,$cordovaNetwork) {
-  
-  $scope.input.compound = "ROC";
-    
-  $scope.showResult = function() {
-      var lang = currTranslateSvc.getData();
-      //OfflineCheck
-     if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
-        return;
-     }
-      
-      getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
-      if(result.status != 200){
-          console.log("Error - "+result.status);
-          $scope.input.entityNo = ""; 
-          return;
-      }
-      
-      if(result.data.data.length == 0){
-          console.log("Data empty");
-          $scope.input.entityNo = ""; 
-          return;
-      }
-          
-           
-//    $scope.userData = result.data; 
-//          console.log($scope.userData);
-      $state.go('app.ecompound_ans');
+.controller('CompoundInfo', function($scope, $state, getCmpnd, eQuerySvc, currTranslateSvc, popupError,
+                                      $cordovaNetwork, getSearch) {
 
-    });
+    $scope.showResult = function() {
+        var lang = currTranslateSvc.getData();
+        //OfflineCheck
+        if(window.cordova && $cordovaNetwork.isOffline()){
+            popupError.noInternet(lang.ERROR_TITLE);
+            return;
+        }
 
-    $scope.queryData = eQuerySvc.getData();
+        // Only do esearch first for queryData.second = "01"
+        var queryDataFromUser = eQuerySvc.getData();
+        console.log("queryData ===> " + JSON.stringify(queryDataFromUser));
+
+        if(queryDataFromUser.second === "01") {
+            var queryData1 = eQuerySvc.getData();
+            queryData1.first = "ROC";
+            eQuerySvc.setData(queryData1);
+            getSearch.loadUserData(lang.MENU_05).then(function(result) {
+                if(result.status != 200){
+                    console.log("Error - " + result.status);
+                    $scope.data.input = ""; 
+                    return;
+                }
+                if(result.length == 0){
+                    console.log("Data empty");
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+                console.log(JSON.stringify(result));
+                var comRegNo = result.data.result.companyNo;
+                console.log(comRegNo);
       
-  }
+                queryDataFromUser.query = comRegNo;
+                eQuerySvc.setData(queryDataFromUser);
 
-  $scope.compoundInfo = function(data1, data2) {
-//    console.log(data1 + " : " + data2);
-    if (data1 === undefined ) {
-      eQuerySvc.emptySearch();
-    } else if (data1.length == 0) {
-      eQuerySvc.emptySearch();
-    } else {
-      var entityTypeID = data2;
-      var queryData = {
-        first: $scope.cmpndData,
-        second: entityTypeID,
-        query: data1
-      };
-      eQuerySvc.setData(queryData);
-      //alert(queryData.first + " " + queryData.second + " " + queryData.query);
-      $scope.showResult();
+                getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+                  if(result.status != 200){
+                      console.log("Error - " + result.status);
+                      $scope.input.entityNo = ""; 
+                      return;
+                  }
+              
+                  if(result.data.data.length == 0){
+                      console.log("Data empty");
+                      $scope.input.entityNo = ""; 
+                      return;
+                  }
+                  
+                  $state.go('app.ecompound_ans');
+                });
+            });
+        } else {
+
+            getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+                if(result.status != 200){
+                    console.log("Error - " + result.status);
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+            
+                if(result.data.data.length == 0){
+                    console.log("Data empty");
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+                
+                $state.go('app.ecompound_ans');
+            });
+        }
+
+        $scope.queryData = eQuerySvc.getData();
     }
-  }
+
+    $scope.compoundInfo = function(data1, data2) {
+
+        if (data1 === undefined ) {
+            eQuerySvc.emptySearch();
+        } else if (data1.length == 0) {
+            eQuerySvc.emptySearch();
+        } else {
+            var entityTypeID = data2;
+            var queryData = {
+                first: $scope.cmpndData,
+                second: entityTypeID,
+                query: data1
+            };
+            eQuerySvc.setData(queryData);
+            $scope.showResult();
+        }
+    }
 })
 
-.controller('CmpndResult', function($scope, getCmpnd, eQuerySvc) {
+.controller('CmpndResult', function($scope, getCmpnd) {
    $scope.userData = getCmpnd.getData();
 })
 
-.controller('BMCtrl', function($scope, $translate, langSvc,myFmFactory,currTranslateSvc,$element,$rootScope,$state,$ionicHistory) {
+.controller('BMCtrl', function($scope, $translate, langSvc, myFmFactory, currTranslateSvc, $rootScope, $state) {
   $scope.langSelected = langSvc.getLang();
   $scope.ChangeLanguage = function(lang){
     $translate.use(lang);
     langSvc.setLang(lang);
     $scope.langSelected = lang;
       
-      //set scope variable & refresh floating
-      currTranslateSvc.setData(translations[langSvc.getLang()]);
-      myFmFactory.getButtons(currTranslateSvc.getData());
-      
-      //reload all related placeHolder by broadcast on other controller
-      $rootScope.$broadcast('reloadOnLanguageChange');
-      
-      //clear cache and go to main
-//      $ionicHistory.clearCache().then(function(){$state.go('app.main');});
-      $state.go('app.main');//just simple go
+    //set scope variable & refresh floating
+    currTranslateSvc.setData(translations[langSvc.getLang()]);
+    myFmFactory.getButtons(currTranslateSvc.getData());
+    
+    //reload all related placeHolder by broadcast on other controller
+    $rootScope.$broadcast('reloadOnLanguageChange');
+    
+    $state.go('app.main');//just simple go
   }
 })
 
-.controller('SearchInfo', function($scope, $window, $ionicPopup, $ionicHistory, $state, eQuerySvc,getSearch,currTranslateSvc,popupError,$cordovaNetwork) {
+.controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork) {
     
   $scope.input.entityType = "ROC";
 
   $scope.showResult = function() {
-     var lang = currTranslateSvc.getData();
+    var lang = currTranslateSvc.getData();
     //OfflineCheck
-     if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
-        return;
-     }
+    if(window.cordova && $cordovaNetwork.isOffline()){
+      popupError.noInternet(lang.ERROR_TITLE);
+      return;
+    }
    
     getSearch.loadUserData(lang.MENU_07).then(function(result) {
 
@@ -512,7 +482,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
           return;
       }
       
-      if(result.data.data.length == 0){
+      if(result.length == 0){
           console.log("Data empty");
           $scope.input.entityNo = ""; 
           return;
@@ -523,12 +493,10 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
     });
 
     $scope.queryData = eQuerySvc.getData();
-    
   }
 
   $scope.searchInfo = function(data) {
-    //alert($scope.entityData + " : " + data);
-//      console.log($scope);
+
     if (data === undefined ) {
       eQuerySvc.emptySearch();
     } else if (data.length == 0) {
@@ -539,7 +507,6 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
         query: data
       };
       eQuerySvc.setData(queryData);
-      //alert(queryData.first + " " + queryData.query);
       $scope.showResult();
     }
   }
@@ -552,10 +519,10 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
 
 .controller('SearchResult', function($scope, getSearch, eQuerySvc) {
     $scope.userData = getSearch.getData();
-//    console.log(getSearch.getData());
 })
 
-.controller('S308Info', function($scope, $ionicPopup, $ionicHistory, $state, eQuerySvc,currTranslateSvc,getS308,$rootScope,popupError,$cordovaNetwork) {
+.controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
+            popupError, $cordovaNetwork, getSearch) {
     
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
@@ -569,38 +536,59 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
   
   changePlaceHolder();
 
-  
-    
   $scope.showResult = function() {
-    var lang = currTranslateSvc.getData();
-    //OfflineCheck
-    if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
-        return;
-    }
-    
-    getS308.loadUserData(lang.MENU_08).then(function(result) {
-        if(result.status != 200){
-          console.log("Error - "+result.status);
-          $scope.data.input = ""; 
+      var lang = currTranslateSvc.getData();
+      //OfflineCheck
+      if(window.cordova && $cordovaNetwork.isOffline()){
+          popupError.noInternet(lang.ERROR_TITLE);
           return;
       }
-      
-      if(result.data.data.length == 0){
-          console.log("Data empty");
-          $scope.data.input = ""; 
-          return;
-      }
-    
-        $state.go('app.status308_ans');
 
-    });
+      var queryData1 = eQuerySvc.getData();
+      queryData1.first = "ROC";
+      eQuerySvc.setData(queryData1);
+      getSearch.loadUserData(lang.MENU_05).then(function(result) {
+          if(result.status != 200){
+              console.log("Error - " + result.status);
+              $scope.data.input = ""; 
+              return;
+          }
+          if(result.length == 0){
+              console.log("Data empty");
+              $scope.input.entityNo = ""; 
+              return;
+          }
+          console.log(JSON.stringify(result));
+          var comRegNo = result.data.result.companyNo;
+          console.log(comRegNo);
 
-    $scope.queryData = eQuerySvc.getData();
+          queryData1.query = comRegNo;
+          eQuerySvc.setData(queryData1);
+
+          getS308.loadUserData(lang.MENU_08).then(function(result) {
+              if(result.status != 200){
+                  console.log("Error - "+result.status);
+                  $scope.data.input = ""; 
+                  return;
+              }
+              
+              if(result.data.data.length == 0){
+                  console.log("Data empty");
+                  $scope.data.input = ""; 
+                  return;
+              }
+            
+              $state.go('app.status308_ans');
+
+          });
+
+      });
+
+      $scope.queryData = eQuerySvc.getData();
   }
 
   $scope.s308Info = function(data) {
-    //alert(data);
+
     if (data === undefined ) {
       eQuerySvc.emptySearch();
     } else if (data.length == 0) {
@@ -610,7 +598,6 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
         query: data
       };
       eQuerySvc.setData(queryData);
-      //alert(queryData.query);
       $scope.showResult();
     }
   }
@@ -618,9 +605,10 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
 
 .controller('S308Result', function($scope, getS308, eQuerySvc) {
     $scope.userData = getS308.getData();
+    $scope.userCos = getS308.getCos();
 })
 
-.controller('ContactUs', function($scope, SSMOfficesService,$cordovaGeolocation,langSvc,$rootScope,$localStorage) {
+.controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
     
     $scope.contactIsEmpty=true;
     viewContacts = function(defaultId){
@@ -636,8 +624,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
 
         });
 
-
-        $scope.contactIsEmpty=false;
+        $scope.contactIsEmpty = false;
 
         var defaultOffice = $scope.offices[0];
         
@@ -658,16 +645,15 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
         };
 
          $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-         $scope.myHtmlAddr= $scope.selectedOption.address;
-         $scope.myHtmlTel= $scope.selectedOption.tel;
-         $scope.myHtmlFax= $scope.selectedOption.fax;
+         $scope.myHtmlAddr = $scope.selectedOption.address;
+         $scope.myHtmlTel = $scope.selectedOption.tel;
+         $scope.myHtmlFax = $scope.selectedOption.fax;
 
          if(langSvc.getLang()!=="en"){
               $scope.myHtmlOperation= $scope.selectedOption.operationHourMs;
          }else{
               $scope.myHtmlOperation= $scope.selectedOption.operationHour;
          }
-
 
         function setMarker(data) {
             //Remove previous Marker.
@@ -693,7 +679,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
               });
 
             infoWindow.open($scope.map, $scope.marker);
-            $scope.myHtmlAddr= $scope.selectedOption.address;
+            $scope.myHtmlAddr = $scope.selectedOption.address;
 
             if(langSvc.getLang()!=="en"){
                  $scope.myHtmlOperation= $scope.selectedOption.operationHourMs;
@@ -701,13 +687,9 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
                   $scope.myHtmlOperation= $scope.selectedOption.operationHour;
              }
 
-             $scope.myHtmlTel= $scope.selectedOption.tel;
-             $scope.myHtmlFax= $scope.selectedOption.fax;
-
-
+             $scope.myHtmlTel = $scope.selectedOption.tel;
+             $scope.myHtmlFax = $scope.selectedOption.fax;
         };
-
-
 
         //Wait until the map is loaded
         google.maps.event.addListenerOnce($scope.map, 'idle', function(){
@@ -718,7 +700,6 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
             setMarker($scope.selectedOption);
         }
 
-
         $scope.trustAsHtml = function(html) {
           return $sce.trustAsHtml(html);
         }
@@ -728,7 +709,6 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
         }
 
         $scope.call = function(){
-    //        alert($scope.selectedOption.mainTel);
             window.open('tel:'+$scope.selectedOption.mainTel.replace(/\s/g,''),'_system');
         }
 
@@ -736,16 +716,12 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
             window.open('mailto:'+$scope.selectedOption.email.replace('[at]','@'),'_system','location=yes');
         }
     };
-    
-    
-    
-    //default data
-    
+
     defaultTel = {
                 //default as 2017
                 "tel":"+60322994400",
-			  	"fax":"+0322994411"
-            };
+			  	      "fax":"+0322994411"
+    };
 
     $scope.generalLine = defaultTel;
     
@@ -758,14 +734,12 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
             viewContacts();
     }
     
-  
     SSMOfficesService.list().then(function(result) {
         //store general data
         if(result.data.data.generalLine !== undefined){
-            $localStorage.generalLine= result.data.data.generalLine;
+            $localStorage.generalLine = result.data.data.generalLine;
             $scope.generalLine = $localStorage.generalLine;
         }
-        
         
         officesData = result.data.data.offices;
          
@@ -780,16 +754,7 @@ function($scope, $cordovaDevice, $filter, $ionicPlatform, $ionicSlideBoxDelegate
             $localStorage.contactList = $scope.offices;
         }
         
-       
         viewContacts(result.data.data.defaultId);
-       
     });
 
-    
-   
 });
-//.filter('unsafe', function ($sce) { //<---dangerous for xss
-//    return function (val) {
-//        return $sce.trustAsHtml(val);
-//    }
-//});
