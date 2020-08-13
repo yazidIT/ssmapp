@@ -46,7 +46,8 @@ var translations = {
         "COMPANYNO" : "Company/MyCoID No. :",
         "REGNUMBER" : "Registration Number:",
         "emptySearch" : "Search item incomplete",
-        "placeHolderCOMPANYNO" : "Company/MyCoID No.",
+        "placeHolderCOMPANYNO" : "Company/MyCoID No.:",
+        "placeHolderNEWCOMPANYNO" : "New Company No.:",
         "optROC" : "Registrar of Companies (ROC)",
         "optROB" : "Registrar of Businesses (ROB)",
         "optEntityCRegNoOld" :"Company Registration No. Old",
@@ -111,7 +112,9 @@ var translations = {
         "REGISTYPE": "Registration Type:",
         "REGISNO": "Registration Number:",
         "REGISNONEW": "New Registration Number:",
-        "S308_RSLT": "Status 308 Result"
+        "S308_RSLT": "Status 308 Result",
+        "COMPNDSTATUS": "Compound Status:",
+        "AMOUNT": "Amount:"
     },
     
     
@@ -162,7 +165,8 @@ var translations = {
         "COMPANYNO" : "No. Syarikat/MyCoID:",
         "REGNUMBER" : "Nombor Pendaftaran:",
         "emptySearch" : "Butiran carian tidak lengkap",
-        "placeHolderCOMPANYNO" : "No. Syarikat/MyCoID",
+        "placeHolderCOMPANYNO" : "No. Syarikat/MyCoID:",
+        "placeHolderNEWCOMPANYNO" : "No. Syarikat Baru:",
         "optROC" : "Pendaftaran Syarikat (ROC)",
         "optROB" : "Pendaftaran Perniagaan (ROB)",
         "optEntityCRegNoOld" :"No. Pendaftaran Syarikat Lama",
@@ -227,6 +231,8 @@ var translations = {
         "REGISTYPE": "Jenis Daftar:",
         "REGISNO": "Nombor Daftar:",
         "REGISNONEW": "Nombor Daftar Baru:",
-        "S308_RSLT": "Keputusan Status 308"
+        "S308_RSLT": "Keputusan Status 308",
+        "COMPNDSTATUS": "Status Kompaun:",
+        "AMOUNT": "Jumlah:"
 	}
 }
