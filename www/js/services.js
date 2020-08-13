@@ -255,7 +255,7 @@ angular.module('myServices', [])
         return result.data; 
     }).error(function(data, status) { 
       // Do something on error 
-        console.log("Device registration failed."); 
+        console.log(status, "Device registration failed."); 
     }).finally(function() { 
       // On both cases hide the loading 
       loadingHide(); 
@@ -440,9 +440,13 @@ angular.module('myServices', [])
             url: config.apiv2url + queryUrl,
             data: queryData
         }).success(function(result) {
-            if (result.data.length === 0) {
+            if (result.message === "data not found") {
+                popupError.noRecord(title);
+            } else if (result.data.length === 0) {
                 popupError.noRecord(title);
             }
+            console.log(JSON.stringify(result))
+
             resultData = result.data;
             return result.data;
         }).error(function(data, status) {
@@ -502,7 +506,10 @@ angular.module('myServices', [])
       url: config.apiv2url + queryUrl + findUrl + queryData.query,
       headers: header
     }).success(function(result) {
-        if (queryData.first === "LLP") {
+
+        if(result.result === undefined) {
+          popupError.noRecord(title)
+        } else if (queryData.first === "LLP") {
           if (result.length === 0) {
             popupError.noRecord(title);
           }
@@ -668,13 +675,17 @@ angular.module('myServices', [])
       var header = { "Authorization" : authHeader };
       var urlFinal = config.apiv2url + 'contact_us';
 
+      console.log(JSON.stringify(header))
       var offices = $http({
         method: 'GET',
         url: urlFinal,
         headers: header
       }).success(function(result) {
+          console.log(JSON.stringify(result))
           return result.data;
       }).error(function(data, status) {
+        console.log(JSON.stringify(data))
+        console.log(status)
         popupError.serverFail(title,false);
       }).finally(function() {
         loadingHide();

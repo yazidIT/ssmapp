@@ -362,26 +362,26 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         console.log("queryData ===> " + JSON.stringify(queryDataFromUser));
 
         if(queryDataFromUser.second === "01") {
-            var queryData1 = eQuerySvc.getData();
-            queryData1.first = "ROC";
-            eQuerySvc.setData(queryData1);
-            getSearch.loadUserData(lang.MENU_05).then(function(result) {
-                if(result.status != 200){
-                    console.log("Error - " + result.status);
-                    $scope.data.input = ""; 
-                    return;
-                }
-                if(result.length == 0){
-                    console.log("Data empty");
-                    $scope.input.entityNo = ""; 
-                    return;
-                }
-                console.log(JSON.stringify(result));
-                var comRegNo = result.data.result.companyNo;
-                console.log(comRegNo);
+            // var queryData1 = eQuerySvc.getData();
+            queryDataFromUser.first = "ROC";
+            eQuerySvc.setData(queryDataFromUser);
+            // getSearch.loadUserData(lang.MENU_05).then(function(result) {
+            //     if(result.status != 200){
+            //         console.log("Error - " + result.status);
+            //         $scope.data.input = ""; 
+            //         return;
+            //     }
+            //     if(result.length == 0){
+            //         console.log("Data empty");
+            //         $scope.input.entityNo = ""; 
+            //         return;
+            //     }
+            //     console.log(JSON.stringify(result));
+            //     var comRegNo = result.data.result.companyNo;
+            //     console.log(comRegNo);
       
-                queryDataFromUser.query = comRegNo;
-                eQuerySvc.setData(queryDataFromUser);
+            //     queryDataFromUser.query = comRegNo;
+            //     eQuerySvc.setData(queryDataFromUser);
 
                 getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                   if(result.status != 200){
@@ -398,7 +398,28 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
                   
                   $state.go('app.ecompound_ans');
                 });
-            });
+            // });
+        } else if(queryDataFromUser.second === "02") {
+            // var queryData1 = eQuerySvc.getData();
+            queryDataFromUser.first = "ROB";
+            eQuerySvc.setData(queryDataFromUser);
+
+              getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+                if(result.status != 200){
+                    console.log("Error - " + result.status);
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+            
+                if(result.data.data.length == 0){
+                    console.log("Data empty");
+                    $scope.input.entityNo = ""; 
+                    return;
+                }
+                
+                $state.go('app.ecompound_ans');
+              });
+        
         } else {
 
             getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
@@ -482,7 +503,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           return;
       }
       
-      if(result.length == 0){
+      if(result.data.result === undefined || result.length == 0){
           console.log("Data empty");
           $scope.input.entityNo = ""; 
           return;
