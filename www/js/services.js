@@ -3,11 +3,17 @@ Note : Repeatable functions - Just continue from previuos
 **/
 angular.module('myServices', [])
 
+/**
+ * Main URL for backend API
+ */
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
     apiv2url: 'https://m.ssm.com.my/apiv2/index.php/',
 })
 
+/**
+ * Various popup type
+ */
 .factory('popupError',function($ionicPopup, $ionicHistory){
     var noInternet = function(title){
         var alertPopup = $ionicPopup.alert({
@@ -115,6 +121,9 @@ angular.module('myServices', [])
   }
 })
 
+/**
+ * Material Flobating Button
+ */
 .factory('myFmFactory', function() {
   
   var service = {};
@@ -142,6 +151,9 @@ angular.module('myServices', [])
   return service;
 })
 
+/**
+ * Social Media link
+ */
 .factory('myContactUs', function() {
   var contactlist = [{
     // label: 'Like Us on Facebook',
@@ -176,7 +188,9 @@ angular.module('myServices', [])
   return service;
 })
 
-// only one for all queries because can only ask one per time
+/**
+ * Storage for query data. Shared.
+ */
 .factory('eQuerySvc', function($ionicPopup, langSvc) {
   var queryData = {
     first: "",
@@ -212,6 +226,9 @@ angular.module('myServices', [])
   };
 })
 
+/**
+ * Device registration and info storage
+ */
 .factory('deviceAuth', function($http, $ionicLoading, config, md5) {
   var uuid = "";
   var platform = "";
@@ -296,6 +313,9 @@ angular.module('myServices', [])
   }
 })
 
+/**
+ * RSS news
+ */
 .factory('newsSvc', function($http, $ionicLoading, eQuerySvc, config, popupError, deviceAuth) {
     
   var loadingShow = function() {
@@ -355,6 +375,9 @@ angular.module('myServices', [])
   }
 })
 
+/**
+ * E-query service
+ */
 .factory('getQuery', function($http, $ionicLoading, deviceAuth, eQuerySvc, langSvc, config, popupError) {
 
   var resultData;
@@ -408,6 +431,9 @@ angular.module('myServices', [])
   
 })
 
+/**
+ * E-compound query
+ */
 .factory('getCmpnd', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
     
     var resultData;
@@ -468,6 +494,9 @@ angular.module('myServices', [])
     }
 })
 
+/**
+ * E-search service
+ */
 .factory('getSearch', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
 
   var resultData;
@@ -541,6 +570,9 @@ angular.module('myServices', [])
   }
 })
 
+/**
+ * S-308 service
+ */
 .factory('getS308', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
 
   var resultData;
@@ -599,6 +631,9 @@ angular.module('myServices', [])
   }
 })
 
+/**
+ * Language selection and translation service
+ */
 .factory('langSvc', function() {
 
   var outLang = "en";
@@ -635,6 +670,9 @@ angular.module('myServices', [])
     }
 })
 
+/**
+ * News storage service
+ */
 .factory('newsStoreSvc',function(){
     
     var data;
@@ -653,8 +691,9 @@ angular.module('myServices', [])
     }
 })
 
-
-//Service List Of Offices
+/**
+ * Office location service
+ */
 .factory('SSMOfficesService', function($http, $ionicLoading, config, popupError, deviceAuth) {
     
    var loadingShow = function() {
@@ -671,6 +710,7 @@ angular.module('myServices', [])
   function getOffices() {
       
       loadingShow();
+      var title = "Contact Us"
       var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
       var header = { "Authorization" : authHeader };
       var urlFinal = config.apiv2url + 'contact_us';
