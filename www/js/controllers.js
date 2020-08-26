@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.goBack = function(){
     $ionicHistory.goBack();
   };
-    
+
   $ionicConfigProvider.backButton.previousTitleText(false);
 })
 
@@ -91,12 +91,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $state.go(destval);
 
   };
-    
+
   //listen to chenge at current state
   $rootScope.$on('reloadOnLanguageChange', function() {
     $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
   });
-  
+
   $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
 })
 
@@ -158,7 +158,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             newsStoreSvc.setData(data);
             $ionicSlideBoxDelegate.update();
       });
-      
+
       setTimeout(function() {
           if (window.cordova){
             navigator.splashscreen.hide();
@@ -203,7 +203,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 })
 
 .controller('NewsCtrl', function($scope, $state, eQuerySvc, newsStoreSvc, currTranslateSvc, popupError, $cordovaNetwork) {
-  
+
   $scope.userData = newsStoreSvc.getData(); //<--already updated by main control
   $scope.getDetailNews = function(newsLink) {
     //OfflineCheck
@@ -212,7 +212,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         popupError.noInternet(lang.ERROR_TITLE);
         return;
     }
-      
+
     var queryData = {
       first : "",
       second : "",
@@ -255,12 +255,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       getSearch.loadUserData(lang.MENU_05).then(function(result) {
           if(result.status != 200){
               console.log("Error - " + result.status);
-              $scope.data.input = ""; 
+              $scope.data.input = "";
               return;
           }
           if(result.length == 0){
               console.log("Data empty");
-              $scope.input.entityNo = ""; 
+              $scope.input.entityNo = "";
               return;
           }
           console.log(JSON.stringify(result));
@@ -273,13 +273,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           getQuery.loadUserData(lang.MENU_05).then(function(result) {
               if(result.status != 200){
                   console.log("Error - "+result.status);
-                  $scope.data.input = ""; 
+                  $scope.data.input = "";
                   return;
               }
 
               if(result.data.data.length == 0){
                   console.log("Data empty");
-                  $scope.data.input = ""; 
+                  $scope.data.input = "";
                   return;
               }
 
@@ -324,14 +324,14 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang[eVar[$scope.input.entityType]];
   }
-  
+
   // listen to broadcast
   $rootScope.$on('reloadOnLanguageChange', function() {
     changePlaceHolder();
   });
-  
+
   changePlaceHolder();
-  
+
   $scope.entityData = $scope.input.compound;
   $scope.cmpndData = $scope.input.compound;
   $scope.compoundSelect = function() {
@@ -368,34 +368,34 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             // getSearch.loadUserData(lang.MENU_05).then(function(result) {
             //     if(result.status != 200){
             //         console.log("Error - " + result.status);
-            //         $scope.data.input = ""; 
+            //         $scope.data.input = "";
             //         return;
             //     }
             //     if(result.length == 0){
             //         console.log("Data empty");
-            //         $scope.input.entityNo = ""; 
+            //         $scope.input.entityNo = "";
             //         return;
             //     }
             //     console.log(JSON.stringify(result));
             //     var comRegNo = result.data.result.companyNo;
             //     console.log(comRegNo);
-      
+
             //     queryDataFromUser.query = comRegNo;
             //     eQuerySvc.setData(queryDataFromUser);
 
                 getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                   if(result.status != 200){
                       console.log("Error - " + result.status);
-                      $scope.input.entityNo = ""; 
+                      $scope.input.entityNo = "";
                       return;
                   }
-              
+
                   if(result.data.data.length == 0){
                       console.log("Data empty");
-                      $scope.input.entityNo = ""; 
+                      $scope.input.entityNo = "";
                       return;
                   }
-                  
+
                   $state.go('app.ecompound_ans');
                 });
             // });
@@ -407,34 +407,34 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
               getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                 if(result.status != 200){
                     console.log("Error - " + result.status);
-                    $scope.input.entityNo = ""; 
+                    $scope.input.entityNo = "";
                     return;
                 }
-            
+
                 if(result.data.data.length == 0){
                     console.log("Data empty");
-                    $scope.input.entityNo = ""; 
+                    $scope.input.entityNo = "";
                     return;
                 }
-                
+
                 $state.go('app.ecompound_ans');
               });
-        
+
         } else {
 
             getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                 if(result.status != 200){
                     console.log("Error - " + result.status);
-                    $scope.input.entityNo = ""; 
+                    $scope.input.entityNo = "";
                     return;
                 }
-            
+
                 if(result.data.data.length == 0){
                     console.log("Data empty");
-                    $scope.input.entityNo = ""; 
+                    $scope.input.entityNo = "";
                     return;
                 }
-                
+
                 $state.go('app.ecompound_ans');
             });
         }
@@ -471,20 +471,20 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $translate.use(lang);
     langSvc.setLang(lang);
     $scope.langSelected = lang;
-      
+
     //set scope variable & refresh floating
     currTranslateSvc.setData(translations[langSvc.getLang()]);
     myFmFactory.getButtons(currTranslateSvc.getData());
-    
+
     //reload all related placeHolder by broadcast on other controller
     $rootScope.$broadcast('reloadOnLanguageChange');
-    
+
     $state.go('app.main');//just simple go
   }
 })
 
 .controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork) {
-    
+
   $scope.input.entityType = "ROC";
 
   $scope.showResult = function() {
@@ -494,23 +494,23 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       popupError.noInternet(lang.ERROR_TITLE);
       return;
     }
-   
+
     getSearch.loadUserData(lang.MENU_07).then(function(result) {
 
      if(result.status != 200){
           console.log("Error - "+result.status);
-          $scope.input.entityNo = ""; 
+          $scope.input.entityNo = "";
           return;
       }
-      
+
       if(result.data.result === undefined || result.length == 0){
           console.log("Data empty");
-          $scope.input.entityNo = ""; 
+          $scope.input.entityNo = "";
           return;
       }
-        
+
       $state.go('app.esearch_ans');
-          
+
     });
 
     $scope.queryData = eQuerySvc.getData();
@@ -535,7 +535,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $window.OpenLink = function(link) {
     window.open( link, '_system');
   };
-    
+
 })
 
 .controller('SearchResult', function($scope, getSearch, eQuerySvc) {
@@ -544,17 +544,17 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
             popupError, $cordovaNetwork, getSearch) {
-    
+
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang.placeHolderS308;
   }
-  
+
   //broadcast
   $rootScope.$on('reloadOnLanguageChange', function() {
     changePlaceHolder();
   });
-  
+
   changePlaceHolder();
 
   $scope.showResult = function() {
@@ -568,40 +568,21 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       var queryData1 = eQuerySvc.getData();
       queryData1.first = "ROC";
       eQuerySvc.setData(queryData1);
-      getSearch.loadUserData(lang.MENU_05).then(function(result) {
+
+      getS308.loadUserData(lang.MENU_08).then(function(result) {
           if(result.status != 200){
-              console.log("Error - " + result.status);
-              $scope.data.input = ""; 
+              console.log("Error - "+result.status);
+              $scope.data.input = "";
               return;
           }
-          if(result.length == 0){
+
+          if(result.data.data.length == 0){
               console.log("Data empty");
-              $scope.input.entityNo = ""; 
+              $scope.data.input = "";
               return;
           }
-          console.log(JSON.stringify(result));
-          var comRegNo = result.data.result.companyNo;
-          console.log(comRegNo);
 
-          queryData1.query = comRegNo;
-          eQuerySvc.setData(queryData1);
-
-          getS308.loadUserData(lang.MENU_08).then(function(result) {
-              if(result.status != 200){
-                  console.log("Error - "+result.status);
-                  $scope.data.input = ""; 
-                  return;
-              }
-              
-              if(result.data.data.length == 0){
-                  console.log("Data empty");
-                  $scope.data.input = ""; 
-                  return;
-              }
-            
-              $state.go('app.status308_ans');
-
-          });
+          $state.go('app.status308_ans');
 
       });
 
@@ -630,7 +611,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 })
 
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
-    
+
     $scope.contactIsEmpty=true;
     viewContacts = function(defaultId){
         //store the original offices data since we just use simple method on
@@ -648,8 +629,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         $scope.contactIsEmpty = false;
 
         var defaultOffice = $scope.offices[0];
-        
-        if(defaultId !== undefined) 
+
+        if(defaultId !== undefined)
             defaultOffice = $scope.offices[defaultId];
 
         $scope.selectedOption = defaultOffice;
@@ -689,7 +670,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
               map: $scope.map,
               animation: google.maps.Animation.DROP,
               position: latLng
-            });  
+            });
 
             var infoWindow = new google.maps.InfoWindow({
               content: 'SSM '+data.name
@@ -745,7 +726,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     };
 
     $scope.generalLine = defaultTel;
-    
+
     if($localStorage.generalLine !== undefined){
         $scope.generalLine = $localStorage.generalLine;
     }
@@ -754,16 +735,16 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             $scope.offices = $localStorage.contactList;
             viewContacts();
     }
-    
+
     SSMOfficesService.list().then(function(result) {
         //store general data
         if(result.data.data.generalLine !== undefined){
             $localStorage.generalLine = result.data.data.generalLine;
             $scope.generalLine = $localStorage.generalLine;
         }
-        
+
         officesData = result.data.data.offices;
-         
+
         //empty
         if(officesData == undefined || officesData.length == 0){
              return;
@@ -774,7 +755,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             $scope.offices = officesData;
             $localStorage.contactList = $scope.offices;
         }
-        
+
         viewContacts(result.data.data.defaultId);
     });
 
