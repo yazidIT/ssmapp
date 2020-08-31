@@ -25,7 +25,7 @@
   </ion-slide-box>
 -->
     <center ng-if="!userData.length" class="empty-news-main" style="margin-top:50%;">{{'NONEWS'|translate}}</center>
-  <div class="item item-text-wrap" ng-repeat="news in userData" ng-click="getDetailNews(news.url)">
+  <div class="item item-text-wrap" ng-repeat="news in userData" ng-click="getDetailNews(news.link_id)">
     <div class="positive titlenews-list"><strong>{{news.title}}</strong>
         <br>
         <span class="news-readmore"><i class="icon ion-ios-more"></i></span></div>

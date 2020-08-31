@@ -41,11 +41,11 @@
   </div>
   <ion-slide-box show-pager="true" on-slide-changed="slideChanged(index)">
     <ion-slide ng-repeat="news in userData">
-      <div class="box1" ng-click="getDetailNews(news.url)">
+      <div class="box1" ng-click="getDetailNews(news.link_id)">
           <div class="newscontent">
             <div style="color:#2e2f83;"><strong>{{news.title}}</strong></div>
               <br>
-            <div  ng-bind-html="news.content"></div>
+            <div ng-bind-html="news.description"></div>
           </div>
           <div class="main-readmore"><i class="icon ion-forward"></i></div>
       </div>
