@@ -21,13 +21,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicHistory, $state, $ionicViewService, $ionicConfigProvider) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -128,10 +121,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
 
     $scope.initDevice();
-  });
-
-  deviceAuth.registerDeviceV1().then(function(result) {
-    deviceAuth.setTokenV1(result.data.data.token);
   });
 
   deviceAuth.registerDevice().then(function(result) {
@@ -239,6 +228,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             popupError, $cordovaNetwork, getSearch) {
 
   $scope.placeHolder = "Comp. No / MyCoID";
+
   $scope.showResult = function() {
       var lang = currTranslateSvc.getData();
       //OfflineCheck
@@ -307,6 +297,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           $scope.showResult();
       }
   }
+
+  // $scope.entityTypeSelect = function() {
+  //   var lang = currTranslateSvc.getData();
+  //   $scope.placeHolder = lang[eVar[$scope.input.entityType]];
+  //   $scope.entityData =  $scope.input.entityType;
+  //   console.log($scope.input.entityType);
+  // }
 })
 
 .controller('QueryResult', function($scope, getQuery) {
@@ -362,45 +359,28 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         console.log("queryData ===> " + JSON.stringify(queryDataFromUser));
 
         if(queryDataFromUser.second === "01") {
-            // var queryData1 = eQuerySvc.getData();
+
             queryDataFromUser.first = "ROC";
             eQuerySvc.setData(queryDataFromUser);
-            // getSearch.loadUserData(lang.MENU_05).then(function(result) {
-            //     if(result.status != 200){
-            //         console.log("Error - " + result.status);
-            //         $scope.data.input = "";
-            //         return;
-            //     }
-            //     if(result.length == 0){
-            //         console.log("Data empty");
-            //         $scope.input.entityNo = "";
-            //         return;
-            //     }
-            //     console.log(JSON.stringify(result));
-            //     var comRegNo = result.data.result.companyNo;
-            //     console.log(comRegNo);
 
-            //     queryDataFromUser.query = comRegNo;
-            //     eQuerySvc.setData(queryDataFromUser);
+              getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
+                if(result.status != 200){
+                    console.log("Error - " + result.status);
+                    $scope.input.entityNo = "";
+                    return;
+                }
 
-                getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
-                  if(result.status != 200){
-                      console.log("Error - " + result.status);
-                      $scope.input.entityNo = "";
-                      return;
-                  }
+                if(result.data.data.length == 0){
+                    console.log("Data empty");
+                    $scope.input.entityNo = "";
+                    return;
+                }
 
-                  if(result.data.data.length == 0){
-                      console.log("Data empty");
-                      $scope.input.entityNo = "";
-                      return;
-                  }
+                $state.go('app.ecompound_ans');
+              });
 
-                  $state.go('app.ecompound_ans');
-                });
-            // });
         } else if(queryDataFromUser.second === "02") {
-            // var queryData1 = eQuerySvc.getData();
+
             queryDataFromUser.first = "ROB";
             eQuerySvc.setData(queryDataFromUser);
 

@@ -23,11 +23,11 @@ angular.module('myServices', [])
           ]
         });
     };
-    
+
     var serverFail = function(title, isBack, errNo){
         msg = "<center>{{'ERROR_QUERY'|translate}}</center>"
         if(errNo === 401){
-            msg = "<center>{{'ERROR_AUTHORIZED'|translate}}</center>"    
+            msg = "<center>{{'ERROR_AUTHORIZED'|translate}}</center>"
         }else if(errNo===429){
             msg = "<center>{{'ERROR_OVERLIMIT'|translate}}</center>"
         }
@@ -42,13 +42,13 @@ angular.module('myServices', [])
                 if(isBack){
                     $ionicHistory.goBack();
                 }
-                   
+
               }
             }
           ]
         });
     };
-    
+
     var noRecord = function(title){
         var alertPopup = $ionicPopup.alert({
             title: title,
@@ -78,7 +78,7 @@ angular.module('myServices', [])
           ]
         });
     }
-    
+
     return {
         noInternet  : noInternet,
         serverFail  : serverFail,
@@ -116,7 +116,7 @@ angular.module('myServices', [])
 })
 
 .factory('myFmFactory', function() {
-  
+
   var service = {};
   service.getButtons = function(lang) {
     var buttons = [{
@@ -136,7 +136,7 @@ angular.module('myServices', [])
     icon: 'icon-icon2_eS',
     dest: 'app.esearch'
   }];
-    
+
     return buttons;
   }
   return service;
@@ -192,7 +192,7 @@ angular.module('myServices', [])
     return queryData;
   };
   var emptySearch = function() {
-    
+
     var lang = translations[langSvc.getLang()];
     var alertPopup = $ionicPopup.alert({
       title: lang.ATTENTION,
@@ -245,24 +245,6 @@ angular.module('myServices', [])
     $ionicLoading.hide();
   };
 
-  function registerDeviceV1() { 
-    loadingShow(); 
-    var postUsers = $http({ 
-      method: 'POST', 
-      url: config.apiUrl + 'register-device', 
-      data: { "uuid" : uuid, "type" : platform } 
-    }).success(function(result) { 
-        return result.data; 
-    }).error(function(data, status) { 
-      // Do something on error 
-        console.log(status, "Device registration failed."); 
-    }).finally(function() { 
-      // On both cases hide the loading 
-      loadingHide(); 
-    }); 
-    return postUsers; 
-  }; 
-
   function registerDevice() {
     loadingShow();
     var secKey = 'ZMVbSD0CZwdRDxTd3DzvfDT8xy60ZgwX';
@@ -291,13 +273,12 @@ angular.module('myServices', [])
     registerDevice : registerDevice,
     getDevInfo : getDevInfo,
     setToken : setToken,
-    registerDeviceV1 : registerDeviceV1,
     setTokenV1 : setTokenV1
   }
 })
 
 .factory('newsSvc', function($http, $ionicLoading, eQuerySvc, config, popupError, deviceAuth) {
-    
+
   var loadingShow = function() {
     $ionicLoading.show({
       template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
@@ -316,14 +297,17 @@ angular.module('myServices', [])
     var header = { "Authorization" : authHeader };
 
     var urlFinal = config.apiv2url + 'rss';
+
     var postUsers = $http({
       method: 'GET',
       url: urlFinal,
       headers: header
     }).success(function(result) {
       return result;
+
     }).error(function(data, status) {
       popupError.serverFail(title);
+
     }).finally(function() {
       loadingHide();
     });
@@ -341,8 +325,10 @@ angular.module('myServices', [])
       headers: header
     }).success(function(result) {
         return result;
+
     }).error(function(data, status) {
        popupError.serverFail(title,true);
+
     }).finally(function() {
       loadingHide();
     });
@@ -358,7 +344,7 @@ angular.module('myServices', [])
 .factory('getQuery', function($http, $ionicLoading, deviceAuth, eQuerySvc, langSvc, config, popupError) {
 
   var resultData;
-    
+
   var loadingShow = function() {
     $ionicLoading.show({
       template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
@@ -371,32 +357,35 @@ angular.module('myServices', [])
 
   var service = {};
   function loadUserData(title) {
-    var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
     var outLang = langSvc.getLang();
 
-    console.log("eQuery v1 token: ===> " + devInfo.tokenV1);
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
 
     loadingShow();
     var postUsers = $http({
       method: 'POST',
-      url: config.apiUrl + 'equery',
-      data: { "token" : devInfo.tokenV1, "documentNo" : queryData.query, lang : outLang }
+      url: config.apiv2url + 'esearch/equery',
+      headers: header,
+      data: { "documentNo" : queryData.query, "lang" : outLang }
     }).success(function(result) {
         if (result.data.length === 0) {
           popupError.noRecord(title);
         }
         resultData = result.data;
         return result.data;
+
     }).error(function(data, status) {
         popupError.serverFail(title,false,status);
+
     }).finally(function() {
       // On both cases hide the loading
       loadingHide();
     });
     return postUsers;
   };
-    
+
   function getData(){
     return resultData;
   };
@@ -405,11 +394,11 @@ angular.module('myServices', [])
     loadUserData : loadUserData,
     getData: getData
   }
-  
+
 })
 
 .factory('getCmpnd', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
-    
+
     var resultData;
 
     var loadingShow = function() {
@@ -449,8 +438,10 @@ angular.module('myServices', [])
 
             resultData = result.data;
             return result.data;
+
         }).error(function(data, status) {
             popupError.serverFail(title,false,status);
+
         }).finally(function() {
             loadingHide();
         });
@@ -461,7 +452,7 @@ angular.module('myServices', [])
     function getData(){
         return resultData;
     };
-      
+
     return {
         loadUserData : loadUserData,
         getData: getData
@@ -471,7 +462,7 @@ angular.module('myServices', [])
 .factory('getSearch', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
 
   var resultData;
-    
+
   var loadingShow = function() {
     $ionicLoading.show({
       template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
@@ -520,17 +511,19 @@ angular.module('myServices', [])
             popupError.serverBusy(title);
           }
         }
-        
+
         resultData = result;
         return result;
+
     }).error(function(data, status) {
       popupError.serverFail(title,false,status);
+
     }).finally(function() {
       loadingHide();
     });
     return postUsers;
   };
-  
+
   function getData(){
     return resultData;
   };
@@ -569,15 +562,18 @@ angular.module('myServices', [])
       method: 'GET',
       url: config.apiv2url + queryUrl + queryData.query
     }).success(function(result) {
+
         if (result.data.length === 0) {
           popupError.noRecord(title);
         }
-        
+
         resultData = result.data;
         resultCos = result.cos;
         return result.data;
+
     }).error(function(data, status) {
       popupError.serverFail(title,false,status);
+
     }).finally(function() {
       loadingHide();
     });
@@ -618,17 +614,17 @@ angular.module('myServices', [])
 })
 
 .factory('currTranslateSvc',function(){
-    
+
     var data;
-    
+
     function setData(data){
         this.data = data;
     }
-    
+
     function getData(){
         return this.data;
     }
-    
+
     return {
         setData: setData,
         getData: getData
@@ -636,17 +632,17 @@ angular.module('myServices', [])
 })
 
 .factory('newsStoreSvc',function(){
-    
+
     var data;
-    
+
     function setData(data){
         this.data = data;
     }
-    
+
     function getData(){
         return this.data;
     }
-    
+
     return {
         setData: setData,
         getData: getData
@@ -656,20 +652,20 @@ angular.module('myServices', [])
 
 //Service List Of Offices
 .factory('SSMOfficesService', function($http, $ionicLoading, config, popupError, deviceAuth) {
-    
+
    var loadingShow = function() {
     $ionicLoading.show({
       template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
     });
   };
-    
+
   var loadingHide = function(){
     $ionicLoading.hide();
   };
-    
+
 
   function getOffices() {
-      
+
       loadingShow();
       var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
       var header = { "Authorization" : authHeader };
@@ -681,22 +677,24 @@ angular.module('myServices', [])
         url: urlFinal,
         headers: header
       }).success(function(result) {
+
           console.log(JSON.stringify(result))
           return result.data;
       }).error(function(data, status) {
+
         console.log(JSON.stringify(data))
         console.log(status)
         popupError.serverFail(title,false);
       }).finally(function() {
         loadingHide();
       });
-      
+
       return offices;
   };
-    
+
   return {
     list: getOffices
   }
-    
+
 });
 
