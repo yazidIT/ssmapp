@@ -130,9 +130,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.initDevice();
   });
 
-  deviceAuth.registerDeviceV1().then(function(result) {
-    deviceAuth.setTokenV1(result.data.data.token);
-  });
+  // deviceAuth.registerDeviceV1().then(function(result) {
+  //   deviceAuth.setTokenV1(result.data.data.token);
+  // });
 
   deviceAuth.registerDevice().then(function(result) {
     $scope.devData = result.data;
@@ -238,7 +238,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,
             popupError, $cordovaNetwork, getSearch) {
 
+  // $scope.input = {
+  //   entityType :  "01"
+  // }
   $scope.placeHolder = "Comp. No / MyCoID";
+
   $scope.showResult = function() {
       var lang = currTranslateSvc.getData();
       //OfflineCheck
@@ -307,6 +311,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           $scope.showResult();
       }
   }
+
+  // $scope.entityTypeSelect = function() {
+  //   var lang = currTranslateSvc.getData();
+  //   $scope.placeHolder = lang[eVar[$scope.input.entityType]];
+  //   $scope.entityData =  $scope.input.entityType;
+  //   console.log($scope.input.entityType);
+  // }
 })
 
 .controller('QueryResult', function($scope, getQuery) {
