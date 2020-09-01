@@ -245,24 +245,6 @@ angular.module('myServices', [])
     $ionicLoading.hide();
   };
 
-  // function registerDeviceV1() {
-  //   loadingShow();
-  //   var postUsers = $http({
-  //     method: 'POST',
-  //     url: config.apiUrl + 'register-device',
-  //     data: { "uuid" : uuid, "type" : platform }
-  //   }).success(function(result) {
-  //       return result.data;
-  //   }).error(function(data, status) {
-  //     // Do something on error
-  //       console.log(status, "Device registration V1 failed.");
-  //   }).finally(function() {
-  //     // On both cases hide the loading
-  //     loadingHide();
-  //   });
-  //   return postUsers;
-  // };
-
   function registerDevice() {
     loadingShow();
     var secKey = 'ZMVbSD0CZwdRDxTd3DzvfDT8xy60ZgwX';
@@ -291,7 +273,6 @@ angular.module('myServices', [])
     registerDevice : registerDevice,
     getDevInfo : getDevInfo,
     setToken : setToken,
-    // registerDeviceV1 : registerDeviceV1,
     setTokenV1 : setTokenV1
   }
 })
@@ -315,18 +296,18 @@ angular.module('myServices', [])
     var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
     var header = { "Authorization" : authHeader };
 
-    console.log(JSON.stringify(header))
     var urlFinal = config.apiv2url + 'rss';
+
     var postUsers = $http({
       method: 'GET',
       url: urlFinal,
       headers: header
     }).success(function(result) {
-      console.log(">>>> News Service response OK")
-      console.log(JSON.stringify(result))
       return result;
+
     }).error(function(data, status) {
       popupError.serverFail(title);
+
     }).finally(function() {
       loadingHide();
     });
@@ -344,8 +325,10 @@ angular.module('myServices', [])
       headers: header
     }).success(function(result) {
         return result;
+
     }).error(function(data, status) {
        popupError.serverFail(title,true);
+
     }).finally(function() {
       loadingHide();
     });
@@ -374,25 +357,28 @@ angular.module('myServices', [])
 
   var service = {};
   function loadUserData(title) {
-    var devInfo = deviceAuth.getDevInfo();
     var queryData = eQuerySvc.getData();
     var outLang = langSvc.getLang();
 
-    console.log("eQuery v1 token: ===> " + devInfo.tokenV1);
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
 
     loadingShow();
     var postUsers = $http({
       method: 'POST',
-      url: config.apiUrl + 'equery',
-      data: { "token" : devInfo.tokenV1, "documentNo" : queryData.query, lang : outLang }
+      url: config.apiv2url + 'esearch/equery',
+      headers: header,
+      data: { "documentNo" : queryData.query, "lang" : outLang }
     }).success(function(result) {
         if (result.data.length === 0) {
           popupError.noRecord(title);
         }
         resultData = result.data;
         return result.data;
+
     }).error(function(data, status) {
         popupError.serverFail(title,false,status);
+
     }).finally(function() {
       // On both cases hide the loading
       loadingHide();
@@ -452,8 +438,10 @@ angular.module('myServices', [])
 
             resultData = result.data;
             return result.data;
+
         }).error(function(data, status) {
             popupError.serverFail(title,false,status);
+
         }).finally(function() {
             loadingHide();
         });
@@ -526,8 +514,10 @@ angular.module('myServices', [])
 
         resultData = result;
         return result;
+
     }).error(function(data, status) {
       popupError.serverFail(title,false,status);
+
     }).finally(function() {
       loadingHide();
     });
@@ -572,6 +562,7 @@ angular.module('myServices', [])
       method: 'GET',
       url: config.apiv2url + queryUrl + queryData.query
     }).success(function(result) {
+
         if (result.data.length === 0) {
           popupError.noRecord(title);
         }
@@ -579,8 +570,10 @@ angular.module('myServices', [])
         resultData = result.data;
         resultCos = result.cos;
         return result.data;
+
     }).error(function(data, status) {
       popupError.serverFail(title,false,status);
+
     }).finally(function() {
       loadingHide();
     });
@@ -684,9 +677,11 @@ angular.module('myServices', [])
         url: urlFinal,
         headers: header
       }).success(function(result) {
+
           console.log(JSON.stringify(result))
           return result.data;
       }).error(function(data, status) {
+
         console.log(JSON.stringify(data))
         console.log(status)
         popupError.serverFail(title,false);
