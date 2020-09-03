@@ -498,12 +498,12 @@ angular.module('myServices', [])
       headers: header
     }).success(function(result) {
 
-        if(result.result === undefined) {
-          popupError.noRecord(title)
-        } else if (queryData.first === "LLP") {
+        if(queryData.first === "LLP") {
           if (result.length === 0) {
             popupError.noRecord(title);
           }
+        } else if(result.result === undefined) {
+          popupError.noRecord(title)
         } else {
           if (result.length === 0) {
             popupError.noRecord(title);

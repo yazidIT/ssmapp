@@ -477,16 +477,25 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     getSearch.loadUserData(lang.MENU_07).then(function(result) {
 
-     if(result.status != 200){
+      if(result.status != 200){
           console.log("Error - "+result.status);
           $scope.input.entityNo = "";
           return;
       }
 
-      if(result.data.result === undefined || result.length == 0){
+      if($scope.input.entityType === "LLP") {
+        if(result.length == 0) {
           console.log("Data empty");
           $scope.input.entityNo = "";
           return;
+        }
+
+      } else {
+        if(result.data.result === undefined || result.length == 0){
+          console.log("Data empty");
+          $scope.input.entityNo = "";
+          return;
+        }
       }
 
       $state.go('app.esearch_ans');
@@ -518,8 +527,27 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
-.controller('SearchResult', function($scope, getSearch, eQuerySvc) {
+.controller('SearchResult', function($scope, getSearch, eQuerySvc, currTranslateSvc) {
     $scope.userData = getSearch.getData();
+    $scope.entityStatus = "";
+
+    var lang = currTranslateSvc.getData();
+    var status = "";
+
+    var resultData = $scope.userData;
+
+    if(resultData.llpEntry !== undefined) {
+      status = resultData.llpEntry.llpStatus;
+    } else if(resultData.result.comStatus !== undefined) {
+      status = resultData.result.comStatus;
+    } else if(resultData.result.bizStatus !== undefined) {
+      status = resultData.result.bizStatus;
+    }
+
+    if(status === "A")
+      $scope.entityStatus = lang.STAT_ACTIVE;
+    else if(status === "E")
+      $scope.entityStatus = lang.STAT_EXISTING;
 })
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,

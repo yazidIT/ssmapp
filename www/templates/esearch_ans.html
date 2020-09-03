@@ -27,7 +27,7 @@
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
-      <font size="2px"> {{userData.result.comStatus}}</font>
+      <font size="2px"> {{userData.result.comStatus}} - {{entityStatus}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
@@ -58,7 +58,7 @@
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
-      <font size="2px"> {{userData.result.bizStatus}}</font>
+      <font size="2px"> {{userData.result.bizStatus}} - {{entityStatus}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
@@ -72,7 +72,7 @@
 
     <label ng-hide="userData.result.bizRegNo">{{'NODATAFOUND'|translate}}</label>
   </div>
-  
+
   <!-- REGISTER OF LLP -->
   <div ng-hide="!userData.llpEntry">
     <label class="item item-input" border="#2E2F83">
@@ -85,7 +85,7 @@
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
-      <font size="2px"> {{userData.llpEntry.llpStatus}}</font>
+      <font size="2px"> {{userData.llpEntry.llpStatus}} - {{entityStatus}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="GSTNUMBER">GST Number:</font></span>
