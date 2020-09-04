@@ -527,7 +527,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
-.controller('SearchResult', function($scope, getSearch, eQuerySvc, currTranslateSvc) {
+.controller('SearchResult', function($scope, getSearch, eQuerySvc, currTranslateSvc, dateUtil) {
     $scope.userData = getSearch.getData();
     $scope.entityStatus = "";
     $scope.todayDate = "";
@@ -538,10 +538,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     var dtaDate = "";
 
     var resultData = $scope.userData;
-    var dateNow = new Date();
-    const months = ["01", "02", "03","04", "05", "06", "07", "08", "09", "10", "11", "12"];
-    var formatted_date = dateNow.getDate() + "/" + months[dateNow.getMonth()] + "/" + dateNow.getFullYear()
-    $scope.todayDate = formatted_date
+    $scope.todayDate = dateUtil.getDateMsFormat(new Date())
 
     if(resultData.llpEntry !== undefined) {
       status = resultData.llpEntry.llpStatus;
@@ -558,9 +555,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
 
     if(dtaDate.length != 0) {
-      var asAtDateObj = new Date(dtaDate)
-      formatted_date = asAtDateObj.getDate() + "/" + months[asAtDateObj.getMonth()] + "/" + asAtDateObj.getFullYear()
-      $scope.asAtDate = formatted_date;
+      $scope.asAtDate = dateUtil.getDateMsFormat(new Date(dtaDate));
     }
 
     if(status === "A")

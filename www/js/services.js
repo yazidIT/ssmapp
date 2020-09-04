@@ -696,5 +696,18 @@ angular.module('myServices', [])
     list: getOffices
   }
 
+})
+
+.factory('dateUtil', function() {
+
+  function getDateMsFormat(dateObj) {
+    const months = ["01", "02", "03","04", "05", "06", "07", "08", "09", "10", "11", "12"];
+    var formatted_date = dateObj.getDate() + "/" + months[dateObj.getMonth()] + "/" + dateObj.getFullYear();
+    return formatted_date;
+  }
+
+  return {
+    getDateMsFormat: getDateMsFormat
+  }
 });
 
