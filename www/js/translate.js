@@ -116,7 +116,11 @@ var translations = {
         "COMPNDSTATUS": "Compound Status:",
         "AMOUNT": "Amount:",
         "STAT_ACTIVE": "Active",
-        "STAT_EXISTING": "Existing"
+        "STAT_EXISTING": "Existing",
+        "STAT_APPROVE" : "Approve",
+        "STAT_AUTOREJECT" : "Auto Reject",
+        "DOC_557" : "Financial Statement",
+        "DOC_559" : "Form Of Annual Return Of A Company Having A Share Capital"
     },
 
 
@@ -237,6 +241,10 @@ var translations = {
         "COMPNDSTATUS": "Status Kompaun:",
         "AMOUNT": "Jumlah:",
         "STAT_ACTIVE": "Aktif",
-        "STAT_EXISTING": "Wujud"
+        "STAT_EXISTING": "Wujud",
+        "STAT_APPROVE" : "Lulus",
+        "STAT_AUTOREJECT" : "Auto Tolak",
+        "DOC_557" : "Penyata Kewangan",
+        "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham"
 	}
 }

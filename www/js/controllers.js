@@ -306,8 +306,40 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   // }
 })
 
-.controller('QueryResult', function($scope, getQuery) {
-   $scope.userData = getQuery.getData();
+.controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc) {
+
+   var userData = getQuery.getData();
+   var lang = currTranslateSvc.getData();
+
+   userData.documents.forEach(function(arrayItem) {
+
+     console.log(JSON.stringify(arrayItem));
+
+     if(arrayItem.document === '557')
+        arrayItem.document = lang.DOC_557;
+     else if(arrayItem.document === '559')
+        arrayItem.document = lang.DOC_559;
+
+     var dateObj = new Date(arrayItem.documentDate);
+     arrayItem.documentDate = dateUtil.getDateMsFormat(dateObj);
+
+     dateObj = new Date(arrayItem.queryDate);
+     arrayItem.queryDate = dateUtil.getDateMsFormat(dateObj);
+
+     if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
+        dateObj = new Date(arrayItem.rejectDate);
+        arrayItem.rejectDate = dateUtil.getDateMsFormat(dateObj);
+     }
+
+     if(arrayItem.status === 'A')
+      arrayItem.status = lang.STAT_APPROVE;
+     else if(arrayItem.status === 'T')
+      arrayItem.status = lang.STAT_AUTOREJECT;
+
+     console.log(JSON.stringify(arrayItem));
+   })
+
+   $scope.userData = userData;
 })
 
 .controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {
