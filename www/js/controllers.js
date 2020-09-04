@@ -527,7 +527,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
-.controller('SearchResult', function($scope, getSearch, eQuerySvc, currTranslateSvc, dateUtil) {
+.controller('SearchResult', function($scope, getSearch, currTranslateSvc, dateUtil) {
     $scope.userData = getSearch.getData();
     $scope.entityStatus = "";
     $scope.todayDate = "";
@@ -565,7 +565,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 })
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
-            popupError, $cordovaNetwork, getSearch) {
+            popupError, $cordovaNetwork) {
 
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
@@ -627,9 +627,28 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
-.controller('S308Result', function($scope, getS308, eQuerySvc) {
+.controller('S308Result', function($scope, getS308, dateUtil) {
     $scope.userData = getS308.getData();
     $scope.userCos = getS308.getCos();
+    var notices = $scope.userData.notices[0];
+    console.log(JSON.stringify(notices));
+
+    $scope.dateNotice1 = "-";
+    $scope.dateNotice2 = "-";
+    $scope.nfaDate = "-";
+    $scope.dateNotice4 = "-";
+    $scope.gazzetteDate2 = "-";
+
+    if(notices.dateNotice1 !== '' && notices.dateNotice1 !== '-')
+      $scope.dateNotice1 = dateUtil.getDateMsFormat(new Date(notices.dateNotice1));
+    if(notices.dateNotice2 !== '' && notices.dateNotice2 !== '-')
+      $scope.dateNotice2 = dateUtil.getDateMsFormat(new Date(notices.dateNotice2));
+    if(notices.nfaDate !== '' && notices.nfaDate !== '-')
+      $scope.nfaDate = dateUtil.getDateMsFormat(new Date(notices.nfaDate));
+    if(notices.dateNotice4 !== '' && notices.dateNotice4 !== '-')
+      $scope.dateNotice4 = dateUtil.getDateMsFormat(new Date(notices.dateNotice4));
+    if(notices.gazzetteDate2 !== '' && notices.gazzetteDate2 !== '-')
+      $scope.gazzetteDate2 = dateUtil.getDateMsFormat(new Date(notices.gazzetteDate2));
 })
 
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
