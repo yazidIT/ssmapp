@@ -530,18 +530,37 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('SearchResult', function($scope, getSearch, eQuerySvc, currTranslateSvc) {
     $scope.userData = getSearch.getData();
     $scope.entityStatus = "";
+    $scope.todayDate = "";
+    $scope.asAtDate = "";
 
     var lang = currTranslateSvc.getData();
     var status = "";
+    var dtaDate = "";
 
     var resultData = $scope.userData;
+    var dateNow = new Date();
+    const months = ["01", "02", "03","04", "05", "06", "07", "08", "09", "10", "11", "12"];
+    var formatted_date = dateNow.getDate() + "/" + months[dateNow.getMonth()] + "/" + dateNow.getFullYear()
+    $scope.todayDate = formatted_date
 
     if(resultData.llpEntry !== undefined) {
       status = resultData.llpEntry.llpStatus;
+      if(resultData.llpEntry.findGSTRegNoList.GSTRegNo !== undefined)
+        dtaDate = resultData.llpEntry.findGSTRegNoList.GSTRegNo.dtasofdate;
     } else if(resultData.result.comStatus !== undefined) {
       status = resultData.result.comStatus;
+      if(resultData.result.findGSTRegNoList.GSTRegNo !== undefined)
+        dtaDate = resultData.result.findGSTRegNoList.GSTRegNo.dtasofdate;
     } else if(resultData.result.bizStatus !== undefined) {
       status = resultData.result.bizStatus;
+      if(resultData.result.findGSTRegNoList.GSTRegNo !== undefined)
+        dtaDate = resultData.result.findGSTRegNoList.GSTRegNo.dtasofdate;
+    }
+
+    if(dtaDate.length != 0) {
+      var asAtDateObj = new Date(dtaDate)
+      formatted_date = asAtDateObj.getDate() + "/" + months[asAtDateObj.getMonth()] + "/" + asAtDateObj.getFullYear()
+      $scope.asAtDate = formatted_date;
     }
 
     if(status === "A")
