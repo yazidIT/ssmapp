@@ -706,8 +706,17 @@ angular.module('myServices', [])
     return formatted_date;
   }
 
+  // process date of the form "2015-12-25 00:00:00"
+  // non stndard form - causing issue with JavaScript in iOs
+  function getDateNonStandard(nonStdDateStr) {
+    var d = new Date(nonStdDateStr.replace(/-/g, '/'));
+    var dateResult = getDateMsFormat(d)
+    return dateResult;
+  }
+
   return {
-    getDateMsFormat: getDateMsFormat
+    getDateMsFormat: getDateMsFormat,
+    getDateNonStandard: getDateNonStandard
   }
 });
 

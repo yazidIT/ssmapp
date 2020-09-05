@@ -320,15 +320,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
      else if(arrayItem.document === '559')
         arrayItem.document = lang.DOC_559;
 
-     var dateObj = new Date(arrayItem.documentDate);
-     arrayItem.documentDate = dateUtil.getDateMsFormat(dateObj);
-
-     dateObj = new Date(arrayItem.queryDate);
-     arrayItem.queryDate = dateUtil.getDateMsFormat(dateObj);
+     arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
+     arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
 
      if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
-        dateObj = new Date(arrayItem.rejectDate);
-        arrayItem.rejectDate = dateUtil.getDateMsFormat(dateObj);
+        arrayItem.rejectDate = dateUtil.getDateNonStandard(arrayItem.rejectDate);
      }
 
      if(arrayItem.status === 'A')
@@ -676,15 +672,15 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.gazzetteDate2 = "-";
 
     if(notices.dateNotice1 !== '' && notices.dateNotice1 !== '-')
-      $scope.dateNotice1 = dateUtil.getDateMsFormat(new Date(notices.dateNotice1));
+      $scope.dateNotice1 = dateUtil.getDateNonStandard(notices.dateNotice1);
     if(notices.dateNotice2 !== '' && notices.dateNotice2 !== '-')
-      $scope.dateNotice2 = dateUtil.getDateMsFormat(new Date(notices.dateNotice2));
+      $scope.dateNotice2 = dateUtil.getDateNonStandard(notices.dateNotice2);
     if(notices.nfaDate !== '' && notices.nfaDate !== '-')
-      $scope.nfaDate = dateUtil.getDateMsFormat(new Date(notices.nfaDate));
+      $scope.nfaDate = dateUtil.getDateNonStandard(notices.nfaDate);
     if(notices.dateNotice4 !== '' && notices.dateNotice4 !== '-')
-      $scope.dateNotice4 = dateUtil.getDateMsFormat(new Date(notices.dateNotice4));
+      $scope.dateNotice4 = dateUtil.getDateNonStandard(notices.dateNotice4);
     if(notices.gazzetteDate2 !== '' && notices.gazzetteDate2 !== '-')
-      $scope.gazzetteDate2 = dateUtil.getDateMsFormat(new Date(notices.gazzetteDate2));
+      $scope.gazzetteDate2 = dateUtil.getDateNonStandard(notices.gazzetteDate2);
 })
 
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
