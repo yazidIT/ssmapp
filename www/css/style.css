@@ -18,10 +18,10 @@
    margin-left: 20px;
    margin-right: 20px;
 */
-  
+
     margin-left: 10%;
     margin-right: 10%;
-    
+
    margin-top: 5px;
    margin-bottom: 5px;
    padding: 10px 10px 10px 10px;
@@ -29,7 +29,7 @@
 
 }
 @media (min-width: 760px) {
- 
+
     .box1 {
          margin-left: 20%;
         margin-right: 20%;
@@ -340,10 +340,10 @@ ion-item label font.ng-binding{
     padding: 3px;
 }
 .box1{
-      background-color: white !important;  
+      background-color: white !important;
 }
 .slider{
-       height: 220px; 
+       height: 220px;
         margin-top: 30px;
 }
 .button.button-positive.button-clear{
@@ -364,7 +364,7 @@ ion-item label font.ng-binding{
     position: absolute;
     bottom: 0px;
     left: 0px;
-    right: 0px; 
+    right: 0px;
     background-color: white;
     height: 20px;
 }
@@ -408,12 +408,12 @@ div.menu-logo{
     display: block;
     width: 120%;
     padding-right: -40px;
-     padding-right: 10px; 
+     padding-right: 10px;
     padding-left: -10px;
     position: absolute;
     margin-left: -10px;
     margin-right: -10px;
-    
+
 }
 
 /*
@@ -531,11 +531,11 @@ select#mySelect{
 
 /*Iphone SE*/
 @media (max-height: 620px) {
-    
+
     .bgtukar-main{
             margin-top:28%;
-    }  
-    
+    }
+
     .bgtukar table {
         font-size: 12px;
     }
@@ -543,7 +543,7 @@ select#mySelect{
         margin:2px;
         margin-left: -3px;
     }
-    
+
     .empty-news-main{
         font-size: 12px;
         margin-bottom: 20%;
@@ -556,7 +556,7 @@ select#mySelect{
         margin-top: -60%;
         margin-bottom: 30px;
     }
-    
+
     .scroll{
         margin-bottom: 120px;
     }
@@ -564,7 +564,7 @@ select#mySelect{
 
 /*Iphohe 4*/
 @media (max-height:500px){
-    
+
     .bgtukar-main{
             margin-top: 25px;
         }
@@ -581,17 +581,17 @@ select#mySelect{
         margin-top: -50%;
         margin-bottom: 30px;
     }
-    
-    
+
+
 }
 
 /*bgtukar for standard size*/
 @media (min-height: 620px) {
-    
+
     .bgtukar-main{
             margin-top:160px;
-    }  
-    
+    }
+
     .empty-news-main{
         font-size: 12px;
         margin-bottom: 20%;
@@ -604,17 +604,17 @@ select#mySelect{
         margin-top: -40%;
         margin-bottom: 30px;
     }
-    
+
 }
 
 /*Ipad*/
 /*bgtukar for standard size*/
 @media (min-height: 720px) {
-    
+
     .bgtukar-main{
             margin-top:160px;
-    }  
-    
+    }
+
     .empty-news-main{
         font-size: 12px;
         margin-bottom: 60px;
@@ -627,7 +627,7 @@ select#mySelect{
         margin-top: -2%;
         margin-bottom: 20px;
     }
-    
+
 }
 
 /*icon @ main*/
@@ -636,3 +636,7 @@ select#mySelect{
     height: 50px;
 }
 
+.item-longname{
+  overflow: hidden;
+  white-space: normal;
+}

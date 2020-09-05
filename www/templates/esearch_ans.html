@@ -9,7 +9,7 @@
 
   <div class="list" ng-app="starter.controllers" ng-controller="SearchResult">
 
-  <ion-item class="item-text-wrap">	<!--text wrap untuk ayat-ayat yang panjang sangat-->
+  <ion-item>	<!--text wrap untuk ayat-ayat yang panjang sangat-->
 
   <!--   REGISTER OF COMPANY -->
   <div ng-hide="!userData.result.companyNo">
@@ -23,7 +23,9 @@
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="ENTITYNAME">Entity Name:</font></span>
+      <div class="item-longname">
       <font size="2px"> {{userData.result.companyName}}</font>
+      </div>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px">Status:</font></span>
