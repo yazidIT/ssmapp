@@ -332,9 +332,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
      }
 
      if(arrayItem.status === 'A')
-      arrayItem.status = lang.STAT_APPROVE;
+        arrayItem.status = lang.STAT_APPROVE;
      else if(arrayItem.status === 'T')
-      arrayItem.status = lang.STAT_AUTOREJECT;
+        arrayItem.status = lang.STAT_AUTOREJECT;
 
      console.log(JSON.stringify(arrayItem));
    })
@@ -594,6 +594,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.entityStatus = lang.STAT_ACTIVE;
     else if(status === "E")
       $scope.entityStatus = lang.STAT_EXISTING;
+    else if(status === 'W')
+      $scope.entityStatus = lang.STAT_WINDINGUP;
+    else if(status === 'D')
+      $scope.entityStatus = lang.STAT_DISSOLVED;
 })
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
