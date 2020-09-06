@@ -306,8 +306,36 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   // }
 })
 
-.controller('QueryResult', function($scope, getQuery) {
-   $scope.userData = getQuery.getData();
+.controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc) {
+
+   var userData = getQuery.getData();
+   var lang = currTranslateSvc.getData();
+
+   userData.documents.forEach(function(arrayItem) {
+
+     console.log(JSON.stringify(arrayItem));
+
+     if(arrayItem.document === '557')
+        arrayItem.document = lang.DOC_557;
+     else if(arrayItem.document === '559')
+        arrayItem.document = lang.DOC_559;
+
+     arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
+     arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+
+     if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
+        arrayItem.rejectDate = dateUtil.getDateNonStandard(arrayItem.rejectDate);
+     }
+
+     if(arrayItem.status === 'A')
+        arrayItem.status = lang.STAT_APPROVE;
+     else if(arrayItem.status === 'T')
+        arrayItem.status = lang.STAT_AUTOREJECT;
+
+     console.log(JSON.stringify(arrayItem));
+   })
+
+   $scope.userData = userData;
 })
 
 .controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {
@@ -477,16 +505,25 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     getSearch.loadUserData(lang.MENU_07).then(function(result) {
 
-     if(result.status != 200){
+      if(result.status != 200){
           console.log("Error - "+result.status);
           $scope.input.entityNo = "";
           return;
       }
 
-      if(result.data.result === undefined || result.length == 0){
+      if($scope.input.entityType === "LLP") {
+        if(result.length == 0) {
           console.log("Data empty");
           $scope.input.entityNo = "";
           return;
+        }
+
+      } else {
+        if(result.data.result === undefined || result.length == 0){
+          console.log("Data empty");
+          $scope.input.entityNo = "";
+          return;
+        }
       }
 
       $state.go('app.esearch_ans');
@@ -518,12 +555,49 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
-.controller('SearchResult', function($scope, getSearch, eQuerySvc) {
+.controller('SearchResult', function($scope, getSearch, currTranslateSvc, dateUtil) {
     $scope.userData = getSearch.getData();
+    $scope.entityStatus = "";
+    $scope.todayDate = "";
+    $scope.asAtDate = "";
+
+    var lang = currTranslateSvc.getData();
+    var status = "";
+    var dtaDate = "";
+
+    var resultData = $scope.userData;
+    $scope.todayDate = dateUtil.getDateMsFormat(new Date())
+
+    if(resultData.llpEntry !== undefined) {
+      status = resultData.llpEntry.llpStatus;
+      if(resultData.llpEntry.findGSTRegNoList.GSTRegNo !== undefined)
+        dtaDate = resultData.llpEntry.findGSTRegNoList.GSTRegNo.dtasofdate;
+    } else if(resultData.result.comStatus !== undefined) {
+      status = resultData.result.comStatus;
+      if(resultData.result.findGSTRegNoList.GSTRegNo !== undefined)
+        dtaDate = resultData.result.findGSTRegNoList.GSTRegNo.dtasofdate;
+    } else if(resultData.result.bizStatus !== undefined) {
+      status = resultData.result.bizStatus;
+      if(resultData.result.findGSTRegNoList.GSTRegNo !== undefined)
+        dtaDate = resultData.result.findGSTRegNoList.GSTRegNo.dtasofdate;
+    }
+
+    if(dtaDate.length != 0) {
+      $scope.asAtDate = dateUtil.getDateMsFormat(new Date(dtaDate));
+    }
+
+    if(status === "A")
+      $scope.entityStatus = lang.STAT_ACTIVE;
+    else if(status === "E")
+      $scope.entityStatus = lang.STAT_EXISTING;
+    else if(status === 'W')
+      $scope.entityStatus = lang.STAT_WINDINGUP;
+    else if(status === 'D')
+      $scope.entityStatus = lang.STAT_DISSOLVED;
 })
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
-            popupError, $cordovaNetwork, getSearch) {
+            popupError, $cordovaNetwork) {
 
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
@@ -585,9 +659,28 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
-.controller('S308Result', function($scope, getS308, eQuerySvc) {
+.controller('S308Result', function($scope, getS308, dateUtil) {
     $scope.userData = getS308.getData();
     $scope.userCos = getS308.getCos();
+    var notices = $scope.userData.notices[0];
+    console.log(JSON.stringify(notices));
+
+    $scope.dateNotice1 = "-";
+    $scope.dateNotice2 = "-";
+    $scope.nfaDate = "-";
+    $scope.dateNotice4 = "-";
+    $scope.gazzetteDate2 = "-";
+
+    if(notices.dateNotice1 !== '' && notices.dateNotice1 !== '-')
+      $scope.dateNotice1 = dateUtil.getDateNonStandard(notices.dateNotice1);
+    if(notices.dateNotice2 !== '' && notices.dateNotice2 !== '-')
+      $scope.dateNotice2 = dateUtil.getDateNonStandard(notices.dateNotice2);
+    if(notices.nfaDate !== '' && notices.nfaDate !== '-')
+      $scope.nfaDate = dateUtil.getDateNonStandard(notices.nfaDate);
+    if(notices.dateNotice4 !== '' && notices.dateNotice4 !== '-')
+      $scope.dateNotice4 = dateUtil.getDateNonStandard(notices.dateNotice4);
+    if(notices.gazzetteDate2 !== '' && notices.gazzetteDate2 !== '-')
+      $scope.gazzetteDate2 = dateUtil.getDateNonStandard(notices.gazzetteDate2);
 })
 
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {

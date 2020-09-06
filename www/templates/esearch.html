@@ -21,8 +21,9 @@
         direction: ltr;
         position: inherit;
         padding-left: 0px;
+        overflow: hidden;
     }
-</style>
+  </style>
   <label class="item item-input item-select">
     <span class="input-label"><strong><font color="#2E2F83" translate="REGISTYPE">Registration Type:</font></strong></span>
     <select ng-model="input.entityType" ng-change="entityTypeSelect()">
@@ -70,7 +71,7 @@
               ng-repeat="button in buttons" ng-click="goBack(button.dest)"></button>
     </nav>
   </div>
-    
+
     <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
-    
+
 </ion-view>

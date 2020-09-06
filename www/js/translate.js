@@ -114,10 +114,18 @@ var translations = {
         "REGISNONEW": "New Registration Number:",
         "S308_RSLT": "Status 308 Result",
         "COMPNDSTATUS": "Compound Status:",
-        "AMOUNT": "Amount:"
+        "AMOUNT": "Amount:",
+        "STAT_ACTIVE": "Active",
+        "STAT_EXISTING": "Existing",
+        "STAT_DISSOLVED": "Dissolved",
+        "STAT_WINDINGUP": "Winding Up",
+        "STAT_APPROVE" : "Approve",
+        "STAT_AUTOREJECT" : "Auto Reject",
+        "DOC_557" : "Financial Statement",
+        "DOC_559" : "Form Of Annual Return Of A Company Having A Share Capital"
     },
-    
-    
+
+
 	"ms": {
 		"hp1": "Swipe ke kanan untuk melihat menu kiri",
 		"hp2": "(Auf dem Desktop klicken und ziehen Sie von links nach rechts)",
@@ -233,6 +241,14 @@ var translations = {
         "REGISNONEW": "Nombor Daftar Baru:",
         "S308_RSLT": "Keputusan Status 308",
         "COMPNDSTATUS": "Status Kompaun:",
-        "AMOUNT": "Jumlah:"
+        "AMOUNT": "Jumlah:",
+        "STAT_ACTIVE": "Aktif",
+        "STAT_EXISTING": "Wujud",
+        "STAT_DISSOLVED": "Tutup",
+        "STAT_WINDINGUP": "Proses Penutupan",
+        "STAT_APPROVE" : "Lulus",
+        "STAT_AUTOREJECT" : "Auto Tolak",
+        "DOC_557" : "Penyata Kewangan",
+        "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham"
 	}
 }
