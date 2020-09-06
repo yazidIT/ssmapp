@@ -9,7 +9,7 @@
   <center><div translate="s308_01">Status of Application to Strike-Off Company Name<br> under S308 of Companies ACT 1965</div></center>
   <br>
 
-  <ion-item class="item-text-wrap">	<!--text wrap untuk ayat-ayat yang panjang sangat-->
+  <ion-item>	<!--text wrap untuk ayat-ayat yang panjang sangat-->
     <div ng-controller="S308Result">
 <!--
     <div class="item" ng-if="userData.data.length > 0">{{userData.data}}</div>
@@ -28,41 +28,43 @@
       </label>
       <label class="item item-input" border="#2E2F83">
         <span class="input-label" ><font color="#2E2F83" size="2px" translate="COMPANYNAME">Company Name:</font></span>
+        <div class="item-longname">
         <font size="2px"> {{userData.companyName}}</font>
+        </div>
       </label>
 
-      <div class="item" ng-if="userData.notices.length > 0" ng-repeat="user in userData.notices">
+      <div class="item item-text-wrap" ng-if="userData.notices.length > 0" ng-repeat="user in userData.notices">
       <!--Status 308: Date of Notice 1-->
         <label class="item item-input" border="#2E2F83">
           <span class="input-label s308-label1"><font color="#2E2F83" size="2px" translate="DON308_1">Date of Notice 308(1):</font></span>
-          <font size="2px"> {{user.dateNotice1}}</font>
+          <font size="2px">{{dateNotice1}}</font>
         </label>
         <!--Status 308: Date of Notice 2-->
 
         <label class="item item-input" border="#2E2F83">
           <span class="input-label s308-label1"><font color="#2E2F83" size="2px" translate="DON308_2">Date of Notice 308(2):</font></span>
-          <font size="2px"> {{user.dateNotice2}}</font>
+          <font size="2px">{{dateNotice2}}</font>
         </label>
 
         <!--Status 308: Date of NFA (no further action)-->
 
         <label class="item item-input" border="#2E2F83">
           <span class="input-label s308-label1"><font color="#2E2F83" size="2px" translate="NFADate">NFA Date:</font></span>
-          <font size="2px"> {{user.nfaDate}}</font>
+          <font size="2px">{{nfaDate}}</font>
         </label>
 
         <!--Status 308: Date of Notice 4-->
 
         <label class="item item-input" border="#2E2F83">
           <span class="input-label s308-label1"><font color="#2E2F83" size="2px" translate="DON308_4">Date of Notice 308(4):</font></span>
-          <font size="2px"> {{user.dateNotice4}}</font>
+          <font size="2px">{{dateNotice4}}</font>
         </label>
 
         <!--Status 308: Date of Gazette-->
 
         <label class="item item-input" border="#2E2F83">
           <span class="input-label s308-label1"><font color="#2E2F83" size="2px" translate="GAZETTE308_2">Date of Gazette (2):</font></span>
-          <font size="2px"> {{user.gazzetteDate2}}</font>
+          <font size="2px">{{gazzetteDate2}}</font>
         </label>
 
         <!--Status 308: Gazette No.-->

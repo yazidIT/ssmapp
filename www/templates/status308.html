@@ -1,39 +1,56 @@
 <ion-view>
   <ion-nav-title class="title-class">Status 308</ion-nav-title>
-<ion-content>
 
+
+
+<ion-content>
 <div class="bgtukar">
 
- <br>
-  <center><div translate="s308_01">Status of Application to Strike-Off Company Name<br> under S308 of Companies ACT 1965</div></center>
+  <br>
+  <center><div translate="s308_01">Status of Application to Strike-Off Company Name under S308 of Companies ACT 1965</div></center>
   <br>
 
 <center><font color="grey">{{'FILLIN'|translate}}</font></center>
 <div class="list">
-    <!-- <label class="item item-input item-select">  -->
   <div class="list" border="#2E2F83">
+    <style>
+      .item-select select{
+          width: 100%;
+          direction: ltr;
+          position: inherit;
+          padding-left: 0px;
+          overflow: hidden;
+      }
+    </style>
+    <div ng-apps="starter.controllers" ng-controller="CmpndMenuCtrl as mc">
+      <label class="item item-input item-select">
+        <span class="input-label"><strong><font color="#2E2F83" translate="REGISTYPE">Registration Type:</font></strong></span>
+        <select ng-model="input.compound" ng-change="compoundSelect()">
+          <option value="ROC" ng-selected="true" translate="optEntityCRegNoOld">Company Registration No. Old</option>
+          <option value="ROCNEW" translate="optEntityCRegNoNew">Company Registration No. New</option>
+        </select>
+      </label>
+    </div>
 
-  <div class="list" ng-apps="starter.controllers" ng-controller="S308Info">
+    <div class="list" ng-apps="starter.controllers" ng-controller="S308Info">
 
-  <div class="list" border="#2E2F83">
-  <label class="item item-input">
-  <span class="input-label"><strong><font color="#2E2F83" translate="COMPANYNO">Company Number:</font></strong></span>
-  <input type="text" font="#2E2F83" placeholder="{{placeHolder}}" ng-model="data.input"></label>
-  </div>
-  <center>
-    <button class="button button-medium button-positive findbutton" ng-click="s308Info(data.input)">
-      <font color="F9EC00"><strong><div translate="FIND">Find</div></strong></font>
-    </button>
-  </center>
+      <div class="list" border="#2E2F83">
+        <label class="item item-input">
+        <span class="input-label"><strong><font color="#2E2F83" translate="COMPANYNO">Company Number:</font></strong></span>
+        <input type="text" font="#2E2F83" placeholder="{{placeHolder}}" ng-model="data.input"></label>
+      </div>
+      <center>
+        <button class="button button-medium button-positive findbutton" ng-click="s308Info(data.input)">
+          <font color="F9EC00"><strong><div translate="FIND">Find</div></strong></font>
+        </button>
+      </center>
 
-  </div>
+    </div>
   </div>
 </div>
-
 
 </div>
 </ion-content>
-
 
 	<div ng-app="starter.controllers" ng-controller="FloatMenuCtrl as fmc">
     <nav mfb-menu position="br" effect="zoomin" label="{{'SERVICES'|translate}}" menu-state="mfb"
@@ -44,9 +61,8 @@
     </nav>
 	</div>
 
+  <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
 
-    <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
-    
 </ion-view>
 
 

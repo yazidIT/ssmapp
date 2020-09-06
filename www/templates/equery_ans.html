@@ -8,28 +8,29 @@
   Section 11(8) & (9) of the Companies Act 1965.</div></center>
 <br>
   <div class="list" ng-app="starter.controllers" ng-controller="QueryResult">
-  <!--
-  <label class="item item-input" border="#2E2F83">
-    <span class="input-label"><font color="#2E2F83">Comp No./MyCoID:</font></span>
-    <font size="2"> {{queryData.query}}</font>
-  </label>
-  -->
-  <ion-item class="item-text-wrap">	<!--text wrap untuk ayat-ayat yang panjang sangat-->
+
+  <ion-item>	<!--text wrap untuk ayat-ayat yang panjang sangat-->
 
     <label class="item item-input" border="#2E2F83">
-      <span class="input-label"><font color="#2E2F83" size="2px" translate="placeHolderCOMPANYNO">Comp No./MyCoID:</font></span>
+      <span class="input-label">
+        <font color="#2E2F83" class"item-title" size="2px" translate="placeHolderCOMPANYNO">Comp No./MyCoID:</font>
+      </span>
       <font size="2px"> {{userData.companyNo}}</font>
     </label>
     <label class="item item-input" border="#2E2F83">
       <span class="input-label"><font color="#2E2F83" size="2px" translate="COMPANYNAME">Company Name:</font></span>
-      <font size="2px"> {{userData.companyName}}</font>
+      <div class="item-longname">
+        <font size="2px"> {{userData.companyName}}</font>
+      </div>
     </label>
 
     <div class="item" ng-if="userData.documents.length > 0" ng-repeat="document in userData.documents">
       <!--Document-->
       <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="DOCUMENT">Document:</font></span>
+        <div class="item-longname">
         <font size="2px"> {{document.document}}</font>
+        </div>
       </label>
 
       <!--Document Date-->
@@ -43,7 +44,7 @@
         <span class="input-label"><font color="#2E2F83" size="2px" translate="QUERYDate">Query Date:</font></span>
         <font size="2px"> {{document.queryDate}}</font>
       </label>
-        
+
     <!--Query Date-->
       <label class="item item-input" border="#2E2F83">
         <span class="input-label"><font color="#2E2F83" size="2px" translate="REJECTDate">Reject Date:</font></span>
@@ -60,6 +61,7 @@
 
     <label ng-hide="userData.documents.length > 0">{{'NODATAFOUND'|translate}}</label>
   </ion-item>
+
 </div>
 </div>
 </div>

@@ -114,10 +114,33 @@ var translations = {
         "REGISNONEW": "New Registration Number:",
         "S308_RSLT": "Status 308 Result",
         "COMPNDSTATUS": "Compound Status:",
-        "AMOUNT": "Amount:"
+        "AMOUNT": "Amount:",
+        "STAT_ACTIVE": "Active",
+        "STAT_EXISTING": "Existing",
+        "STAT_DISSOLVED": "Dissolved",
+        "STAT_WINDINGUP": "Winding Up",
+        "STAT_REMOVE": "Removed",
+        "STAT_CEASEDBUSINESS": "Ceased Business",
+        "STAT_NULLVOIDCOURT": "Null And Void By Court Order",
+        "STAT_DISSOLVEDCONVERSIONLLP": "Dissolved Conversion to LLP",
+        "STAT_STRUKOFFWINDUPCOURT": "Struk Off and Winding Up Via Court Order",
+        "STAT_EXPIRED": "Expired",
+        "STAT_TERMINATED": "Terminated",
+        "STAT_STRIKEOFF": "Strike Off",
+        "STAT_WINDUPCOURT": "Winding Up By Court",
+        "STAT_WINDUPVOLUNTARY": "Voluntary Winding Up",
+        "STAT_STRIKINGOFF": "In Process of Striking Off",
+        "STAT_WINDINGUPVOLUNTARY": "In Process of Voluntary Winding Up",
+        "STAT_WINDINGUPCOURT": "In Process of Winding Up By Court",
+        "STAT_APPROVE" : "Approve",
+        "STAT_AUTOREJECT" : "Auto Reject",
+        "STAT_QUERY" : "Query",
+        "STAT_BUSINESS" : "Business",
+        "DOC_557" : "Financial Statement",
+        "DOC_559" : "Form Of Annual Return Of A Company Having A Share Capital"
     },
-    
-    
+
+
 	"ms": {
 		"hp1": "Swipe ke kanan untuk melihat menu kiri",
 		"hp2": "(Auf dem Desktop klicken und ziehen Sie von links nach rechts)",
@@ -233,6 +256,29 @@ var translations = {
         "REGISNONEW": "Nombor Daftar Baru:",
         "S308_RSLT": "Keputusan Status 308",
         "COMPNDSTATUS": "Status Kompaun:",
-        "AMOUNT": "Jumlah:"
+        "AMOUNT": "Jumlah:",
+        "STAT_ACTIVE": "Aktif",
+        "STAT_EXISTING": "Wujud",
+        "STAT_DISSOLVED": "Tutup",
+        "STAT_WINDINGUP": "Proses Penutupan",
+        "STAT_REMOVE": "Di Keluarkan",
+        "STAT_CEASEDBUSINESS": "Henti Perniagaan",
+        "STAT_NULLVOIDCOURT": "Batal dan Tidak Sah Atas Arahan Mahkamah",
+        "STAT_DISSOLVEDCONVERSIONLLP": "Tutup Ubah ke LLP",
+        "STAT_STRUKOFFWINDUPCOURT": "Batal and Tutup Atas Arahan Mahkamah",
+        "STAT_EXPIRED": "Lupus",
+        "STAT_TERMINATED": "Tamat",
+        "STAT_STRIKEOFF": "Batal",
+        "STAT_WINDUPCOURT": "Penutupan Atas Arahan Mahkamah",
+        "STAT_WINDUPVOLUNTARY": "Penutupan Sukarela",
+        "STAT_STRIKINGOFF": "Dalam Proses Di Batalkan",
+        "STAT_WINDINGUPVOLUNTARY": "Dalam Proses Penutupan Sukarela",
+        "STAT_WINDINGUPCOURT": "Dalam Proses Penutupan Atas Arahan Makhkamah",
+        "STAT_APPROVE" : "Lulus",
+        "STAT_AUTOREJECT" : "Auto Tolak",
+        "STAT_QUERY" : "Kueri",
+        "STAT_BUSINESS" : "Perniagaan",
+        "DOC_557" : "Penyata Kewangan",
+        "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham"
 	}
 }
