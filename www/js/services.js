@@ -259,7 +259,6 @@ angular.module('myServices', [])
         return result;
     }).error(function(data, status) {
       // Do something on error
-        console.log("Device registration failed.");
     }).finally(function() {
       // On both cases hide the loading
       loadingHide();
@@ -434,8 +433,6 @@ angular.module('myServices', [])
             } else if (result.data.length === 0) {
                 popupError.noRecord(title);
             }
-            console.log(JSON.stringify(result))
-
             resultData = result.data;
             return result.data;
 
@@ -671,20 +668,17 @@ angular.module('myServices', [])
       var header = { "Authorization" : authHeader };
       var urlFinal = config.apiv2url + 'contact_us';
 
-      console.log(JSON.stringify(header))
       var offices = $http({
         method: 'GET',
         url: urlFinal,
         headers: header
+
       }).success(function(result) {
-
-          console.log(JSON.stringify(result))
           return result.data;
-      }).error(function(data, status) {
 
-        console.log(JSON.stringify(data))
-        console.log(status)
+      }).error(function(data, status) {
         popupError.serverFail(title,false);
+
       }).finally(function() {
         loadingHide();
       });

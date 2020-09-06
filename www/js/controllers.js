@@ -244,31 +244,25 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       eQuerySvc.setData(queryData1);
       getSearch.loadUserData(lang.MENU_05).then(function(result) {
           if(result.status != 200){
-              console.log("Error - " + result.status);
               $scope.data.input = "";
               return;
           }
           if(result.length == 0){
-              console.log("Data empty");
               $scope.input.entityNo = "";
               return;
           }
-          console.log(JSON.stringify(result));
-          var comRegNo = result.data.result.companyNo;
-          console.log(comRegNo);
 
+          var comRegNo = result.data.result.companyNo;
           queryData1.query = comRegNo;
           eQuerySvc.setData(queryData1);
 
           getQuery.loadUserData(lang.MENU_05).then(function(result) {
               if(result.status != 200){
-                  console.log("Error - "+result.status);
                   $scope.data.input = "";
                   return;
               }
 
               if(result.data.data.length == 0){
-                  console.log("Data empty");
                   $scope.data.input = "";
                   return;
               }
@@ -297,13 +291,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           $scope.showResult();
       }
   }
-
-  // $scope.entityTypeSelect = function() {
-  //   var lang = currTranslateSvc.getData();
-  //   $scope.placeHolder = lang[eVar[$scope.input.entityType]];
-  //   $scope.entityData =  $scope.input.entityType;
-  //   console.log($scope.input.entityType);
-  // }
 })
 
 .controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc) {
@@ -312,8 +299,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
    var lang = currTranslateSvc.getData();
 
    userData.documents.forEach(function(arrayItem) {
-
-     console.log(JSON.stringify(arrayItem));
 
      if(arrayItem.document === '557')
         arrayItem.document = lang.DOC_557;
@@ -331,8 +316,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         arrayItem.status = lang.STAT_APPROVE;
      else if(arrayItem.status === 'T')
         arrayItem.status = lang.STAT_AUTOREJECT;
-
-     console.log(JSON.stringify(arrayItem));
    })
 
    $scope.userData = userData;
@@ -367,7 +350,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     var lang = currTranslateSvc.getData();
     $scope.placeHolder = lang[eVar[$scope.input.entityType]];
     $scope.entityData =  $scope.input.entityType;
-    console.log($scope.input.entityType);
   }
 })
 
@@ -384,7 +366,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
         // Only do esearch first for queryData.second = "01"
         var queryDataFromUser = eQuerySvc.getData();
-        console.log("queryData ===> " + JSON.stringify(queryDataFromUser));
 
         if(queryDataFromUser.second === "01") {
 
@@ -393,13 +374,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
               getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                 if(result.status != 200){
-                    console.log("Error - " + result.status);
                     $scope.input.entityNo = "";
                     return;
                 }
 
                 if(result.data.data.length == 0){
-                    console.log("Data empty");
                     $scope.input.entityNo = "";
                     return;
                 }
@@ -414,13 +393,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
               getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                 if(result.status != 200){
-                    console.log("Error - " + result.status);
                     $scope.input.entityNo = "";
                     return;
                 }
 
                 if(result.data.data.length == 0){
-                    console.log("Data empty");
                     $scope.input.entityNo = "";
                     return;
                 }
@@ -432,13 +409,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
             getCmpnd.loadUserData(lang.MENU_06).then(function(result) {
                 if(result.status != 200){
-                    console.log("Error - " + result.status);
                     $scope.input.entityNo = "";
                     return;
                 }
 
                 if(result.data.data.length == 0){
-                    console.log("Data empty");
                     $scope.input.entityNo = "";
                     return;
                 }
@@ -506,21 +481,18 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     getSearch.loadUserData(lang.MENU_07).then(function(result) {
 
       if(result.status != 200){
-          console.log("Error - "+result.status);
           $scope.input.entityNo = "";
           return;
       }
 
       if($scope.input.entityType === "LLP") {
         if(result.length == 0) {
-          console.log("Data empty");
           $scope.input.entityNo = "";
           return;
         }
 
       } else {
         if(result.data.result === undefined || result.length == 0){
-          console.log("Data empty");
           $scope.input.entityNo = "";
           return;
         }
@@ -625,13 +597,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
       getS308.loadUserData(lang.MENU_08).then(function(result) {
           if(result.status != 200){
-              console.log("Error - "+result.status);
               $scope.data.input = "";
               return;
           }
 
           if(result.data.data.length == 0){
-              console.log("Data empty");
               $scope.data.input = "";
               return;
           }
@@ -663,7 +633,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.userData = getS308.getData();
     $scope.userCos = getS308.getCos();
     var notices = $scope.userData.notices[0];
-    console.log(JSON.stringify(notices));
 
     $scope.dateNotice1 = "-";
     $scope.dateNotice2 = "-";
