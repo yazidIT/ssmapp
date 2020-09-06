@@ -331,6 +331,14 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         arrayItem.status = lang.STAT_APPROVE;
      else if(arrayItem.status === 'T')
         arrayItem.status = lang.STAT_AUTOREJECT;
+      else if(arrayItem.status === 'Q')
+        arrayItem.status = lang.STAT_QUERY;
+      else if(arrayItem.status === 'B')
+        arrayItem.status = lang.STAT_BUSINESS;
+      else if(arrayItem.status === 'C')
+        arrayItem.status = lang.STAT_DISSOLVED;
+      else if(arrayItem.status === 'D')
+        arrayItem.status = lang.STAT_REMOVE;
 
      console.log(JSON.stringify(arrayItem));
    })
@@ -590,10 +598,36 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.entityStatus = lang.STAT_ACTIVE;
     else if(status === "E")
       $scope.entityStatus = lang.STAT_EXISTING;
-    else if(status === 'W')
+    else if(status === 'W' || status === 'M')
       $scope.entityStatus = lang.STAT_WINDINGUP;
     else if(status === 'D')
       $scope.entityStatus = lang.STAT_DISSOLVED;
+    else if(status === 'R')
+      $scope.entityStatus = lang.STAT_REMOVE;
+    else if(status === 'C')
+      $scope.entityStatus = lang.STAT_CEASEDBUSINESS;
+    else if(status === 'X')
+      $scope.entityStatus = lang.STAT_NULLVOIDCOURT;
+    else if(status === 'B')
+      $scope.entityStatus = lang.STAT_DISSOLVEDCONVERSIONLLP;
+    else if(status === 'Y')
+      $scope.entityStatus = lang.STAT_STRUKOFFWINDUPCOURT;
+    else if(status === 'L')
+      $scope.entityStatus = lang.STAT_EXPIRED;
+    else if(status === 'T')
+      $scope.entityStatus = lang.STAT_TERMINATED;
+    else if(status === 'S')
+      $scope.entityStatus = lang.STAT_STRIKEOFF;
+    else if(status === 'CW')
+      $scope.entityStatus = lang.STAT_WINDUPCOURT;
+    else if(status === 'VW')
+      $scope.entityStatus = lang.STAT_WINDUPVOLUNTARY;
+    else if(status === 'ES')
+      $scope.entityStatus = lang.STAT_STRIKINGOFF;
+    else if(status === 'EV')
+      $scope.entityStatus = lang.STAT_WINDINGUPVOLUNTARY;
+    else if(status === 'EC')
+      $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 })
 
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
