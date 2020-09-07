@@ -1,4 +1,8 @@
 angular.module('starter.controllers', ['myServices','ngStorage'])
+
+/**
+ * constants mostly for E-compound search parameters
+ */
 .constant('eVar', {
     "01":"optEntityCRegNo",
     "02":"optEntityBRegNo",
@@ -60,6 +64,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $ionicConfigProvider.backButton.previousTitleText(false);
 })
 
+
+/***
+ * General utility controller
+ */
 .controller('MenuCtrl', function($scope) {
   $scope.mySelect = "Company Registration Number";
   $scope.placeHolder = "Company Registration";
@@ -93,6 +101,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
 })
 
+/***
+ * click on url link on pages
+ */
 .controller('BrowseLink', function($scope, myContactUs) {
 
   $scope.openXLink = function(httpLink) {
@@ -191,6 +202,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   };
 })
 
+/**
+ * RSS news feed
+ */
 .controller('NewsCtrl', function($scope, $state, eQuerySvc, newsStoreSvc, currTranslateSvc, popupError, $cordovaNetwork) {
 
   $scope.userData = newsStoreSvc.getData(); //<--already updated by main control
@@ -213,6 +227,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
+/**
+ * detail news page
+ */
 .controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc) {
 
   var defaultData = [];
@@ -224,6 +241,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   });
 })
 
+/**
+ * E-query main controller
+ */
 .controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,
             popupError, $cordovaNetwork, getSearch) {
 
@@ -306,6 +326,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   // }
 })
 
+/**
+ * utility controller for result
+ */
 .controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc, docCode) {
 
   var userData = getQuery.getData();
@@ -357,13 +380,15 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
+/**
+ * Control E-compound menu selection changes
+ */
 .controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {
   $scope.input = {
     entityType :  "01",
     compound :    "ROC"
   }
 
-  // $scope.input.entityType = "ROC";//default value
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang[eVar[$scope.input.entityType]];
@@ -390,6 +415,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
+/**
+ * E-compound
+ */
 .controller('CompoundInfo', function($scope, $state, getCmpnd, eQuerySvc, currTranslateSvc, popupError,
                                       $cordovaNetwork, getSearch) {
 
@@ -401,7 +429,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             return;
         }
 
-        // Only do esearch first for queryData.second = "01"
+        // For Company Regisration
         var queryDataFromUser = eQuerySvc.getData();
         console.log("queryData ===> " + JSON.stringify(queryDataFromUser));
 
@@ -492,6 +520,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
    $scope.userData = getCmpnd.getData();
 })
 
+/**
+ * Language selection
+ */
 .controller('BMCtrl', function($scope, $translate, langSvc, myFmFactory, currTranslateSvc, $rootScope, $state) {
   $scope.langSelected = langSvc.getLang();
   $scope.ChangeLanguage = function(lang){
@@ -510,6 +541,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
+/**
+ * E-search
+ */
 .controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork) {
 
   $scope.input.entityType = "ROC";
@@ -641,6 +675,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 })
 
+/**
+ * S-308
+ */
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
             popupError, $cordovaNetwork) {
 
@@ -728,6 +765,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.gazzetteDate2 = dateUtil.getDateNonStandard(notices.gazzetteDate2);
 })
 
+/**
+ * Office location
+ */
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
 
     $scope.contactIsEmpty=true;
