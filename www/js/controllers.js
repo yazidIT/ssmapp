@@ -306,30 +306,38 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   // }
 })
 
-.controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc) {
+.controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc, docCode) {
 
-   var userData = getQuery.getData();
-   var lang = currTranslateSvc.getData();
+  var userData = getQuery.getData();
+  var lang = currTranslateSvc.getData();
+  var docNameLibrary;
 
-   userData.documents.forEach(function(arrayItem) {
+  docCode.loadDocumentDictionary().then( data => {
 
-     console.log(JSON.stringify(arrayItem));
+    console.log(JSON.stringify(data.data));
+    docNameLibrary = data.data;
 
-     if(arrayItem.document === '557')
-        arrayItem.document = lang.DOC_557;
-     else if(arrayItem.document === '559')
-        arrayItem.document = lang.DOC_559;
+    userData.documents.forEach(function(arrayItem) {
 
-     arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
-     arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+      console.log(JSON.stringify(arrayItem));
 
-     if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
+      //  if(arrayItem.document === '557')
+      //     arrayItem.document = lang.DOC_557;
+      //  else if(arrayItem.document === '559')
+      //     arrayItem.document = lang.DOC_559;
+
+      arrayItem.document = docNameLibrary[arrayItem.document];
+
+      arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
+      arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+
+      if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
         arrayItem.rejectDate = dateUtil.getDateNonStandard(arrayItem.rejectDate);
-     }
+      }
 
-     if(arrayItem.status === 'A')
+      if(arrayItem.status === 'A')
         arrayItem.status = lang.STAT_APPROVE;
-     else if(arrayItem.status === 'T')
+      else if(arrayItem.status === 'T')
         arrayItem.status = lang.STAT_AUTOREJECT;
       else if(arrayItem.status === 'Q')
         arrayItem.status = lang.STAT_QUERY;
@@ -340,10 +348,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       else if(arrayItem.status === 'D')
         arrayItem.status = lang.STAT_REMOVE;
 
-     console.log(JSON.stringify(arrayItem));
-   })
+      console.log(JSON.stringify(arrayItem));
+    })
 
-   $scope.userData = userData;
+     $scope.userData = userData;
+
+  })
+
 })
 
 .controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {

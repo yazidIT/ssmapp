@@ -698,6 +698,32 @@ angular.module('myServices', [])
 
 })
 
+.factory('docCode', function($http, langSvc) {
+
+  var docNameLibrary;
+  var docLanguage;
+
+  function loadDocumentDictionary() {
+
+    if(langSvc.getLang() == 'en')
+      docLanguage = "json/doccode_en.json";
+    else
+      docLanguage = "json/doccode_ms.json";
+
+    return $http.get(docLanguage).success(data => {
+      docNameLibrary = data.data;
+      return docNameLibrary;
+    })
+
+  }
+
+
+  return {
+    loadDocumentDictionary: loadDocumentDictionary
+  }
+
+})
+
 .factory('dateUtil', function() {
 
   function getDateMsFormat(dateObj) {
