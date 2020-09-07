@@ -637,6 +637,10 @@ select#mySelect{
 }
 
 .item-longname{
-  overflow: hidden;
-  white-space: normal;
+    max-width:80%;
+    margin-right: 5%;
+    text-align:left;
+    overflow: hidden;
+    white-space: normal;
+    padding-right: 10px;
 }
