@@ -1,4 +1,8 @@
 angular.module('starter.controllers', ['myServices','ngStorage'])
+
+/**
+ * constants mostly for E-compound search parameters
+ */
 .constant('eVar', {
     "01":"optEntityCRegNo",
     "02":"optEntityBRegNo",
@@ -60,6 +64,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $ionicConfigProvider.backButton.previousTitleText(false);
 })
 
+
+/***
+ * General utility controller
+ */
 .controller('MenuCtrl', function($scope) {
   $scope.mySelect = "Company Registration Number";
   $scope.placeHolder = "Company Registration";
@@ -93,6 +101,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
 })
 
+/***
+ * click on url link on pages
+ */
 .controller('BrowseLink', function($scope, myContactUs) {
 
   $scope.openXLink = function(httpLink) {
@@ -191,6 +202,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   };
 })
 
+/**
+ * RSS news feed
+ */
 .controller('NewsCtrl', function($scope, $state, eQuerySvc, newsStoreSvc, currTranslateSvc, popupError, $cordovaNetwork) {
 
   $scope.userData = newsStoreSvc.getData(); //<--already updated by main control
@@ -213,6 +227,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
+/**
+ * detail news page
+ */
 .controller('DetailNewsResult', function($scope, newsSvc, currTranslateSvc) {
 
   var defaultData = [];
@@ -224,6 +241,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   });
 })
 
+/**
+ * E-query main controller
+ */
 .controller('QueryInfo', function($scope, $state, getQuery, eQuerySvc, currTranslateSvc,
             popupError, $cordovaNetwork, getSearch) {
 
@@ -293,41 +313,69 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
-.controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc) {
+/**
+ * utility controller for result
+ */
+.controller('QueryResult', function($scope, getQuery, dateUtil, currTranslateSvc, docCode) {
 
-   var userData = getQuery.getData();
-   var lang = currTranslateSvc.getData();
+  var userData = getQuery.getData();
+  var lang = currTranslateSvc.getData();
+  var docNameLibrary;
 
-   userData.documents.forEach(function(arrayItem) {
+  docCode.loadDocumentDictionary().then( data => {
 
-     if(arrayItem.document === '557')
-        arrayItem.document = lang.DOC_557;
-     else if(arrayItem.document === '559')
-        arrayItem.document = lang.DOC_559;
+    console.log(JSON.stringify(data.data));
+    docNameLibrary = data.data;
 
-     arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
-     arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+    userData.documents.forEach(function(arrayItem) {
 
-     if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
+      console.log(JSON.stringify(arrayItem));
+
+      //  if(arrayItem.document === '557')
+      //     arrayItem.document = lang.DOC_557;
+      //  else if(arrayItem.document === '559')
+      //     arrayItem.document = lang.DOC_559;
+
+      arrayItem.document = docNameLibrary[arrayItem.document];
+
+      arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
+      arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+
+      if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
         arrayItem.rejectDate = dateUtil.getDateNonStandard(arrayItem.rejectDate);
-     }
+      }
 
-     if(arrayItem.status === 'A')
+      if(arrayItem.status === 'A')
         arrayItem.status = lang.STAT_APPROVE;
-     else if(arrayItem.status === 'T')
+      else if(arrayItem.status === 'T')
         arrayItem.status = lang.STAT_AUTOREJECT;
-   })
+      else if(arrayItem.status === 'Q')
+        arrayItem.status = lang.STAT_QUERY;
+      else if(arrayItem.status === 'B')
+        arrayItem.status = lang.STAT_BUSINESS;
+      else if(arrayItem.status === 'C')
+        arrayItem.status = lang.STAT_DISSOLVED;
+      else if(arrayItem.status === 'D')
+        arrayItem.status = lang.STAT_REMOVE;
 
-   $scope.userData = userData;
+      console.log(JSON.stringify(arrayItem));
+    })
+
+     $scope.userData = userData;
+
+  })
+
 })
 
+/**
+ * Control E-compound menu selection changes
+ */
 .controller('CmpndMenuCtrl', function($scope, eVar, currTranslateSvc, $rootScope) {
   $scope.input = {
     entityType :  "01",
     compound :    "ROC"
   }
 
-  // $scope.input.entityType = "ROC";//default value
   var changePlaceHolder = function(){
         var lang = currTranslateSvc.getData();
         $scope.placeHolder = lang[eVar[$scope.input.entityType]];
@@ -353,6 +401,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
+/**
+ * E-compound
+ */
 .controller('CompoundInfo', function($scope, $state, getCmpnd, eQuerySvc, currTranslateSvc, popupError,
                                       $cordovaNetwork, getSearch) {
 
@@ -364,7 +415,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             return;
         }
 
-        // Only do esearch first for queryData.second = "01"
+        // For Company Regisration
         var queryDataFromUser = eQuerySvc.getData();
 
         if(queryDataFromUser.second === "01") {
@@ -448,6 +499,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
    $scope.userData = getCmpnd.getData();
 })
 
+/**
+ * Language selection
+ */
 .controller('BMCtrl', function($scope, $translate, langSvc, myFmFactory, currTranslateSvc, $rootScope, $state) {
   $scope.langSelected = langSvc.getLang();
   $scope.ChangeLanguage = function(lang){
@@ -466,6 +520,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 })
 
+/**
+ * E-search
+ */
 .controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork) {
 
   $scope.input.entityType = "ROC";
@@ -562,12 +619,41 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.entityStatus = lang.STAT_ACTIVE;
     else if(status === "E")
       $scope.entityStatus = lang.STAT_EXISTING;
-    else if(status === 'W')
+    else if(status === 'W' || status === 'M')
       $scope.entityStatus = lang.STAT_WINDINGUP;
     else if(status === 'D')
       $scope.entityStatus = lang.STAT_DISSOLVED;
+    else if(status === 'R')
+      $scope.entityStatus = lang.STAT_REMOVE;
+    else if(status === 'C')
+      $scope.entityStatus = lang.STAT_CEASEDBUSINESS;
+    else if(status === 'X')
+      $scope.entityStatus = lang.STAT_NULLVOIDCOURT;
+    else if(status === 'B')
+      $scope.entityStatus = lang.STAT_DISSOLVEDCONVERSIONLLP;
+    else if(status === 'Y')
+      $scope.entityStatus = lang.STAT_STRUKOFFWINDUPCOURT;
+    else if(status === 'L')
+      $scope.entityStatus = lang.STAT_EXPIRED;
+    else if(status === 'T')
+      $scope.entityStatus = lang.STAT_TERMINATED;
+    else if(status === 'S')
+      $scope.entityStatus = lang.STAT_STRIKEOFF;
+    else if(status === 'CW')
+      $scope.entityStatus = lang.STAT_WINDUPCOURT;
+    else if(status === 'VW')
+      $scope.entityStatus = lang.STAT_WINDUPVOLUNTARY;
+    else if(status === 'ES')
+      $scope.entityStatus = lang.STAT_STRIKINGOFF;
+    else if(status === 'EV')
+      $scope.entityStatus = lang.STAT_WINDINGUPVOLUNTARY;
+    else if(status === 'EC')
+      $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 })
 
+/**
+ * S-308
+ */
 .controller('S308Info', function($scope, $state, eQuerySvc, currTranslateSvc, getS308, $rootScope,
             popupError, $cordovaNetwork) {
 
@@ -652,6 +738,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.gazzetteDate2 = dateUtil.getDateNonStandard(notices.gazzetteDate2);
 })
 
+/**
+ * Office location
+ */
 .controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
 
     $scope.contactIsEmpty=true;

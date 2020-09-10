@@ -66,15 +66,18 @@
 
 })
 
+/**
+ * routing for pages
+ */
 .config(function($stateProvider, $urlRouterProvider, $translateProvider) {
 
   $stateProvider
 
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/mainlogin.html',
-    controller: 'AppCtrl'
-  })
+  // .state('login', {
+  //   url: '/login',
+  //   templateUrl: 'templates/mainlogin.html',
+  //   controller: 'AppCtrl'
+  // })
 
   .state('app', {
     url: '/app',
@@ -196,23 +199,22 @@
       }
     })
 
-  .state('app.bahasamalaysia', {
-      url: '/bahasamalaysia',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/bahasamalaysia.html',
-          controller: 'BMCtrl'
-        }
-      }
-    })
-
+  // .state('app.bahasamalaysia', {
+  //     url: '/bahasamalaysia',
+  //     views: {
+  //       'menuContent': {
+  //         templateUrl: 'templates/bahasamalaysia.html',
+  //         controller: 'BMCtrl'
+  //       }
+  //     }
+  //   })
+  
   .state('app.error', {
       url: '/error',
       cache: false, //Close because we do duplicate data -> just simple fixing:)
       views: {
         'menuContent': {
           templateUrl: 'templates/error.html',
-//          controller: 'BrowseLink'
         }
       }
     });
