@@ -324,17 +324,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   docCode.loadDocumentDictionary().then( data => {
 
-    console.log(JSON.stringify(data.data));
     docNameLibrary = data.data;
 
     userData.documents.forEach(function(arrayItem) {
-
-      console.log(JSON.stringify(arrayItem));
-
-      //  if(arrayItem.document === '557')
-      //     arrayItem.document = lang.DOC_557;
-      //  else if(arrayItem.document === '559')
-      //     arrayItem.document = lang.DOC_559;
 
       arrayItem.document = docNameLibrary[arrayItem.document];
 
@@ -358,7 +350,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       else if(arrayItem.status === 'D')
         arrayItem.status = lang.STAT_REMOVE;
 
-      console.log(JSON.stringify(arrayItem));
     })
 
      $scope.userData = userData;
