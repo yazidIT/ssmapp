@@ -757,11 +757,9 @@ angular.module('myServices', [])
 
   }
 
-
   return {
     loadDocumentDictionary: loadDocumentDictionary
   }
-
 })
 
 .factory('dateUtil', function() {
