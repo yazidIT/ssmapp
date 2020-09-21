@@ -1,0 +1,42 @@
+{
+  "data" : {
+    "defaultId": 0,
+    "offices": [
+      {
+        "id": 1,
+        "name": "MENARA SSM@SENTRAL",
+        "nameMs": "MENARA SSM@SENTRAL",
+        "location" : {
+          "lat": "3.1330833",
+          "long": "101.6843056"
+        },
+        "address": "<div><p>No 7, Jalan Stesen Sentral 5</p><p> Kuala Lumpur Sentral</p><div>50623 Kuala Lumpur.​​<br></div></div>",
+        "tel": "<div>03-7721 4000</div>",
+        "fax": "<div>03-7721 4001</div>",
+        "email": "enquiry[at]ssm.com.my",
+        "mainTel": "<div>03-7721 4000</div>",
+        "operationHour": "<div>Day &#58; Monday - Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm<br></div>",
+        "operationHourMs": "<div>Hari &#58; Isnin - Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg<br></div>",
+        "pic": ""
+      },
+      {
+        "id": 2,
+        "name": "KEDAH",
+        "nameMs": "KEDAH",
+        "location" : {
+          "lat": "6.1247583",
+          "long": "100.3696648"
+        },
+        "address": "<div><p>Ramle bin Leen</p><div>Tingkat 1 &amp; 2,</div><div>Wisma PERKESO,</div><div>No.186 Jalan Teluk WanJah,​<br></div><div>05538 Alor Setar, Kedah.​</div></div>",
+        "tel": "<div>04-733 0111</div>",
+        "fax": "<div>04-731 5517​</div>",
+        "email": "lramle[at]ssm.com.my",
+        "mainTel": "<div>04-733 0111</div>",
+        "operationHour": "<div>Day &#58; Sunday – Thursday</div><div>\n      Service Counter &#58;</div><div>8.15 am - 4.00 pm (Sund​​ay - Wednesday)</div><div>8.15 am - 3.45 pm (Thursday)</div>",
+        "operationHourMs": "<div>Hari &#58; Ahad – Khamis</div><div>\n      Perkhidmatan Kaunter &#58;</div><div>8.15 pg - 4.00 ptg (Ahad - Rabu)</div><div>8.15 pg - 3.45 ptg (Khamis)</div>",
+        "pic": ""
+      }
+    ]
+  }
+}
+
