@@ -857,6 +857,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         });
 
         $scope.changeMarker = function(){
+            console.log(JSON.stringify($scope.selectedOption))
             setMarker($scope.selectedOption);
         }
 
@@ -895,8 +896,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
 
     contactData.loadContactData().then(function(result) {
+
         //store general data
-        console.log(JSON.stringify(result));
         if(result.data.data.generalLine !== undefined){
             $localStorage.generalLine = result.data.data.generalLine;
             $scope.generalLine = $localStorage.generalLine;
