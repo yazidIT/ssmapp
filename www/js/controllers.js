@@ -821,7 +821,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         });
 
         $scope.changeMarker = function(){
-            console.log(JSON.stringify($scope.selectedOption))
             setMarker($scope.selectedOption);
         }
 
