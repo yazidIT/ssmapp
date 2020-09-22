@@ -732,7 +732,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 /**
  * Office location
  */
-.controller('ContactUs', function($scope, SSMOfficesService, langSvc, $localStorage) {
+.controller('ContactUs', function($scope, langSvc, contactData, $localStorage) {
 
     $scope.contactIsEmpty=true;
     viewContacts = function(defaultId){
@@ -821,6 +821,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         });
 
         $scope.changeMarker = function(){
+            console.log(JSON.stringify($scope.selectedOption))
             setMarker($scope.selectedOption);
         }
 
@@ -858,7 +859,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
             viewContacts();
     }
 
-    SSMOfficesService.list().then(function(result) {
+    contactData.loadContactData().then(function(result) {
+
         //store general data
         if(result.data.data.generalLine !== undefined){
             $localStorage.generalLine = result.data.data.generalLine;

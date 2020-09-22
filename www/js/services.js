@@ -776,5 +776,26 @@ angular.module('myServices', [])
     getDateMsFormat: getDateMsFormat,
     getDateNonStandard: getDateNonStandard
   }
+})
+
+.factory('contactData', function($http) {
+
+  var contactDataDoc;
+  var contactDataLibrary;
+
+  function loadContactData() {
+
+    contactDataDoc = "json/contact.json";
+    return $http.get(contactDataDoc).success(data => {
+
+      contactDataLibrary = data;
+      return contactDataLibrary;
+    })
+
+  }
+
+  return {
+    loadContactData: loadContactData
+  }
 });
 
