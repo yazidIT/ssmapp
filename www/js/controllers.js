@@ -328,10 +328,19 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     userData.documents.forEach(function(arrayItem) {
 
+      var docCodeNumber = arrayItem.document;
       arrayItem.document = docNameLibrary[arrayItem.document];
+      if(arrayItem.document === undefined) {
+        arrayItem.document = docCodeNumber;
+      }
 
-      arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
-      arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+      if(arrayItem.documentDate !== '-' && arrayItem.documentDate !== '') {
+        arrayItem.documentDate = dateUtil.getDateNonStandard(arrayItem.documentDate);
+      }
+
+      if(arrayItem.queryDate !== '-' && arrayItem.queryDate !== '') {
+        arrayItem.queryDate = dateUtil.getDateNonStandard(arrayItem.queryDate);
+      }
 
       if(arrayItem.rejectDate !== '-' && arrayItem.rejectDate !== '') {
         arrayItem.rejectDate = dateUtil.getDateNonStandard(arrayItem.rejectDate);
