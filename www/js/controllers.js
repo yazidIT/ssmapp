@@ -107,11 +107,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('BrowseLink', function($scope, myContactUs) {
 
   $scope.openXLink = function(httpLink) {
-    window.open(httpLink,'_system','location=yes');
+    console.log("OpenXLink called: " + httpLink);
+    cordova.InAppBrowser.open(httpLink,'_system','location=yes');
   }
 
   $scope.openInLink = function(httpLink) {
-    window.open(httpLink,'_blank');
+    cordova.InAppBrowser.open(httpLink,'_blank');
   }
 
   $scope.contactlist = myContactUs.getcontactlist();
@@ -612,7 +613,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 
   $window.OpenLink = function(link) {
-    window.open( link, '_system');
+    cordova.InAppBrowser.open( link, '_system');
   };
 
 })
@@ -875,15 +876,15 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         }
 
         $scope.gotoLocation = function(){
-             window.open('http://maps.google.com?q='+$scope.selectedOption.location.lat + "," + $scope.selectedOption.location.long,'_system','location=yes');
+          cordova.InAppBrowser.open('http://maps.google.com?q='+$scope.selectedOption.location.lat + "," + $scope.selectedOption.location.long,'_system','location=yes');
         }
 
         $scope.call = function(){
-            window.open('tel:'+$scope.selectedOption.mainTel.replace(/\s/g,''),'_system');
+          cordova.InAppBrowser.open('tel:'+$scope.selectedOption.mainTel.replace(/\s/g,''),'_system');
         }
 
         $scope.email = function(){
-            window.open('mailto:'+$scope.selectedOption.email.replace('[at]','@'),'_system','location=yes');
+          cordova.InAppBrowser.open('mailto:'+$scope.selectedOption.email.replace('[at]','@'),'_system','location=yes');
         }
     };
 
