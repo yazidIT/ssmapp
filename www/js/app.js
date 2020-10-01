@@ -11,7 +11,8 @@
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
     if (window.StatusBar) {
@@ -69,7 +70,17 @@
 /**
  * routing for pages
  */
-.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
+.config(function($stateProvider, $compileProvider, $urlRouterProvider, $translateProvider) {
+
+  // var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file|ionic):|data:image\//;
+  // $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
+
+  // fix "Failed to load webpage with error: unsupported URL"
+  var hrefSanitizationWhitelist = /^\s*(https?|sms|tel|geo|ftp|mailto|file|ghttps?|ms-appx-web|ms-appx|x-wmapp0|ionic):/;
+  $compileProvider.aHrefSanitizationWhitelist(hrefSanitizationWhitelist);
+  // sanitize the images to open ionic://localhost/ on iOS
+  var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file|content|blob|ms-appx|ms-appx-web|x-wmapp0|ionic):|data:image\//;
+  $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
 
   $stateProvider
 
