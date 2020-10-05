@@ -107,7 +107,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('BrowseLink', function($scope, myContactUs) {
 
   $scope.openXLink = function(httpLink) {
-    console.log("OpenXLink called: " + httpLink);
     cordova.InAppBrowser.open(httpLink,'_system','location=yes');
   }
 
