@@ -14,7 +14,7 @@
         "tel": "<div>03-7721 4000</div>",
         "fax": "<div>03-7721 4001</div>",
         "email": "enquiry[at]ssm.com.my",
-        "mainTel": "<div>03-7721 4000</div>",
+        "mainTel": "03-7721 4000<",
         "operationHour": "<div>Day &#58; Monday - Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm<br></div>",
         "operationHourMs": "<div>Hari &#58; Isnin - Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg<br></div>",
         "pic": ""
@@ -31,7 +31,7 @@
         "tel": "<div>07-224 4710</div>",
         "fax": "<div>07-224 1714 / 224 8169</div>",
         "email": "hairul[at]ssm.com.my",
-        "mainTel": "<div>07-224 4710</div>",
+        "mainTel": "07-224 4710",
         "operationHour": "<div><p>8.15 am - 4.00 pm (Sunday - Wednesday)</p><p>8.15 am - 3.45 pm (Thursday)<br></p></div>",
         "operationHourMs": "<div><p>8.15 pg - 4.00 ptg (Ahad - Rabu)</p><p>8.15 pg - 3.45 ptg (Khamis)<br></p></div>",
         "pic": ""
@@ -48,7 +48,7 @@
         "tel": "<div>04-733 0111</div>",
         "fax": "<div>04-731 5517​</div>",
         "email": "lramle[at]ssm.com.my",
-        "mainTel": "<div>04-733 0111</div>",
+        "mainTel": "04-733 0111",
         "operationHour": "<div>Day &#58; Sunday – Thursday</div><div>\n      Service Counter &#58;</div><div>8.15 am - 4.00 pm (Sund​​ay - Wednesday)</div><div>8.15 am - 3.45 pm (Thursday)</div>",
         "operationHourMs": "<div>Hari &#58; Ahad – Khamis</div><div>\n      Perkhidmatan Kaunter &#58;</div><div>8.15 pg - 4.00 ptg (Ahad - Rabu)</div><div>8.15 pg - 3.45 ptg (Khamis)</div>",
         "pic": ""
@@ -65,7 +65,7 @@
         "tel": "<div>09-748 2860 / 748 4599</div>",
         "fax": "<div>09-744 7622 / 747 2607</div>",
         "email": "mastura[at]ssm.com.my",
-        "mainTel": "<div>09-748 2860</div>",
+        "mainTel": "09-748 2860",
         "operationHour": "<div>Day &#58; Sunday – Thursday</div><div>Service Counter &#58;</div><div>8.15 am - 4.00 pm (Sunday - Wednesday)</div><div>8.15 am - 3.45 pm (Thursday)</div>",
         "operationHourMs": "<div>Hari &#58; Ahad – Khamis</div><div>Perkhidmatan Kaunter &#58;</div><div>8.15 pg - 4.00 ptg (Ahad - Rabu)</div><div>8.15 pg - 3.45 ptg (Khamis)</div>",
         "pic": ""
@@ -82,7 +82,7 @@
         "tel": "<div>06-231 1717</div>",
         "fax": "<div>06-231 3502</div>",
         "email": "azrin[at]ssm.com.my",
-        "mainTel": "<div>06-231 1717</div>",
+        "mainTel": "06-231 1717",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -99,7 +99,7 @@
         "tel": "<div>06-761 9098 / 761 5506 / 06-764 1885 / 764 5598</div>",
         "fax": "<div>06-765 5877</div>",
         "email": "rashidan[at]ssm.com.my",
-        "mainTel": "<div>06-761 9098</div>",
+        "mainTel": "06-761 9098",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -116,7 +116,7 @@
         "tel": "<div>09-572 9743​ / 573 0866 / 573 0400/ 573 0969</div>",
         "fax": "<div>09-573 2316</div>",
         "email": "mzamri[at]ssm.com.my",
-        "mainTel": "<div>09-572 9743</div>",
+        "mainTel": "09-572 9743",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -133,7 +133,7 @@
         "tel": "<div>05-241 6900 / 254 7913 / 253 3071​</div>",
         "fax": "",
         "email": "arifh[at]ssm.com.my",
-        "mainTel": "<div>05-241 6900</div>",
+        "mainTel": "05-241 6900",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -150,7 +150,7 @@
         "tel": "<div>04-397 7793​</div>",
         "fax": "<div>04-397 7713</div>",
         "email": "sivam[at]ssm.com.my",
-        "mainTel": "<div>04-397 7793</div>",
+        "mainTel": "04-397 7793",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -167,7 +167,7 @@
         "tel": "<div>088-233 551 / 233 346​</div>",
         "fax": "<div>088-237 884</div>",
         "email": "yasin[at]ssm.com.my",
-        "mainTel": "<div>088-233 551</div>",
+        "mainTel": "088-233 551",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.00 am - 4.00 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhimdmatan Kaunter &#58; 8.00 pg - 4.00 ptg</div>",
         "pic": ""
@@ -180,11 +180,11 @@
           "lat": "1.551422",
           "long": "110.38197"
         },
-        "address": "<div>\n      \n         M.K Kelvin Fossillian\n      <div>Lot 11115, Section 64</div></div><div>Kuching Town Land District</div><div>Jalan Pending , City Square Phase 1</div><div>93450 Kuching, Sarawak</div></div>",
+        "address": "<div>\n\nM.K Abdul Rahman bin Rosli\n<div>Lot 11115, Section 64</div></div><div>Kuching Town Land District</div><div>Jalan Pending, City Square Phase 1</div><div>93450 Kuching, Sarawak</div></div>",
         "tel": "<div>082-266111 / 266112 / 266113 / 266114​</div>",
         "fax": "<div>082-266115</div>",
-        "email": "kelvin[at]ssm.com.my",
-        "mainTel": "<div>082-266111</div>",
+        "email": "arahman[at]ssm.com.my",
+        "mainTel": "082-266111",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.00 am - 4.00 pm</div><div>Break &#58; 1.00 pm - 2.00 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.00 pg - 4.00 ptg</div><div>Rehat &#58; 1.00 ptg - 2.00 ptg</div>",
         "pic": ""
@@ -201,7 +201,7 @@
         "tel": "<div>03-5511 6500 / 5513 5997​</div>",
         "fax": "<div>03-5510 4200</div>",
         "email": "krudin[at]ssm.com.my",
-        "mainTel": "<div>03-5511 6500</div>",
+        "mainTel": "03-5511 6500",
         "operationHour": "<div>Day &#58; Monday – Friday<br></div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat<br></div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -218,7 +218,7 @@
         "tel": "<div>09-623 7170 / 624 0721​</div>",
         "fax": "<div>09-623 0945</div>",
         "email": "abrazak[at]ssm.com.my",
-        "mainTel": "<div>09-623 7170</div>",
+        "mainTel": "09-623 7170",
         "operationHour": "<div>Day &#58; Sunday – Thursday</div><div>Service Counter &#58;</div><div>8.15 am - 4.00 pm (Sunday - Wednesday)</div><div>8.15 am - 3.45 pm (Thursday)</div>",
         "operationHourMs": "<div>Hari &#58; Ahad – Khamis</div><div>Perkhidmatan Kaunter &#58;</div><div>8.15 pg - 4.00 ptg (Ahad - Rabu)</div><div>8.15 pg - 3.45 ptg (Khamis)</div></div>",
         "pic": ""
@@ -235,7 +235,7 @@
         "tel": "<div>085-324400/ 325334​</div>",
         "fax": "<div>085-324545</div>",
         "email": "misiahr[at]ssm.com.my",
-        "mainTel": "<div>085-324400</div>",
+        "mainTel": "085-324400",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.00 am - 4.00 pm</div><div>Day &#58; Monday – Thursday​</div><div>Break &#58; 1.00 pm - 2.00 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.00 pg - 4.00 ptg</div><div>Hari &#58; Isnin – Khamis</div><div>Rehat &#58; 1.00 ptg - 2.00 ptg</div>",
         "pic": ""
@@ -252,7 +252,7 @@
         "tel": "<div>06-954 6611 / 954 7711</div>",
         "fax": "<div>06-954 6600</div>",
         "email": "norsilawati[at]ssm.com.my",
-        "mainTel": "<div>06-954 6611</div>",
+        "mainTel": "06-954 6611",
         "operationHour": "<div>Day &#58; Sunday – Thursday</div><div>Service Counter &#58; 8.1​5 am - 4.00 pm</div>",
         "operationHourMs": "<div>Hari &#58; Ahad – Khamis</div><div>Perkhidmatan Kaunter &#58; 8.1​5 pg - 4.00 ptg</div>",
         "pic": ""
@@ -269,7 +269,7 @@
         "tel": "<div>084-250 145​</div>",
         "fax": "<div>084-250 147</div>",
         "email": "ronatkinson[at]ssm.com.my",
-        "mainTel": "<div>084-250 145</div>",
+        "mainTel": "084-250 145",
         "operationHour": "<div>Day &#58; Monday – Friday​</div><div>Service Counter &#58; 8.00 am - 4.00 pm</div><div>Day &#58; Monday – Thursday</div><div>Break &#58; 1.00 pm - 2.00 pm</div><div>Day &#58; Friday</div><div>Break &#58; 11.45 am - 2.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.00 pg - 4.00 ptg</div><div>Hari &#58; Isnin – Khamis</div><div>Rehat &#58; 1.00 ptg - 2.00 ptg</div><div>Hari &#58; Jumaat</div><div>Rehat &#58; 11.45 pg - 2.15 ptg</div>",
         "pic": ""
@@ -286,7 +286,7 @@
         "tel": "<div>089-750 585 / 752 585​</div>",
         "fax": "<div>089-754 585</div>",
         "email": "doliana[at]ssm.com.my",
-        "mainTel": "<div>089-750 5851</div>",
+        "mainTel": "089-750 5851",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.00 am - 4.00 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhimdmatan Kaunter &#58; 8.00 pg - 4.00 ptg</div>",
         "pic": ""
@@ -303,7 +303,7 @@
         "tel": "<div>09-296 4600 / 296 5600</div>",
         "fax": "<div>09-296 0010</div>",
         "email": "adnan[at]ssm.com.my",
-        "mainTel": "<div>09-296 4600</div>",
+        "mainTel": "09-296 4600",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.15 am - 4.15 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.15 pg - 4.15 ptg</div>",
         "pic": ""
@@ -320,7 +320,7 @@
         "tel": "<div>04-970 5471 / 04-970 5472</div>",
         "fax": "<div>04-970 5473</div>",
         "email": "nizam[at]ssm.com.my",
-        "mainTel": "<div>04-970 5471</div>",
+        "mainTel": "04-970 5471",
         "operationHour": "<div>Day &#58; Monday – Friday (except Public Holiday)</div><div>8.00 am - 5.00 pm</div><div>Service Counter &#58;</div>​ \n   <div>8.00 am; - 4.00 pm</div><div>Break (Friday) &#58; 12.15 pm – 2.45 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat (kecuali Cuti Umum)</div><div>8.00 pg - 5.00 ptg</div><div>Perkhidmatan Kaunter &#58;</div>​ \n   <div>8.00 pg; - 4.00 ptg</div><div>Rehat (Jumaat) &#58; 12.15 tgh – 2.45 ptg</div>",
         "pic": ""
@@ -337,7 +337,7 @@
         "tel": "<div>087-414 ​100</div>",
         "fax": "<div>087-414 152</div>",
         "email": "shawal[at]ssm.com.my",
-        "mainTel": "<div>087-414 ​100</div>",
+        "mainTel": "087-414 ​100",
         "operationHour": "<div>Day &#58; Monday – Friday</div><div>Service Counter &#58; 8.00 am - 4.00 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat</div><div>Perkhidmatan Kaunter &#58; 8.00 pg - 4.00 ptg</div>",
         "pic": ""
@@ -354,7 +354,7 @@
         "tel": "<div>03-2026 2041 / 03-2026 2042</div>",
         "fax": "<div>03-2026 2036​</div>",
         "email": "",
-        "mainTel": "<div>03-2026 2041</div>",
+        "mainTel": "03-2026 2041",
         "operationHour": "<div>Day &#58; Monday – Sunday (except Public Holiday)</div><div>8.00 am - 5.00 pm</div><div>Service Counter &#58;</div><div>8.00 am - 4.00 pm</div><div>Break (Friday) &#58; 12.15 pm – 2.45 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin – Jumaat (kecuali Cuti Umum)</div><div>8.00 pg - 5.00 ptg</div><div>Perkhidmatan Kaunter &#58;</div><div>8.00 pg - 4.00 ptg</div><div>Rehat (Jumaat) &#58; 12.15 tgh – 2.45 ptg</div>",
         "pic": ""
@@ -371,7 +371,7 @@
         "tel": "<div>06-283 0076</div>",
         "fax": "",
         "email": "",
-        "mainTel": "<div>06-283 0076</div>",
+        "mainTel": "06-283 0076",
         "operationHour": "<div>Day &#58; Sunday - Thursday</div><div>8.30 am - 1.00 pm</div><div>Break &#58; 1.00 pm – 2.00 pm</div><div><div>Day &#58; Friday(except Public Holiday /State Holiday)</div><div>Service Counter &#58;8.00 am – 4.15 pm</div><div><p>Break &#58; 12.15 pm - 2.45 pm</p></div>",
         "operationHourMs": "<div>Hari &#58; Ahad - Khamis</div><div>8.30 pg - 1.00 ptg</div><div>Rehat &#58; 1.00 ptg – 2.00 ptg</div><div><div>Hari &#58; Jumaat(kecuali Cuti Umum /Negeri Melaka)</div><div>Perkhidmatan Kaunter &#58;8.00 pg – 4.15 ptg</div><div><p>Rehat &#58; 12.15 tgh - 2.45 ptg</p></div>",
         "pic": ""
@@ -388,7 +388,7 @@
         "tel": "<div>04-966 7943</div>",
         "fax": "<div>04-966 5318</div>",
         "email": "zahidah[at]ssm.com.my",
-        "mainTel": "<div>04-966 7943</div>",
+        "mainTel": "04-966 7943",
         "operationHour": "<div>Service Counter &#58;</div><div>Day &#58; Wednesday</div><div>10.00 am – 4.00 pm</div><div>Break &#58; 1.00 pm – 2.00 pm</div><div>Day &#58; Thursday</div><div>8.15 am – 3.45 pm</div><div>Break &#58; 1.00 pm – 2.00 pm</div>",
         "operationHourMs": "<div>Perkhidmatan Kaunter &#58;</div><div>Hari &#58; Rabu</div><div>10.00 pg – 4.00 ptg</div><div>Rehat &#58; 1.00 ptg – 2.00 ptg</div><div>Hari &#58; Khamis</div><div>8.15 pg – 3.45 ptg</div><div>Rehat &#58; 1.00 ptg – 2.00 ptg</div>",
         "pic": ""
@@ -405,7 +405,7 @@
         "tel": "<div>03 - 2299 4400</div>",
         "fax": "<div>03 - 2299 4411</div>",
         "email": "enquiry@ssm.com.my",
-        "mainTel": "<div>03 - 2299 4400</div>",
+        "mainTel": "03 - 2299 4400",
         "operationHour": "<div>Day &#58; Monday - Thursday \n      <div>Office &#58; 8.15 am - 5.15 pm</div><div>Service Counter &#58;8.15 am – 4.15 pm</div><div>Day &#58; Friday</div><div>Office&#58; 8.15 am - 5.15 pm​​</div><div>Service Counter &#58;8.15 am – 4.15 pm</div><div>Break &#58; 11.45 am – 2.45 pm</div>",
         "operationHourMs": "<div>Hari &#58; Isnin - Khamis \n      <div>Pejabat &#58; 8.15 pg - 5.15 ptg</div><div>Perkhidmatan Kaunter &#58;8.15 pg – 4.15 ptg</div><div>Hari &#58; Jumaat</div><div>Pekabat&#58; 8.15 pg - 5.15 ptg</div><div>Perkhidmatan Kaunter &#58;8.15 pg – 4.15 ptg</div><div>Rehat &#58; 11.45 pg – 2.45 ptg</div>",
         "pic": ""
