@@ -876,7 +876,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         }
 
         $scope.gotoLocation = function(){
-          cordova.InAppBrowser.open('http://maps.google.com?q='+$scope.selectedOption.location.lat + "," + $scope.selectedOption.location.long,'_system','location=yes');
+          cordova.InAppBrowser.open('https://maps.google.com?q='+$scope.selectedOption.location.lat + "," + $scope.selectedOption.location.long,'_system','location=yes');
         }
 
         $scope.call = function(){
