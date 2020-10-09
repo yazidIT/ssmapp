@@ -85,11 +85,25 @@ angular.module('myServices', [])
         });
     }
 
+    var generalAlert = function(title, message){
+      var alertPopup = $ionicPopup.alert({
+          title: title,
+          template: "<center>" + message + "</center>",
+          buttons: [
+            { text: '<b class="title-class">OK</b>',
+              type: 'button-positive',
+              onTap: function(e) {}
+            }
+          ]
+        });
+    };
+
     return {
         noInternet  : noInternet,
         serverFail  : serverFail,
         noRecord    : noRecord,
-        serverBusy  : serverBusy
+        serverBusy  : serverBusy,
+        generalAlert : generalAlert
     };
 })
 

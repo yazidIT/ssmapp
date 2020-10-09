@@ -618,20 +618,16 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     var permissions = cordova.plugins.permissions;
 
     permissions.checkPermission(permissions.CAMERA, function( status ){
+
       if ( status.hasPermission ) {
-        console.log("Yes :D ");
         startQRScan();
       }
+
       else {
 
-        var lang = currTranslateSvc.getData();
-        alert(lang.ERRORCAMERAPERMISSION);
-
         permissions.requestPermission(permissions.CAMERA, function(status){
-
           if( status.hasPermission )
             startQRScan();
-
         })
       }
     });
