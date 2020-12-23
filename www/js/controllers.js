@@ -554,7 +554,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 /**
  * E-search
  */
-.controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork) {
+.controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork,
+  $cordovaBarcodeScanner) {
 
   $scope.input.entityType = "ROC";
 
@@ -610,6 +611,38 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       eQuerySvc.setData(queryData);
       $scope.showResult();
     }
+  }
+
+  $scope.scanQR = function() {
+
+    var permissions = cordova.plugins.permissions;
+
+    permissions.checkPermission(permissions.CAMERA, function( status ){
+
+      if ( status.hasPermission ) {
+        startQRScan();
+      }
+
+      else {
+
+        permissions.requestPermission(permissions.CAMERA, function(status){
+          if( status.hasPermission )
+            startQRScan();
+        })
+      }
+    });
+
+  }
+
+  var startQRScan = function() {
+
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
   }
 
   $window.OpenLink = function(link) {

@@ -137,7 +137,9 @@ var translations = {
         "STAT_QUERY" : "Query",
         "STAT_BUSINESS" : "Business",
         "DOC_557" : "Financial Statement",
-        "DOC_559" : "Form Of Annual Return Of A Company Having A Share Capital"
+        "DOC_559" : "Form Of Annual Return Of A Company Having A Share Capital",
+        "SCANQR" : "Scan QR",
+        "ERRORCAMERAPERMISSION" : "MySSM Scan QR code require access to CAMERA. Please enabled camera permission."
     },
 
 
@@ -279,6 +281,8 @@ var translations = {
         "STAT_QUERY" : "Kueri",
         "STAT_BUSINESS" : "Perniagaan",
         "DOC_557" : "Penyata Kewangan",
-        "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham"
+        "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham",
+        "SCANQR" : "Imbas QR",
+        "ERRORCAMERAPERMISSION" : "MySSM Imbas QR kod memerlukan akses ke KAMERA. Sila pastikan akses di berikan."
 	}
 }

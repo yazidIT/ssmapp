@@ -9,6 +9,7 @@
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-minify": "0.0.15",
+    "cordova-plugin-android-permissions": "^1.1.0",
     "cordova-plugin-app-version": "^0.1.11",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
@@ -27,6 +28,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "ionic-plugin-keyboard": "^2.2.1",
+    "phonegap-plugin-barcodescanner": "git+https://github.com/wildabeast/BarcodeScanner.git",
     "semver": "^6.3.0"
   },
   "devDependencies": {
@@ -45,7 +47,8 @@
     "ionic-plugin-keyboard@^2.2.1",
     "cordova-plugin-inappbrowser@^4.0.0",
     "cordova-plugin-splashscreen@^5.0.4",
-    "cordova-plugin-ionic-webview@^5.0.0"
+    "cordova-plugin-ionic-webview@^5.0.0",
+    "cordova-plugin-android-permissions"
   ],
   "cordovaPlatforms": [
     "ios",
@@ -67,7 +70,9 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-compat": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-ionic-webview": {}
+      "cordova-plugin-ionic-webview": {},
+      "phonegap-plugin-barcodescanner": {},
+      "cordova-plugin-android-permissions": {}
     }
   }
 }

@@ -128,6 +128,11 @@
   width: 200px;
 }
 
+.findbuttonsmaller {
+  /*line-height: 20vh !important;*/
+  width: 100px;
+}
+
 .title-blue {
   color: #2E2F83;
 }
