@@ -9,8 +9,8 @@
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-minify": "0.0.15",
-    "cordova-plugin-android-permissions": "^1.1.0",
-    "cordova-plugin-app-version": "^0.1.11",
+    "cordova-plugin-android-permissions": "^1.1.2",
+    "cordova-plugin-app-version": "^0.1.12",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^2.0.3",
@@ -48,7 +48,8 @@
     "cordova-plugin-inappbrowser@^4.0.0",
     "cordova-plugin-splashscreen@^5.0.4",
     "cordova-plugin-ionic-webview@^5.0.0",
-    "cordova-plugin-android-permissions"
+    "cordova-plugin-android-permissions",
+    "cordova-plugin-android-permissions@^1.1.0"
   ],
   "cordovaPlatforms": [
     "ios",

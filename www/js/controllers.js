@@ -557,7 +557,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork,
   $cordovaBarcodeScanner) {
 
-  $scope.input.entityType = "ROC";
+    if($scope.input === undefined)
+      console.log('$scope.input undefined');
+    else
+      $scope.input.entityType = "ROC";
 
   $scope.showResult = function() {
     var lang = currTranslateSvc.getData();
@@ -613,8 +616,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
   }
 
+  $window.OpenLink = function(link) {
+    cordova.InAppBrowser.open( link, '_system');
+  };
+
   $scope.scanQR = function() {
 
+    console.log("Scan QR ....");
     var permissions = cordova.plugins.permissions;
 
     permissions.checkPermission(permissions.CAMERA, function( status ){
@@ -644,10 +652,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         console.log("An error happened -> " + error);
     });
   }
-
-  $window.OpenLink = function(link) {
-    cordova.InAppBrowser.open( link, '_system');
-  };
 
 })
 
@@ -806,6 +810,46 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       $scope.dateNotice4 = dateUtil.getDateNonStandard(notices.dateNotice4);
     if(notices.gazzetteDate2 !== '' && notices.gazzetteDate2 !== '-')
       $scope.gazzetteDate2 = dateUtil.getDateNonStandard(notices.gazzetteDate2);
+})
+
+/**
+ * QR Scanner
+ */
+.controller("QRScan", function($scope, $cordovaBarcodeScanner) {
+
+  $scope.scanQR = function() {
+
+    console.log("Scan QR ....");
+    var permissions = cordova.plugins.permissions;
+
+    permissions.checkPermission(permissions.CAMERA, function( status ){
+
+      if ( status.hasPermission ) {
+        startQRScan();
+      }
+
+      else {
+
+        permissions.requestPermission(permissions.CAMERA, function(status){
+          if( status.hasPermission )
+            startQRScan();
+        })
+      }
+    });
+
+  }
+
+  var startQRScan = function() {
+
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+  }
+
 })
 
 /**

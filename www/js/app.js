@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
  angular.module('starter', ['ionic', 'ngCordova', 'ng-mfb', 'pascalprecht.translate', 'ngMd5', 'starter.controllers'])
- 
+
 .run(function($ionicPlatform, $ionicHistory, $ionicPopup, $location, $rootScope, currTranslateSvc, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -19,22 +19,22 @@
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-      
+
     // Will load main upon apps startup
     $location.path('/app/main');
     $rootScope.$apply();
-      
+
     //state on html tag
     $rootScope.$state = $state;
-      
+
     if (window.cordova){
         cordova.getAppVersion.getVersionNumber().then(function (version) {
             $rootScope.appversion = version;
         });
     }
-    
+
   });
-     
+
   $ionicPlatform.registerBackButtonAction(function(e) {
     e.preventDefault();
     function showConfirm() {
@@ -199,9 +199,18 @@
     }
   })
 
+  .state('app.biztrust', {
+    url: '/biztrust',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/biztrust.html'
+      }
+    }
+  })
+
   .state('app.contactus', {
       url: '/contactus',
-      cache: false, //Close because we do duplicate data -> just simple fixing:) 
+      cache: false, //Close because we do duplicate data -> just simple fixing:)
       views: {
         'menuContent': {
           templateUrl: 'templates/contactus.html',
@@ -219,10 +228,10 @@
   //       }
   //     }
   //   })
-  
+
   .state('app.error', {
       url: '/error',
-      cache: false, //Close because we do duplicate data -> just simple fixing:) 
+      cache: false, //Close because we do duplicate data -> just simple fixing:)
       views: {
         'menuContent': {
           templateUrl: 'templates/error.html',
@@ -243,7 +252,7 @@
       $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams){
 
         var states = ['app.main'];
-          
+
         if(states.indexOf(toState.name) > -1) {
 //            console.log('OK');
           $rootScope.hideBar=true;
@@ -251,5 +260,5 @@
           $rootScope.hideBar=false;
         }
     })
- 
+
 });
