@@ -143,12 +143,12 @@
 }
 
 @font-face {
-    font-family: 'icomoon';
-    src:    url('../fonts/icomoon.eot?y8nov0');
-    src:    url('../fonts/icomoon.eot?y8nov0#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon.ttf?y8nov0') format('truetype'),
-        url('../fonts/icomoon.woff?y8nov0') format('woff'),
-        url('../fonts/icomoon.svg?y8nov0#icomoon') format('svg');
+    font-family: 'ssmfm';
+    src:    url('../fonts/ssmfm/fonts/icomoon.eot?y8nov0');
+    src:    url('../fonts/ssmfm/fonts/icomoon.eot?y8nov0#iefix') format('embedded-opentype'),
+        url('../fonts/ssmfm/fonts/icomoon.ttf?y8nov0') format('truetype'),
+        url('../fonts/ssmfm/fonts/icomoon.woff?y8nov0') format('woff'),
+        url('../fonts/ssmfm/fonts/icomoon.svg?y8nov0#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -175,7 +175,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
+    font-family: 'ssmfm' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
