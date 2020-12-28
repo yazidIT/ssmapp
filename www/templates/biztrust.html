@@ -1,40 +1,49 @@
-<ion-view>
-  <ion-nav-title class="title-class">
-    {{ 'MENU_09'|translate }}
-  </ion-nav-title>
+<ion-view hide-nav-bar="true">
 
-  <ion-nav-buttons side="right">
-    <button class="button button-icon button-clear ion-qr-scanner" style="color:yellow;"></button>
-  </ion-nav-buttons>
+<ion-content>
 
-<ion-content ng-app="starter.controllers" ng-controller="CmpndMenuCtrl as mc">
+<div>
 
-<div class="bgtukar">
-  <style>
-      .column {
-        float: left;
-        width: 50%;
-        padding: 5px;
-      }
-
-      /* Clearfix (clear floats) */
-      .row::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
-  </style>
-  <br>
-  <center><div class="titlenews">SSM BizTrust QR Code</div></center>
-  <br>
   <center>
-    <div class="row">
-      <div><img style='height: 100%; width: 100%; object-fit: contain' ng-src="img/logo_ssm_v3.png"/></div>
-      <div><img style='height: 100%; width: 100%; object-fit: contain' ng-src="img/logo_biztrust.png"/></div>
+  <div class="biztrust-main">
+    <div style="float: right;">
+      <button class="button button-small icon ion-close"></button>
     </div>
+    <div style="padding: 20px; margin-top: 40px; margin-bottom: 20px;">
+    SSM BizTrust QR Code<p><p>Welcome User
+    </div>
+  </div>
   </center>
+  <div class="card" style="padding-top:20px; padding-bottom:20px;
+                          margin-left:50px; margin-right:50px;
+                          border-radius: 25px; background: #0421b6">
+    <center>
+      <div>
+        <button class="button button-medium button-calm findbutton" ng-click="">
+          <strong><font color="F9EC00"><div>Tap Screen To Scan</div></font></strong>
+        </button>
+      </div>
+      <div style="margin-top: 40px;">
+      <img style='height: 40%; width: 40%; object-fit: contain;' ng-src="img/logo_biztrust.png"/>
+      </div>
+    </center>
+  </div>
 
+  <div style="margin-top: 40px;">
+  <center>
+    <button class="button button-small button-dark button-outline" ng-click="">
+      <strong><font color="red"><div>User Guide</div></font></strong>
+    </button>
+  </center>
+  </div>
+
+  <div style="margin-top:40px;">
+  <center>
+    <div><img style='height: 30%; width: 30%; object-fit: contain' ng-src="img/logo_ssm_v3.png"/></div>
+  </center>
+  </div>
 </div>
+
 </ion-content>
 
   <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>

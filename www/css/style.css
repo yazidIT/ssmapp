@@ -674,3 +674,11 @@ select#mySelect{
     white-space: normal;
     padding-right: 10px;
 }
+
+.biztrust-main{
+  background-color: #1155cc;
+  font-size: 20px;
+  color: white;
+  height: 150px;
+  padding: 5px;
+}
