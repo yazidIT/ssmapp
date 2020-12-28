@@ -327,15 +327,6 @@ ion-item label font.ng-binding{
     margin-right:20px;
 
 }
-.home-topbar {
-/*    delete*/
-   width: 382px;
-    height: 26px;
-    border: 0px solid #FFF;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0);
-    color: rgba(0, 0, 0, .8);
-}
 
 .s308-label1{
     width:145px;

@@ -1,23 +1,22 @@
-
 <ion-view >
-<ion-nav-bar class="home-topbar"></ion-nav-bar>
-   <style ng-if="'app.main' | isState"
- type="text/css">
-	.pane{
-	 background:url('img/background.png') no-repeat center center fixed;
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-energized ion-navicon" style="color:yellow;background-color:rgba(47,47,131,0.9);border:10px;"
+    menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-nav-bar class="bar-clear"></ion-nav-bar>
+  <style type="text/css">
+    .pane{
+        background:url('img/background.png') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
 		}
 	</style>
-<ion-nav-buttons side="left">
-    <button class="button button-icon button-energized ion-navicon" style="color:yellow;background-color:rgba(47,47,131,0.9);border:10px;" menu-toggle="left"></button>
-</ion-nav-buttons>
-<ion-content style="overflow:visible;" scroll="false">
+
+<ion-content class="no-header" style="overflow:visible; top: 0;" scroll="false">
 
 <div class="bgtukar bgtukar-main">
 <div class="titlenews-main">
-
 <strong><div class="maintitle">{{'MENU_01'|translate}}</div></strong>
 </div>
 
