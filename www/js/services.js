@@ -160,7 +160,7 @@ angular.module('myServices', [])
     dest: 'app.esearch'
   },{
     label: lang.MENU_09,
-    icon: 'icon-icon2_eS',
+    icon: 'icon-html-five',
     dest: 'app.biztrust'
   }];
 
