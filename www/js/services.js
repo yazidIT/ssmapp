@@ -158,6 +158,10 @@ angular.module('myServices', [])
     label: lang.MENU_07,
     icon: 'icon-icon2_eS',
     dest: 'app.esearch'
+  },{
+    label: lang.MENU_09,
+    icon: 'icon-icon2_eS',
+    dest: 'app.biztrust'
   }];
 
     return buttons;

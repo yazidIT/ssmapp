@@ -172,6 +172,17 @@
          url('../fonts/MyriadPro/MyriadPro.svg#MyriadPro') format('svg');
 }
 
+@font-face {
+  font-family: 'biztrustfm';
+  src:  url('../fonts/biztrustfm/fonts/biztrustfm.eot?ipjjbb');
+  src:  url('../fonts/biztrustfm/fonts/biztrustfm.eot?ipjjbb#iefix') format('embedded-opentype'),
+    url('../fonts/biztrustfm/fonts/biztrustfm.ttf?ipjjbb') format('truetype'),
+    url('../fonts/biztrustfm/fonts/biztrustfm.woff?ipjjbb') format('woff'),
+    url('../fonts/biztrustfm/fonts/biztrustfm.svg?ipjjbb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
@@ -203,6 +214,14 @@
 .icon-icon2_eS:before {
     content: "\e903";
     font-size: 35px;
+}
+.icon-html-five:before {
+  content: "\eae4";
+  font-size: 35px;
+}
+.icon-html-five2:before {
+  content: "\eae5";
+  font-size: 35px;
 }
 
     /* kotak untuk contain RSS feed pada main.html */
