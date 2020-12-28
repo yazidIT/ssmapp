@@ -144,11 +144,11 @@
 
 @font-face {
     font-family: 'ssmfm';
-    src:    url('../fonts/ssmfm/fonts/icomoon.eot?y8nov0');
-    src:    url('../fonts/ssmfm/fonts/icomoon.eot?y8nov0#iefix') format('embedded-opentype'),
-        url('../fonts/ssmfm/fonts/icomoon.ttf?y8nov0') format('truetype'),
-        url('../fonts/ssmfm/fonts/icomoon.woff?y8nov0') format('woff'),
-        url('../fonts/ssmfm/fonts/icomoon.svg?y8nov0#icomoon') format('svg');
+    src:    url('../fonts/ssmfm/fonts/ssmfm.eot?y8nov0');
+    src:    url('../fonts/ssmfm/fonts/ssmfm.eot?y8nov0#iefix') format('embedded-opentype'),
+        url('../fonts/ssmfm/fonts/ssmfm.ttf?y8nov0') format('truetype'),
+        url('../fonts/ssmfm/fonts/ssmfm.woff?y8nov0') format('woff'),
+        url('../fonts/ssmfm/fonts/ssmfm.svg?y8nov0#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -204,7 +204,6 @@
     content: "\e903";
     font-size: 35px;
 }
-
 
     /* kotak untuk contain RSS feed pada main.html */
 #header {
