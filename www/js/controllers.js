@@ -101,6 +101,16 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
 })
 
+.controller('CustomNavi', function($scope, $ionicHistory, $state) {
+  $scope.goBack = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.goTo = function(target){
+    $state.go(target);
+  };
+})
+
 /***
  * click on url link on pages
  */
@@ -1005,5 +1015,84 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
         viewContacts(result.data.data.defaultId);
     });
+
+})
+
+/**
+ * BizTrust
+ */
+.controller('BizTrustCtrl', function($scope, $window, getBizTrust, $state, currTranslateSvc, popupError, $cordovaNetwork,
+  $cordovaBarcodeScanner) {
+
+  $window.OpenLink = function(link) {
+    cordova.InAppBrowser.open( link, '_system');
+  };
+
+  $scope.scanQR = function() {
+
+    console.log("Scan QR ....");
+    var permissions = cordova.plugins.permissions;
+
+    permissions.checkPermission(permissions.CAMERA, function( status ){
+
+      if ( status.hasPermission ) {
+        startQRScan();
+      }
+
+      else {
+
+        permissions.requestPermission(permissions.CAMERA, function(status){
+          if( status.hasPermission )
+            startQRScan();
+        })
+      }
+    });
+
+  }
+
+  var startQRScan = function() {
+
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+        showResult();
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+  }
+
+  var showResult = function() {
+    var lang = currTranslateSvc.getData();
+    //OfflineCheck
+    if(window.cordova && $cordovaNetwork.isOffline()){
+        popupError.noInternet(lang.ERROR_TITLE);
+        return;
+    }
+
+    // var queryData1 = eQuerySvc.getData();
+    // queryData1.first = "ROC";
+    // eQuerySvc.setData(queryData1);
+
+    getBizTrust.loadUserData(lang.MENU_08).then(function(result) {
+        // if(result.status != 200){
+        //     console.log("Error - "+result.status);
+        //     $scope.data.input = "";
+        //     return;
+        // }
+
+        // if(result.data.data.length == 0){
+        //     console.log("Data empty");
+        //     $scope.data.input = "";
+        //     return;
+        // }
+
+        console.log(JSON.stringify(result));
+        $state.go('app.biztrust_result');
+
+    });
+
+    // $scope.queryData = eQuerySvc.getData();
+  }
 
 });

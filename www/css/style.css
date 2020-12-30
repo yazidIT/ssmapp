@@ -682,3 +682,11 @@ select#mySelect{
   height: 150px;
   padding: 5px;
 }
+
+.biztrust-result{
+  background-color: #1155cc;
+  font-size: 20px;
+  color: white;
+  height: 40px;
+  padding: 5px;
+}

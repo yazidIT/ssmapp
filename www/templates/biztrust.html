@@ -5,9 +5,9 @@
 <div>
 
   <center>
-  <div class="biztrust-main">
-    <div style="float: right;">
-      <button class="button button-small icon ion-close"></button>
+  <div class="biztrust-main" ng-controller="CustomNavi">
+    <div style="float: right;" ng-click="goBack()">
+      <button class="button button-small icon ion-close" style="background: #F9EC00"></button>
     </div>
     <div style="padding: 20px; margin-top: 40px; margin-bottom: 20px;">
     SSM BizTrust QR Code<p><p>Welcome User
@@ -16,10 +16,11 @@
   </center>
   <div class="card" style="padding-top:20px; padding-bottom:20px;
                           margin-left:50px; margin-right:50px;
-                          border-radius: 25px; background: #0421b6">
+                          border-radius: 25px; background: #0421b6"
+                          ng-controller="BizTrustCtrl" ng-click="scanQR()">
     <center>
       <div>
-        <button class="button button-medium button-calm findbutton" ng-click="">
+        <button class="button button-medium button-calm findbutton">
           <strong><font color="F9EC00"><div>Tap Screen To Scan</div></font></strong>
         </button>
       </div>
@@ -29,9 +30,9 @@
     </center>
   </div>
 
-  <div style="margin-top: 40px;">
+  <div style="margin-top: 40px;" ng-controller="CustomNavi">
   <center>
-    <button class="button button-small button-dark button-outline" ng-click="">
+    <button class="button button-small button-dark button-outline" ng-click="goTo('app.biztrust_result')">
       <strong><font color="red"><div>User Guide</div></font></strong>
     </button>
   </center>

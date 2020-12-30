@@ -208,6 +208,15 @@
     }
   })
 
+  .state('app.biztrust_result', {
+    url: '/biztrust_result',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/biztrust_result.html'
+      }
+    }
+  })
+
   .state('app.contactus', {
       url: '/contactus',
       cache: false, //Close because we do duplicate data -> just simple fixing:)

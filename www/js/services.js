@@ -821,5 +821,83 @@ angular.module('myServices', [])
   return {
     loadContactData: loadContactData
   }
+})
+
+/**
+ * BizTrust service
+ */
+.factory('getBizTrust', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
+
+  var resultData;
+
+  var loadingShow = function() {
+    $ionicLoading.show({
+      template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  var loadingHide = function(){
+    $ionicLoading.hide();
+  };
+
+  function loadUserData(title) {
+
+    // var queryData = eQuerySvc.getData();
+
+    loadingShow();
+
+    // cater for new comp/business registration number
+    // var queryUrl = 'esearch/';
+    // var findUrl;
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
+    // if(queryData.first === "ROC" | queryData.first === "ROCNEW") {
+    //   findUrl = 'findRoc/';
+    // } else if (queryData.first === "ROB" | queryData.first === "ROBNEW"){
+    //   findUrl = 'findRob/';
+    // } else {
+    //   findUrl = 'findLlp/';
+    // }
+
+    var postUsers = $http({
+      method: 'GET',
+      url: "https://reqres.in/api/users?page=2",
+      headers: header
+    }).success(function(result) {
+
+        // if(queryData.first === "LLP") {
+        //   if (result.length === 0) {
+        //     popupError.noRecord(title);
+        //   }
+        // } else if(result.result === undefined) {
+        //   popupError.noRecord(title)
+        // } else {
+        //   if (result.length === 0) {
+        //     popupError.noRecord(title);
+        //   } else if (!result.success) {
+        //     popupError.serverBusy(title);
+        //   }
+        // }
+
+        resultData = result;
+        return result;
+
+    }).error(function(data, status) {
+      popupError.serverFail(title,false,status);
+
+    }).finally(function() {
+      loadingHide();
+    });
+    return postUsers;
+  };
+
+  function getData(){
+    return resultData;
+  };
+
+  return {
+    loadUserData : loadUserData,
+    getData: getData
+  }
 });
 
