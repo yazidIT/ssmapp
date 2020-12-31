@@ -690,3 +690,30 @@ select#mySelect{
   height: 40px;
   padding: 5px;
 }
+
+.biztrust-title{
+  color: #2E2F83;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.biztrust-item{
+  color: #2E2F83;
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.biztrust-item2{
+  color: #2E2F83;
+  font-size: 14px;
+  text-align: center;
+}
+
+.biztrust-item3{
+  color: #2E2F83;
+  font-size: 14px;
+  text-align: left;
+}
