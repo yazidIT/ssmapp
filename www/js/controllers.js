@@ -102,8 +102,15 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 })
 
 .controller('CustomNavi', function($scope, $ionicHistory, $state) {
+
   $scope.goBack = function(){
-    $ionicHistory.goBack();
+    var v = $ionicHistory.viewHistory();
+    if(!v.backView){
+        $state.go('app.main');
+    }
+    else{
+        $ionicHistory.goBack();
+    }
   };
 
   $scope.goTo = function(target){
