@@ -588,7 +588,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           return;
       }
 
-      if($scope.input.entityType === "LLP") {
+      if($scope.input !== undefined && $scope.input.entityType === "LLP") {
         if(result.length == 0) {
           console.log("Data empty");
           $scope.input.entityNo = "";
@@ -655,12 +655,24 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var startQRScan = function() {
 
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        alert(imageData.text);
+        popupError.generalAlert("E-Search QR Scanner", imageData.text);
         console.log("Barcode Format -> " + imageData.format);
         console.log("Cancelled -> " + imageData.cancelled);
+        searchInfoQR("112233");
     }, function(error) {
         console.log("An error happened -> " + error);
     });
+  }
+
+  var searchInfoQR = function(data) {
+
+      var queryData = {
+        first: "ROC",
+        query: data
+      };
+      eQuerySvc.setData(queryData);
+      $scope.showResult();
+
   }
 
 })
@@ -1053,7 +1065,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var startQRScan = function() {
 
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        alert(imageData.text);
+        popupError.generalAlert("QR Code Data", imageData.text);
         console.log("Barcode Format -> " + imageData.format);
         console.log("Cancelled -> " + imageData.cancelled);
         showResult();
