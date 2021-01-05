@@ -140,7 +140,14 @@ var translations = {
         "DOC_557" : "Financial Statement",
         "DOC_559" : "Form Of Annual Return Of A Company Having A Share Capital",
         "SCANQR" : "Scan QR",
-        "ERRORCAMERAPERMISSION" : "MySSM Scan QR code require access to CAMERA. Please enabled camera permission."
+        "ERRORCAMERAPERMISSION" : "MySSM Scan QR code require access to CAMERA. Please enabled camera permission.",
+        "WELCOMEUSER": "Welcome User",
+        "TAPSCREENTOSCAN": "Tap Screen To Scan",
+        "VALIDQRCODE": "Valid QR Code BizTrust",
+        "INALIDQRCODE": "Invalid QR Code BizTrust.<br>Please contact enquiry@ssm.com.my for further clarification",
+        "QRCODEGUIDE": "<font color='#2E2F83'>1. Tap BizTrust logo above to start scanning QR Code<br><br>2. Point the scanner window to the BizTrust QR Code<br><br>3. Upon successful scanning, user will be presented with the result.</font>",
+        "CORPORATEINFO": "CORPORATE INFORMATION",
+        "BTREGNUMBER": "Registration Number"
     },
 
 
@@ -285,6 +292,13 @@ var translations = {
         "DOC_557" : "Penyata Kewangan",
         "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham",
         "SCANQR" : "Imbas QR",
-        "ERRORCAMERAPERMISSION" : "MySSM Imbas QR kod memerlukan akses ke KAMERA. Sila pastikan akses di berikan."
+        "ERRORCAMERAPERMISSION" : "MySSM Imbas QR kod memerlukan akses ke KAMERA. Sila pastikan akses di berikan.",
+        "WELCOMEUSER": "Selamat Datng",
+        "TAPSCREENTOSCAN": "Sentuh Skrin Untuk Imbasan",
+        "VALIDQRCODE": "Maklumat QR Code BizTrust Sah",
+        "INALIDQRCODE": "Maklumat QR Code BizTrust tidak sah.<br>Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
+        "QRCODEGUIDE": "<font color='#2E2F83'>1. Sentuh logo BizTrust di atas untuk memulakan imbasan QR Code<br><br>2. Arahkan kotak imbasan ke QR Code BizTrust<br><br>3. Jika imbasan berjaya, keputusan akan di paparkan di skrin</font>",
+        "CORPORATEINFO": "MAKLUMAT KORPORAT",
+        "BTREGNUMBER": "Nombor Pendaftaran"
 	}
 }

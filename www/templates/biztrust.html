@@ -10,7 +10,7 @@
       <button class="button button-small icon ion-close" style="background: #F9EC00"></button>
     </div>
     <div style="padding: 20px; margin-top: 40px; margin-bottom: 20px;">
-    SSM BizTrust QR Code<p><p>Welcome User
+    SSM BizTrust QR Code<p><p><div translate="WELCOMEUSER">Welcome User</div>
     </div>
   </div>
   </center>
@@ -20,8 +20,8 @@
                           ng-controller="BizTrustCtrl" ng-click="scanQR()">
     <center>
       <div>
-        <button class="button button-medium button-calm findbutton">
-          <strong><font color="F9EC00"><div>Tap Screen To Scan</div></font></strong>
+        <button class="button button-medium button-calm scanqrbutton">
+          <strong><font color="F9EC00"><div translate="TAPSCREENTOSCAN">Tap Screen To Scan</div></font></strong>
         </button>
       </div>
       <div style="margin-top: 40px;">
@@ -40,15 +40,18 @@
 
   <p aligned:"left" style="margin:20px">
   <font color="#2E2F83"><strong translate="NOTE">Note:</strong></font>
-  <p aligned:"left" style="margin:20px"><font color="#2E2F83">
-  1. Tap BizTrust logo above to start scanning QR Code
-  <br>
-  <br>
-  2. Point the scanner window to the BizTrust QR Code
-  <br>
-  <br>
-  3. Upon successful scanning, user will be presented with result.
-  </font>
+  <p>
+  <div aligned:"left" style="margin:20px" translate="QRCODEGUIDE">
+    <font color="#2E2F83">
+    1. Tap BizTrust logo above to start scanning QR Code
+    <br>
+    <br>
+    2. Point the scanner window to the BizTrust QR Code
+    <br>
+    <br>
+    3. Upon successful scanning, user will be presented with the result.
+    </font>
+  </div>
   <div style="margin-top:40px;">
   <center>
     <div><img style='height: 30%; width: 30%; object-fit: contain' ng-src="img/logo_ssm_v3.png"/></div>

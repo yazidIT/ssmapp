@@ -716,3 +716,8 @@ select#mySelect{
   font-size: 14px;
   text-align: left;
 }
+
+.scanqrbutton {
+  /*line-height: 20vh !important;*/
+  width: 250px;
+}
