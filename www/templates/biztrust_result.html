@@ -1,9 +1,10 @@
 <ion-view hide-nav-bar="true">
 
-<ion-content>
+<ion-content class="no-header scroll" style="overflow:visible; top: 0;">
 
-<div>
+<div class="bgtukar">
 
+  <!--
   <center>
   <div class="biztrust-result" ng-controller="CustomNavi">
     <div style="float: right;" ng-click="goBack()">
@@ -11,6 +12,7 @@
     </div>
   </div>
   </center>
+  -->
 
   <div class="card" style="padding-top:10px; padding-bottom:0px;
                           margin-left:20px; margin-right:20px;
@@ -32,8 +34,19 @@
     </div>
 
     <div class="row" style="background: white;">
+      <div class="col col-10">
+      </div>
+      <div class="col col-80">
+        <div class="center1">
+          <div class="biztrust-title" translate="CORPORATEINFO">CORPORATE INFORMATION</div>
+        </div>
+      </div>
+      <div class="col col-10">
+      </div>
+    </div>
+
+    <div class="row" style="background: white; min-height:420px;">
       <ion-item style="margin: auto;">
-        <div class="biztrust-title" translate="CORPORATEINFO">CORPORATE INFORMATION</div>
 
         <div class="biztrust-item" translate="BTREGNUMBER">Registration Number</div>
         <div class="biztrust-item2">123456-K</div>
