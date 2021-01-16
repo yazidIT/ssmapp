@@ -217,6 +217,15 @@
     }
   })
 
+  .state('app.biztrust_error', {
+    url: '/biztrust_error',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/biztrust_error.html'
+      }
+    }
+  })
+
   .state('app.contactus', {
       url: '/contactus',
       cache: false, //Close because we do duplicate data -> just simple fixing:)

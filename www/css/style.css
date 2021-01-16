@@ -721,3 +721,16 @@ select#mySelect{
   /*line-height: 20vh !important;*/
   width: 250px;
 }
+
+.col{
+  background-color:gray !important;
+  border:thin solid black;
+  text-align:center !important;
+}
+
+.center1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid green;
+}
