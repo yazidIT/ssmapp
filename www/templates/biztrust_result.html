@@ -45,22 +45,23 @@
       </div>
     </div>
 
-    <div class="row" style="background: white; min-height:420px;">
+    <div class="row" style="background: white; min-height:420px;"
+                      ng-app="starter.controllers" ng-controller="BizTrustResult">
       <ion-item style="margin: auto;">
 
         <div class="biztrust-item" translate="BTREGNUMBER">Registration Number</div>
-        <div class="biztrust-item2">123456-K</div>
+        <div class="biztrust-item2">{{responseData.entityNoNew}} ({{responseData.entityNo}}-{{responseData.checkDigit}})</div>
 
         <div class="biztrust-item">Name</div>
-        <div class="biztrust-item2">UNITI RUNDING SDN BHD</div>
+        <div class="biztrust-item2">{{responseData.entityName}}</div>
 
         <div class="biztrust-item">Status</div>
-        <div class="biztrust-item2">Existing</div>
+        <div class="biztrust-item2">{{responseData.statusDescription}}</div>
 
         <div class="biztrust-item">URL Links</div>
-        <div class="biztrust-item3">(i) www.unitirunding.com.my</div>
-        <div class="biztrust-item3">(ii) www.unitirunding.com.my</div>
-        <div class="biztrust-item3">(iii) www.unitirunding.com.my</div>
+        <div class="biztrust-item3">(i) {{responseData.mainUrl}}</div>
+        <div class="biztrust-item3">(ii) {{responseData.addUrl}}</div>
+        <div class="biztrust-item3">(iii)</div>
       </ion-item>
     </div>
   </div>

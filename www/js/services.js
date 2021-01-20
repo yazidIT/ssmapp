@@ -858,20 +858,6 @@ angular.module('myServices', [])
       headers: header
     }).success(function(result) {
 
-        // if(queryData.first === "LLP") {
-        //   if (result.length === 0) {
-        //     popupError.noRecord(title);
-        //   }
-        // } else if(result.result === undefined) {
-        //   popupError.noRecord(title)
-        // } else {
-        //   if (result.length === 0) {
-        //     popupError.noRecord(title);
-        //   } else if (!result.success) {
-        //     popupError.serverBusy(title);
-        //   }
-        // }
-
         resultData = result;
         return result;
 

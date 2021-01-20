@@ -1072,9 +1072,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var startQRScan = function() {
 
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        popupError.generalAlert("QR Code Data", imageData.text);
+
+        console.log("QR Code Data -> " + imageData.text);
         console.log("Barcode Format -> " + imageData.format);
         console.log("Cancelled -> " + imageData.cancelled);
+
         var qrcodeData = eQuerySvc.getData();
         qrcodeData.first = imageData.text;
         eQuerySvc.setData(qrcodeData);
@@ -1094,8 +1096,15 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     getBizTrust.loadUserData(lang.MENU_08).then(function(result) {
 
+      console.log(JSON.stringify(result));
+
       if(result.data.success == false) {
         console.log("Error - "+result.data);
+        return;
+      }
+
+      if(result.data.response.successCode != "00") {
+        $state.go('app.biztrust_error');
         return;
       }
         // if(result.status != 200){
@@ -1110,12 +1119,22 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         //     return;
         // }
 
-        console.log(JSON.stringify(result));
         $state.go('app.biztrust_result');
 
     });
 
     // $scope.queryData = eQuerySvc.getData();
   }
+
+})
+
+.controller('BizTrustResult', function($scope, $window, getBizTrust) {
+
+  $scope.responseData = getBizTrust.getData().response;
+  console.log(JSON.stringify($scope.responseData));
+
+  $window.OpenLink = function(link) {
+    cordova.InAppBrowser.open( link, '_system');
+  };
 
 });
