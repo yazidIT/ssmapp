@@ -1,0 +1,66 @@
+<ion-view hide-nav-bar="true">
+
+<ion-content class="no-header biztrust-scroll" style="overflow:hidden;">
+
+<div class="biztrust-bgtukar">
+
+  <div class="biztrust-main" ng-controller="CustomNavi">
+
+    <div style="float: right;" ng-click="goBack()">
+      <button class="button button-small icon ion-close" style="background: #F9EC00"></button>
+    </div>
+      <center>
+    <div style="padding-top: 20px; padding-bottom: 0px; margin-top: 10px;">
+    SSM BizTrust QR Code<p><p><div translate="WELCOMEUSER">Welcome User</div>
+    </div>
+    </center>
+  </div>
+
+  <div class="card" style="padding-top:20px; padding-bottom:20px;
+                          margin-left:50px; margin-right:50px;
+                          border-radius: 25px; background: #0421b6"
+                          ng-controller="BizTrustCtrl" ng-click="scanQR()">
+    <center>
+      <div>
+        <button class="button button-medium button-positive scanqrbutton">
+          <strong><font color="F9EC00"><div translate="TAPSCREENTOSCAN">Tap Screen To Scan</div></font></strong>
+        </button>
+      </div>
+      <div style="margin-top: 40px;">
+      <img style='height: 60%; width: 60%; object-fit: contain;' ng-src="img/mobile_hand_qrcode.png"/>
+      </div>
+    </center>
+  </div>
+
+  <div style="padding-bottom: 20px;">
+  <center>
+  <img style='height: 60%; width: 60%; object-fit: contain;' ng-src="img/step1_step2_step3.png"/>
+  </center>
+  </div>
+
+</div>
+
+<div>
+  <div style="margin-top: 20px;">
+  <center>
+    <div><img style='height: 30%; width: 30%; object-fit: contain' ng-src="img/logo_ssm_v3.png"/></div>
+  </center>
+  </div>
+
+  <div style="margin-bottom: 20px;" ng-controller="CustomNavi">
+  <center>
+    <button class="button button-small button-dark button-outline" ng-click="goTo('app.biztrust_result')">
+      <strong><font color="red"><div>User Guide</div></font></strong>
+    </button>
+  </center>
+  </div>
+
+</div>
+
+</ion-content>
+
+  <div ng-controller="BrowseLink" class="biztrust-ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+
+</ion-view>
+
+

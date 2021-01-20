@@ -1040,7 +1040,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 /**
  * BizTrust
  */
-.controller('BizTrustCtrl', function($scope, $window, getBizTrust, $state, currTranslateSvc, popupError, $cordovaNetwork,
+.controller('BizTrustCtrl', function($scope, $window, getBizTrust, $state, eQuerySvc, currTranslateSvc, popupError, $cordovaNetwork,
   $cordovaBarcodeScanner) {
 
   $window.OpenLink = function(link) {
@@ -1075,6 +1075,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         popupError.generalAlert("QR Code Data", imageData.text);
         console.log("Barcode Format -> " + imageData.format);
         console.log("Cancelled -> " + imageData.cancelled);
+        var qrcodeData = eQuerySvc.getData();
+        qrcodeData.first = imageData.text;
+        eQuerySvc.setData(qrcodeData);
         showResult();
     }, function(error) {
         console.log("An error happened -> " + error);
@@ -1089,11 +1092,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         return;
     }
 
-    // var queryData1 = eQuerySvc.getData();
-    // queryData1.first = "ROC";
-    // eQuerySvc.setData(queryData1);
-
     getBizTrust.loadUserData(lang.MENU_08).then(function(result) {
+
+      if(result.data.success == false) {
+        console.log("Error - "+result.data);
+        return;
+      }
         // if(result.status != 200){
         //     console.log("Error - "+result.status);
         //     $scope.data.input = "";

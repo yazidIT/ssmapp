@@ -842,26 +842,19 @@ angular.module('myServices', [])
 
   function loadUserData(title) {
 
-    // var queryData = eQuerySvc.getData();
+    var qrcodeData = eQuerySvc.getData();
 
     loadingShow();
 
-    // cater for new comp/business registration number
-    // var queryUrl = 'esearch/';
-    // var findUrl;
+    var queryUrl = 'qr/resolve';
     var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
     var header = { "Authorization" : authHeader };
-    // if(queryData.first === "ROC" | queryData.first === "ROCNEW") {
-    //   findUrl = 'findRoc/';
-    // } else if (queryData.first === "ROB" | queryData.first === "ROBNEW"){
-    //   findUrl = 'findRob/';
-    // } else {
-    //   findUrl = 'findLlp/';
-    // }
+    var urlFinal = config.apiv2url + queryUrl;
+    var qrcodeobject = "?qrcode=" + qrcodeData.first;
 
     var postUsers = $http({
-      method: 'GET',
-      url: "https://reqres.in/api/users?page=2",
+      method: 'POST',
+      url: urlFinal + qrcodeobject,
       headers: header
     }).success(function(result) {
 
@@ -883,6 +876,7 @@ angular.module('myServices', [])
         return result;
 
     }).error(function(data, status) {
+      console.log(JSON.stringify(data));
       popupError.serverFail(title,false,status);
 
     }).finally(function() {

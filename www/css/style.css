@@ -769,3 +769,56 @@ select#mySelect{
   background-color:  white;
   height: 20px;
 }
+
+
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container > .cell-row {
+  flex: 1;
+  display: flex;
+}
+
+.cell-row > div {
+  flex: 1;
+  flex-grow: 1;
+  color: #fff;
+
+  /* Flex for these containers (cells) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cell-row-1 {
+  background-color: #000;
+}
+.cell-row-2 {
+  background-color: #ccc;
+}
+.cell-row-3 {
+  background-color: #eee;
+}
+
+.cell-1 {
+  background-color: #C5DCFC;
+}
+.cell-2 {
+  background-color: #262B69;
+}
+.cell-3 {
+  background-color: #A0C5FA;
+}
+.cell-4 {
+  background-color: #B3D0FC;
+}
+.cell-5 {
+  background-color: #73A7F9;
+}
+.cell-6 {
+  background-color: #8CB9FA;
+}
