@@ -682,9 +682,17 @@ select#mySelect{
 }
 
 .biztrust-result{
-  background-color: #1155cc;
+  background-color: white;
   font-size: 20px;
-  color: white;
+  color: black;
+  height: 40px;
+  padding: 5px;
+}
+
+.biztrust-error{
+  background-color:white;
+  font-size: 20px;
+  color: black;
   height: 40px;
   padding: 5px;
 }

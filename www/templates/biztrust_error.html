@@ -4,15 +4,11 @@
 
 <div>
 
-  <!--
-  <center>
-  <div class="biztrust-result" ng-controller="CustomNavi">
+  <div class="biztrust-error" ng-controller="CustomNavi">
     <div style="float: right;" ng-click="goBack()">
       <button class="button button-small icon ion-close" style="background: #F9EC00"></button>
     </div>
   </div>
-  </center>
-  -->
 
   <div class="card" style="padding-top:10px; padding-bottom:0px;
                           margin-left:20px; margin-right:20px;
@@ -44,7 +40,7 @@
       </div>
     </div>
 
-    <div class="row" style="background: white; min-height:400px;">
+    <div class="row" style="background: white; min-height:300px;">
       <div class="col col-10">
       </div>
       <div class="col col-80">
@@ -56,6 +52,24 @@
         <br>
         Invalid code. Please contact enquiry@ssm.com.my for further clarification
         </div>
+      </div>
+      <div class="col col-10">
+      </div>
+    </div>
+
+    <div class="row" style="background: white;">
+      <div class="col col-10">
+      </div>
+      <div class="col col-80" ng-controller="CustomNavi">
+
+        <ion-item style="margin: auto;">
+        <center>
+          <button class="button button-small button-positive" style="width: 100px;" ng-click="goTo('app.biztrust_scan')">
+            <strong><font color="white"><div>Try Again</div></font></strong>
+          </button>
+        </center>
+        </ion-item>
+
       </div>
       <div class="col col-10">
       </div>

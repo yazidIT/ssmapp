@@ -4,6 +4,12 @@
     {{ 'MENU_09'|translate }}
   </ion-nav-title>
 
+  <ion-nav-buttons side="right">
+    <div ng-controller="CustomNavi">
+    <button class="button button-icon button-clear ion-qr-scanner" style="color:yellow;" ng-click="goTo('app.biztrust_scan')"></button>
+    </div>
+  </ion-nav-buttons>
+
 <ion-content class="biztrust-scroll" style="overflow:hidden;">
 
 <div class="bgtukar">
@@ -30,6 +36,7 @@
   </div>
 -->
 
+<!--
   <div class="card" style="border-radius: 10px;">
 
     <div class="row" style="background: white; min-height:420px;" ng-controller="CustomNavi">
@@ -45,7 +52,7 @@
     </div>
 
   </div>
-
+-->
 </div>
 </ion-content>
 
