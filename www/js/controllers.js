@@ -1140,7 +1140,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   if(companydata.successCode !== "00") {
     $scope.invalidCodeFlag = true;
-    $scope.noInfoFlag = true;
+    $scope.noInfoFlag = false;
   }
 
   $window.OpenLink = function(link) {
