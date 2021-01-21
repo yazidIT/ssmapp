@@ -41,8 +41,8 @@
       </div>
     </div>
 
-    <div class="row" style="background: white; min-height:420px;"
-                      ng-app="starter.controllers" ng-controller="BizTrustResult">
+    <div ng-controller="BizTrustResult">
+    <div class="row" style="background: white;" >
       <ion-item style="margin: auto;">
 
         <div class="biztrust-item" translate="BTREGNUMBER">Registration Number</div>
@@ -54,11 +54,17 @@
         <div class="biztrust-item">Status</div>
         <div class="biztrust-item2">{{responseData.statusDescription}}</div>
 
+      </ion-item>
+    </div>
+
+    <div class="row" style="background: white;">
+      <ion-item style="margin: auto;">
         <div class="biztrust-item">URL Links</div>
         <div class="biztrust-item3">(i) {{responseData.mainUrl}}</div>
         <div class="biztrust-item3">(ii) {{responseData.addUrl}}</div>
         <div class="biztrust-item3">(iii)</div>
       </ion-item>
+    </div>
     </div>
   </div>
 
