@@ -1130,8 +1130,18 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('BizTrustResult', function($scope, $window, getBizTrust) {
 
-  $scope.responseData = getBizTrust.getData().response;
+  $scope.invalidCodeFlag = false;
+  $scope.noInfoFlag = false;
+
+  var companydata = getBizTrust.getData().response;
+  $scope.responseData = companydata;
+
   console.log(JSON.stringify($scope.responseData));
+
+  if(companydata.successCode !== "00") {
+    $scope.invalidCodeFlag = true;
+    $scope.noInfoFlag = true;
+  }
 
   $window.OpenLink = function(link) {
     cordova.InAppBrowser.open( link, '_system');

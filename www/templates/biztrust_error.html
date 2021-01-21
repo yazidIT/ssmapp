@@ -40,6 +40,7 @@
       </div>
     </div>
 
+    <div ng-controller="BizTrustResult">
     <div class="row" style="background: white; min-height:300px;">
       <div class="col col-10">
       </div>
@@ -50,11 +51,13 @@
         <br>
         <br>
         <br>
-        Invalid code. Please contact enquiry@ssm.com.my for further clarification
+        <div translate="INALIDQRCODE" ng-hide="!invalidCodeFlag">Invalid code. Please contact enquiry@ssm.com.my for further clarification.</div>
+        <div translate="NOINFORMATIONFOUND" ng-hide="!noInfoFlag">No information found. Please contact enquiry@ssm.com.my for further clarification.</div>
         </div>
       </div>
       <div class="col col-10">
       </div>
+    </div>
     </div>
 
     <div class="row" style="background: white;">
@@ -65,7 +68,7 @@
         <ion-item style="margin: auto;">
         <center>
           <button class="button button-small button-positive" style="width: 100px;" ng-click="goTo('app.biztrust_scan')">
-            <strong><font color="white"><div>Try Again</div></font></strong>
+            <strong><font color="white"><div translate="TRYAGAIN">Try Again</div></font></strong>
           </button>
         </center>
         </ion-item>
