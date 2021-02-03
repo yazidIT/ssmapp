@@ -152,7 +152,10 @@ var translations = {
         "NOINFORMATIONFOUND": "No information found.<br>Please contact enquiry@ssm.com.my for further clarification.",
         "TRYAGAIN": "Try Again",
         "NAME": "Name",
-        "URLLINKS": "Link (URL)"
+        "URLLINKS": "Link (URL)",
+        "CONNECTIONLOST": "Connection Lost!",
+        "CHECKCONNECTION": "Check your internet connection and try again"
+
     },
 
 
@@ -298,7 +301,7 @@ var translations = {
         "DOC_559" : "Borang Pulangan Tahunan Syarikat yg Mempunyai Modal Saham",
         "SCANQR" : "Imbas QR",
         "ERRORCAMERAPERMISSION" : "MySSM Imbas QR kod memerlukan akses ke KAMERA. Sila pastikan akses di berikan.",
-        "WELCOMEUSER": "Selamat Datng",
+        "WELCOMEUSER": "Selamat Datang",
         "TAPSCREENTOSCAN": "Sentuh Skrin Untuk Imbasan",
         "VALIDQRCODE": "Maklumat QR Code BizTrust Sah",
         "INALIDQRCODE": "Maklumat QR Code BizTrust tidak sah.<br>Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
@@ -309,6 +312,8 @@ var translations = {
         "NOINFORMATIONFOUND": "Tiada maklumat di temui.<br>Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
         "TRYAGAIN": "Cuba Lagi",
         "NAME": "Nama",
-        "URLLINKS": "Pautan (URL)"
+        "URLLINKS": "Pautan (URL)",
+        "CONNECTIONLOST": "Tiada Rangkaian!",
+        "CHECKCONNECTION": "Periksa sambungan internet anda dan cuba lagi"
 	}
 }

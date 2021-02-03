@@ -1,0 +1,60 @@
+<ion-view>
+  <ion-nav-buttons side="right">
+    <div ng-controller="CustomNavi">
+      <div style="text-align: right">
+      <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/qr_code_icon.png" ng-click="goTo('app.biztrust_scan')"/>
+      </div>
+    </div>
+  </ion-nav-buttons>
+
+<ion-content class="scroll" style="overflow:hidden;">
+
+<div class="bg-container">
+  <div class="content">
+
+    <div class="card" style="padding-top:40px; padding-bottom:20px;
+                          margin-left:20px; margin-right:20px; margin-top: 40px;
+                          border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
+
+      <div class="row" style="padding: 10px;">
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div style="margin-top: 40px;">
+        <img style='height: 100%; width: 100%; object-fit: contain;' ng-src="img/connection_lost.png"/>
+        </div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+
+        <div class="col">
+          <div class="center1">
+          <div style="font-size: 18px; color: black; font-weight: bold;" translate="CONNECTIONLOST">Connection Lost!</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div class="center1">
+          <div style="font-size: 18px; color: black;" translate="CHECKCONNECTION">Check your internet connection and try again</div>
+          </div>
+        </div>
+        <div class="col col-10"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</ion-content>
+
+  <div ng-controller="BrowseLink" class="biztrust-ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+
+</ion-view>
+
+
