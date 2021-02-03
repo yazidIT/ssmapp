@@ -1,33 +1,49 @@
-<ion-view hide-nav-bar="true">
+<ion-view>
+  <ion-nav-title class="title-class">
+    {{ 'MENU_09'|translate }}
+  </ion-nav-title>
 
-<ion-content class="no-header biztrust-scroll" style="overflow:hidden;">
+  <ion-nav-buttons side="right">
+    <div ng-controller="CustomNavi">
+    <div style="text-align: right">
+    <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/qr_code_icon.png" ng-click="goTo('app.biztrust_scan')"/>
+    </div>
+    <!--
+    <button class="button button-icon button-clear ion-qr-scanner" style="color:yellow;" ng-click="goTo('app.biztrust_scan')"></button>
+    -->
+    </div>
+  </ion-nav-buttons>
+
+<ion-content style="overflow:hidden;">
 
 <div class="biztrust-bgtukar">
 
   <div class="biztrust-main" ng-controller="CustomNavi">
 
-    <div style="float: right;" ng-click="goBack()">
+    <!--<div style="float: right;" ng-click="goBack()">
       <button class="button button-small icon ion-close" style="background: #F9EC00"></button>
-    </div>
+    </div>-->
     <center>
       <div style="padding-top: 20px; padding-bottom: 0px; margin-top: 10px;">
-      SSM BizTrust QR Code<p><p><div translate="WELCOMEUSER">Welcome User</div>
+      <p><div translate="WELCOMEUSER">Welcome User</div>
       </div>
     </center>
   </div>
 
-  <div class="card" style="padding-top:20px; padding-bottom:20px;
+  <div style="padding-top:5px; padding-bottom:20px;
                           margin-left:50px; margin-right:50px;
-                          border-radius: 25px; background: #0421b6"
+                          border-radius: 0px;"
                           ng-controller="BizTrustCtrl" ng-click="scanQR()">
     <center>
+
+      <div style="margin-top: 10px; margin-bottom:20px">
+        <img style='height: 70%; width: 70%; object-fit: contain;' ng-src="img/qrcodessm.jpg"/>
+      </div>
+
       <div>
         <button class="button button-medium button-positive scanqrbutton">
           <strong><font color="F9EC00"><div translate="TAPSCREENTOSCAN">Tap Screen To Scan</div></font></strong>
         </button>
-      </div>
-      <div style="margin-top: 40px;">
-      <img style='height: 70%; width: 70%; object-fit: contain;' ng-src="img/qrcode_withhand.png"/>
       </div>
     </center>
   </div>
@@ -47,7 +63,7 @@
   </center>
   </div>
 
-  <div style="margin-bottom: 20px;" ng-controller="CustomNavi">
+  <div style="margin-top: 20px; margin-bottom: 10px;" ng-controller="CustomNavi">
   <center>
     <button class="button button-small button-dark button-outline" ng-click="goTo('app.biztrust_result')">
       <strong><font color="red"><div>User Guide</div></font></strong>

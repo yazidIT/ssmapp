@@ -15,12 +15,12 @@
     </div>
   </ion-nav-buttons>
 
-<ion-content style="overflow:hidden;">
+<ion-content class="scroll" style="overflow:hidden;">
 
 <div class="bg-container">
   <div class="content">
 
-    <div style="padding-top:40px; padding-bottom:40px;
+    <div style="padding-top:40px; padding-bottom:20px;
                           margin-left:20px; margin-right:20px;
                           border-radius: 0px; background: rgba(0, 0, 0, 0.0)">
 
@@ -60,13 +60,25 @@
         Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</div>
 
       </div>
+
+      <div class="row" style="padding: 10px;">
+        <div class="col col-10">
+        </div>
+        <div class="col col-80">
+          <div class="center1">
+            <div style="padding-top:20px;" ng-controller="CustomNavi">
+              <button class="button button-medium button-positive findbutton" ng-click="goTo('app.biztrust_scan')">
+                <strong><font color="F9EC00"><div translate="FIND">Find</div></font></strong>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col col-10">
+        </div>
+      </div>
+
     </div>
 
-    <div style="margin-bottom: 20px;" ng-controller="CustomNavi">
-      <button class="button button-medium button-positive findbutton" ng-click="goTo('app.biztrust_scan')">
-        <strong><font color="F9EC00"><div translate="FIND">Find</div></font></strong>
-      </button>
-    </div>
   </div>
 
 </div>
