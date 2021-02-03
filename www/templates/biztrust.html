@@ -15,50 +15,62 @@
     </div>
   </ion-nav-buttons>
 
-<ion-content class="biztrust-scroll" style="overflow:hidden;">
+<ion-content style="overflow:hidden;">
 
-<div class="bgtukar">
+<div class="bg-container">
+  <div class="content">
 
-<!--
-  <div class="container">
-    <div class="cell-row cell-row-1">
+    <div style="padding-top:40px; padding-bottom:40px;
+                          margin-left:20px; margin-right:20px;
+                          border-radius: 0px; background: rgba(0, 0, 0, 0.0)">
 
-      <div class="cell-1">
-        <div>
-          <div><i class="ion-connection-bars"></i></div>
-          <div>statistics</div>
-        </div>
+      <div class="row" style="padding: 10px;">
+        <div style="font-size: 18px; color: #2E2F83; text-align: left;">What is SSM Biztrust?</div>
       </div>
 
-      <div class="cell-2">
-        <div>
-          <div><i class="ion-person"></i></div>
-          <div>profile</div>
-        </div>
+      <div class="row" style="padding: 10px;">
+
+        <div style="font-size: 14px; color: #2E2F83; text-align: justify;">Contrary to popular belief, Lorem Ipsum is not simply random
+        text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
+        Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
+        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</div>
+
       </div>
 
+      <div class="row" style="padding: 10px;">
+        <div style="font-size: 18px; color: #2E2F83; text-align: left;">Objective</div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+
+        <div style="font-size: 14px; color: #2E2F83; text-align: justify;">Contrary to popular belief, Lorem Ipsum is not simply random
+        text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div style="font-size: 18px; color: #2E2F83; text-align: left;">Function</div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+
+        <div style="font-size: 14px; color: #2E2F83; text-align: justify;">Contrary to popular belief, Lorem Ipsum is not simply random
+        text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
+        Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
+        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</div>
+
+      </div>
+    </div>
+
+    <div style="margin-bottom: 20px;" ng-controller="CustomNavi">
+      <button class="button button-medium button-positive findbutton" ng-click="goTo('app.biztrust_scan')">
+        <strong><font color="F9EC00"><div translate="FIND">Find</div></font></strong>
+      </button>
     </div>
   </div>
--->
 
-<!--
-  <div class="card" style="border-radius: 10px;">
-
-    <div class="row" style="background: white; min-height:420px;" ng-controller="CustomNavi">
-      <ion-item style="margin: auto;">
-
-        <center>
-          <button class="button button-medium button-positive buffonfind" ng-click="goTo('app.biztrust_scan')">
-            <strong><font color="#F9EC00"><div>BizTrust Start</div></font></strong>
-          </button>
-        </center>
-
-      </ion-item>
-    </div>
-
-  </div>
--->
 </div>
+
 </ion-content>
 
   <div ng-controller="BrowseLink" class="biztrust-ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
