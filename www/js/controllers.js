@@ -1040,7 +1040,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 /**
  * BizTrust
  */
-.controller('BizTrustCtrl', function($scope, $window, getBizTrust, $state, eQuerySvc, currTranslateSvc, popupError, $cordovaNetwork,
+.controller('BizTrustCtrl', function($scope, $window, getBizTrust, $state, eQuerySvc, currTranslateSvc, $cordovaNetwork,
   $cordovaBarcodeScanner) {
 
   $window.OpenLink = function(link) {
@@ -1126,6 +1126,9 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
+
+  var currentdate = new Date();
+  $scope.todayDate = currentdate.toLocaleDateString() + " " + currentdate.toLocaleTimeString();
 
   console.log(">>>>>> " + JSON.stringify($scope.responseData));
   var errorMsg = JSON.stringify($scope.responseData.errorMsg);
