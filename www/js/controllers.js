@@ -1090,7 +1090,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     var lang = currTranslateSvc.getData();
     //OfflineCheck
     if(window.cordova && $cordovaNetwork.isOffline()){
-        popupError.noInternet(lang.ERROR_TITLE);
+        // popupError.noInternet(lang.ERROR_TITLE);
+        $state.go('app.biztrust_connection_error');
         return;
     }
 
@@ -1104,20 +1105,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       }
 
       if(result.data.response.successCode != "00") {
+
         $state.go('app.biztrust_error');
         return;
       }
-        // if(result.status != 200){
-        //     console.log("Error - "+result.status);
-        //     $scope.data.input = "";
-        //     return;
-        // }
-
-        // if(result.data.data.length == 0){
-        //     console.log("Data empty");
-        //     $scope.data.input = "";
-        //     return;
-        // }
 
         $state.go('app.biztrust_result');
 
@@ -1136,11 +1127,19 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
 
-  console.log(JSON.stringify($scope.responseData));
-
+  console.log(">>>>>> " + JSON.stringify($scope.responseData));
+  var errorMsg = JSON.stringify($scope.responseData.errorMsg);
+  console.log(errorMsg.indexOf("Invalid"));
+  console.log(errorMsg.indexOf("Unparseable"))
   if(companydata.successCode !== "00") {
-    $scope.invalidCodeFlag = true;
-    $scope.noInfoFlag = false;
+
+    if(errorMsg.indexOf("Invalid") > 0) {
+      $scope.invalidCodeFlag = true;
+    } else if (errorMsg.indexOf("Unparseable") > 0) {
+      $scope.invalidCodeFlag = true;
+    } else {
+      $scope.noInfoFlag = true;
+    }
   }
 
   $window.OpenLink = function(link) {
