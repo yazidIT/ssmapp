@@ -857,3 +857,9 @@ select#mySelect{
   background-size: 60%;
   opacity: 0.2;
 }
+
+.item.item-trns {
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+}
