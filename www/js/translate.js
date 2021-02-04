@@ -144,17 +144,19 @@ var translations = {
         "WELCOMEUSER": "Welcome User",
         "TAPSCREENTOSCAN": "Tap Screen To Scan",
         "VALIDQRCODE": "Valid QR Code BizTrust",
-        "INALIDQRCODE": "Invalid QR Code BizTrust.<br>Please contact enquiry@ssm.com.my for further clarification",
+        "INVALIDQRCODE": "Invalid SSM BizTrust QR Code",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Tap BizTrust logo above to start scanning QR Code<br><br>2. Point the scanner window to the BizTrust QR Code<br><br>3. Upon successful scanning, user will be presented with the result.</font>",
         "CORPORATEINFO": "CORPORATE INFORMATION",
         "BTREGNUMBER": "Registration Number",
         "GREAT": "Great!",
-        "NOINFORMATIONFOUND": "No information found.<br>Please contact enquiry@ssm.com.my for further clarification.",
+        "INFORMATIONNOTFOUND": "Information Not Found",
         "TRYAGAIN": "Try Again",
         "NAME": "Name",
         "URLLINKS": "Link (URL)",
         "CONNECTIONLOST": "Connection Lost!",
-        "CHECKCONNECTION": "Check your internet connection and try again"
+        "CHECKCONNECTION": "Check your internet connection and try again",
+        "PLEASECONTACTENQUIRY": "Please contact enquiry@ssm.com.my for further clarification.",
+        "PLEASESCANAGAIN" : "Please scan QR Code again."
 
     },
 
@@ -303,17 +305,19 @@ var translations = {
         "ERRORCAMERAPERMISSION" : "MySSM Imbas QR kod memerlukan akses ke KAMERA. Sila pastikan akses di berikan.",
         "WELCOMEUSER": "Selamat Datang",
         "TAPSCREENTOSCAN": "Sentuh Skrin Untuk Imbasan",
-        "VALIDQRCODE": "Maklumat QR Code BizTrust Sah",
-        "INALIDQRCODE": "Maklumat QR Code BizTrust tidak sah.<br>Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
+        "VALIDQRCODE": "QR Code BizTrust Sah",
+        "INVALIDQRCODE": "Kod QR BizTrust SSM Tidak Sah",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Sentuh logo BizTrust di atas untuk memulakan imbasan QR Code<br><br>2. Arahkan kotak imbasan ke QR Code BizTrust<br><br>3. Jika imbasan berjaya, keputusan akan di paparkan di skrin</font>",
         "CORPORATEINFO": "MAKLUMAT KORPORAT",
         "BTREGNUMBER": "Nombor Pendaftaran",
         "GREAT": "Bagus!",
-        "NOINFORMATIONFOUND": "Tiada maklumat di temui.<br>Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
+        "INFORMATIONNOTFOUND": "Tiada maklumat di temui",
         "TRYAGAIN": "Cuba Lagi",
         "NAME": "Nama",
         "URLLINKS": "Pautan (URL)",
         "CONNECTIONLOST": "Tiada Rangkaian!",
-        "CHECKCONNECTION": "Periksa sambungan internet anda dan cuba lagi"
+        "CHECKCONNECTION": "Periksa sambungan internet anda dan cuba lagi",
+        "PLEASECONTACTENQUIRY": "Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
+        "PLEASESCANAGAIN" : "Sila imbas kod QR sekali lagi."
 	}
 }

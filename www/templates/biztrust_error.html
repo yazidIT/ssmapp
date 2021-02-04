@@ -1,89 +1,94 @@
-<ion-view hide-nav-bar="true">
-
-<ion-content class="no-header scroll" style="overflow:visible; top: 0;">
-
-<div>
-
-  <div class="biztrust-error" ng-controller="CustomNavi">
-    <div style="float: right;" ng-click="goBack()">
-      <button class="button button-small icon ion-close" style="background: #F9EC00"></button>
-    </div>
-  </div>
-
-  <div class="card" style="padding-top:10px; padding-bottom:0px;
-                          margin-left:20px; margin-right:20px;
-                          border-radius: 25px; background: #0421b6;">
-    <div class="row" style="padding: 10px;">
-      <div class="col col-33">
-        <div style="margin: auto; align-items: right;">
-        <img style="height: 100%; width: 100%; object-fit: contain;" ng-src="img/logo_biztrust.png"/>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="center1">
-        <h4><font color="#F9EC00">Whoops!</font></h4>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row" style="background: white;">
-      <div class="col col-10">
-      </div>
-      <div class="col col-80">
-        <div class="center1">
-          <div class="biztrust-title" translate="CORPORATEINFO">CORPORATE INFORMATION</div>
-        </div>
-      </div>
-      <div class="col col-10">
+<ion-view>
+  <ion-nav-buttons side="right">
+    <div ng-controller="CustomNavi">
+      <div style="text-align: right">
+      <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/qr_code_icon.png" ng-click="goTo('app.biztrust_scan')"/>
       </div>
     </div>
+  </ion-nav-buttons>
+
+<ion-content class="scroll" style="overflow:hidden;">
+
+<div class="bg-container">
+  <div class="content">
+
+    <div class="card" style="padding-top:40px; padding-bottom:20px;
+                          margin-left:20px; margin-right:20px; margin-top: 40px;
+                          border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
 
     <div ng-controller="BizTrustResult">
-    <div class="row" style="background: white; min-height:300px;">
-      <div class="col col-10">
-      </div>
-      <div class="col col-80">
-        <div class="center1">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div translate="INALIDQRCODE" ng-hide="!invalidCodeFlag">Invalid code. Please contact enquiry@ssm.com.my for further clarification.</div>
-        <div translate="NOINFORMATIONFOUND" ng-hide="!noInfoFlag">No information found. Please contact enquiry@ssm.com.my for further clarification.</div>
+      <div ng-hide="!noInfoFlag">
+        <div class="row" style="padding: 10px;">
+        </div>
+
+        <div class="row" style="padding: 10px;">
+          <div style="margin-top: 40px;">
+          <img style='height: 60%; width: 60%; object-fit: contain;' ng-src="img/data_not_found.png"/>
+          </div>
+        </div>
+
+        <div class="row" style="padding: 10px;">
+
+          <div class="col">
+            <div class="center1">
+            <div style="font-size: 18px; color: black; font-weight: bold;" translate="INFORMATIONNOTFOUND">Information Not Found</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" style="padding: 10px;">
+          <div class="col col-10"></div>
+          <div class="col col-80">
+            <div class="center1">
+            <div style="font-size: 18px; color: black;" translate="PLEASECONTACTENQUIRY">Please contact enquiry@ssm.com.my for further clarification.</div>
+            </div>
+          </div>
+          <div class="col col-10"></div>
         </div>
       </div>
-      <div class="col col-10">
+
+      <div ng-hide="!invalidCodeFlag">
+        <div class="row" style="padding: 10px;">
+        </div>
+
+        <div class="row" style="padding: 10px;">
+          <div style="margin-top: 40px;">
+          <img style='height: 80%; width: 80%; object-fit: contain;' ng-src="img/wrong_qrcode.png"/>
+          </div>
+        </div>
+
+        <div class="row" style="padding: 10px;">
+
+          <div class="col">
+            <div class="center1">
+            <div style="font-size: 18px; color: black; font-weight: bold;" translate="INVALIDQRCODE">Invalid SSM BizTrust QR Code</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" style="padding: 10px;">
+          <div class="col col-10"></div>
+          <div class="col col-80">
+            <div class="center1">
+            <div style="font-size: 18px; color: black;" translate="PLEASESCANAGAIN">Please scan QR Code again.</div>
+            </div>
+          </div>
+          <div class="col col-10"></div>
+        </div>
       </div>
     </div>
+
     </div>
 
-    <div class="row" style="background: white;">
-      <div class="col col-10">
-      </div>
-      <div class="col col-80" ng-controller="CustomNavi">
-
-        <ion-item style="margin: auto;">
-        <center>
-          <button class="button button-small button-positive" style="width: 100px;" ng-click="goTo('app.biztrust_scan')">
-            <strong><font color="white"><div translate="TRYAGAIN">Try Again</div></font></strong>
-          </button>
-        </center>
-        </ion-item>
-
-      </div>
-      <div class="col col-10">
-      </div>
-    </div>
   </div>
 
 </div>
 
 </ion-content>
 
-  <div ng-controller="BrowseLink" class="ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+  <div ng-controller="BrowseLink" class="biztrust-ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
 
 </ion-view>
 
