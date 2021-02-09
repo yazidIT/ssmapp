@@ -12,19 +12,27 @@
 <div class="bg-container" ng-app="starter.controllers" ng-controller="BizTrustResult">
   <div class="content">
 
-    <div class="card" style="padding-top:40px; padding-bottom:20px;
+    <div class="card" style="padding-top:20px; padding-bottom:20px;
                           margin-left:20px; margin-right:20px; margin-top: 40px;
                           border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
 
     <div ng-controller="BizTrustResult">
       <div ng-hide="!noInfoFlag">
-        <div class="row" style="padding: 10px;">
+
+        <div class="row">
+          <div style="margin-top: 20px;">
+          <img style='height: 60%; width: 60%; object-fit: contain;' ng-src="img/error_no_info.png"/>
+          </div>
         </div>
 
-        <div class="row" style="padding: 10px;">
-          <div style="margin-top: 40px;">
-          <img style='height: 60%; width: 60%; object-fit: contain;' ng-src="img/data_not_found.png"/>
+        <div class="row">
+
+          <div class="col">
+            <div class="center1">
+            <div style="font-size: 18px; color: #2E2F83; font-weight: bold;" translate="WHOOPS">Whoops!</div>
+            </div>
           </div>
+
         </div>
 
         <div class="row" style="padding: 10px;">
@@ -49,13 +57,21 @@
       </div>
 
       <div ng-hide="!invalidCodeFlag">
-        <div class="row" style="padding: 10px;">
+
+        <div class="row">
+          <div style="margin-top: 20px;">
+          <img style='height: 100%; width: 100%; object-fit: contain;' ng-src="img/error_invalid_code.png"/>
+          </div>
         </div>
 
-        <div class="row" style="padding: 10px;">
-          <div style="margin-top: 40px;">
-          <img style='height: 80%; width: 80%; object-fit: contain;' ng-src="img/wrong_qrcode.png"/>
+        <div class="row">
+
+          <div class="col">
+            <div class="center1">
+            <div style="font-size: 18px; color: #2E2F83; font-weight: bold;" translate="WHOOPS">Whoops!</div>
+            </div>
           </div>
+
         </div>
 
         <div class="row" style="padding: 10px;">

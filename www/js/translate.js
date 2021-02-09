@@ -144,7 +144,7 @@ var translations = {
         "WELCOMEUSER": "Welcome User",
         "TAPSCREENTOSCAN": "Tap Screen To Scan",
         "VALIDQRCODE": "Valid QR Code BizTrust",
-        "INVALIDQRCODE": "Invalid SSM BizTrust QR Code",
+        "INVALIDQRCODE": "Invalid QR Code SSM BizTrust",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Tap BizTrust logo above to start scanning QR Code<br><br>2. Point the scanner window to the BizTrust QR Code<br><br>3. Upon successful scanning, user will be presented with the result.</font>",
         "CORPORATEINFO": "CORPORATE INFORMATION",
         "BTREGNUMBER": "Registration Number",
@@ -155,7 +155,7 @@ var translations = {
         "URLLINKS": "Link (URL)",
         "CONNECTIONLOST": "Connection Lost!",
         "CHECKCONNECTION": "Check your internet connection and try again",
-        "PLEASECONTACTENQUIRY": "Please contact enquiry@ssm.com.my for further clarification.",
+        "PLEASECONTACTENQUIRY": "Please contact <font color='#FF5733'>enquiry@ssm.com.my</font> for further clarification.",
         "PLEASESCANAGAIN" : "Please scan QR Code again.",
         "BIZTRUSTINTRO" : "INTRODUCTION",
         "BIZTRUSTINTROCONTENT": "SSM BizTrust is a business starter kit that serves as digital identification of business entities registered with the Companies Commission of Malaysia (SSM).",
@@ -163,7 +163,8 @@ var translations = {
         "BIZTRUSTOBJCONTENT": "The objective of SSM BizTrust business starter kit is to strengthen the compliance with business entities through the provisions of the Acts administered by SSM with validation through SSM BizTrust QR code.",
         "BIZTRUSTFUNC": "FUNCTION",
         "BIZTRUSTFUNCCONTENT": "This method of reviewing merchant information via SSM BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address (if any).",
-        "USERGUIDE": "User Guide"
+        "USERGUIDE": "User Guide",
+        "WHOOPS": "Whoops!"
     },
 
 
@@ -312,7 +313,7 @@ var translations = {
         "WELCOMEUSER": "Selamat Datang",
         "TAPSCREENTOSCAN": "Sentuh Skrin Untuk Imbasan",
         "VALIDQRCODE": "QR Code BizTrust Sah",
-        "INVALIDQRCODE": "Kod QR BizTrust SSM Tidak Sah",
+        "INVALIDQRCODE": "Kod QR SSM BizTrust Tidak Sah",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Sentuh logo BizTrust di atas untuk memulakan imbasan QR Code<br><br>2. Arahkan kotak imbasan ke QR Code BizTrust<br><br>3. Jika imbasan berjaya, keputusan akan di paparkan di skrin</font>",
         "CORPORATEINFO": "MAKLUMAT KORPORAT",
         "BTREGNUMBER": "Nombor Pendaftaran",
@@ -323,7 +324,7 @@ var translations = {
         "URLLINKS": "Pautan (URL)",
         "CONNECTIONLOST": "Tiada Rangkaian!",
         "CHECKCONNECTION": "Periksa sambungan internet anda dan cuba lagi",
-        "PLEASECONTACTENQUIRY": "Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
+        "PLEASECONTACTENQUIRY": "Sila hubungi <font color='#FF5733'>enquiry@ssm.com.my</font> untuk maklumat selanjutnya.",
         "PLEASESCANAGAIN" : "Sila imbas kod QR sekali lagi.",
         "BIZTRUSTINTRO" : "PENGENALAN",
         "BIZTRUSTINTROCONTENT": "SSM BizTrust merupakan satu (1) business starter kit yang berfungsi sebagai satu (1) pengesahan dan pengenalan identiti digital (digital identification) kepada entiti perniagaan yang berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM)",
@@ -331,6 +332,7 @@ var translations = {
         "BIZTRUSTOBJCONTENT": "Objektif SSM BizTrust business starter kit ini adalah untuk memperkasakan pematuhan ke atas entiti-entiti perniagaaan melalui peruntukan akta-akta yang ditadbir oleh SSM dengan adanya pengesahan melalui kod QR SSM BizTrust.",
         "BIZTRUSTFUNC": "FUNGSI",
         "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, status serta alamat URL perniagaan (sekiranya ada).",
-        "USERGUIDE": "Panduan Pengguna"
+        "USERGUIDE": "Panduan Pengguna",
+        "WHOOPS": "Alamak!"
 	}
 }
