@@ -726,6 +726,12 @@ select#mySelect{
   margin-left: 20px;
 }
 
+.biztrust-item4{
+  color: rgb(219, 24, 24);
+  font-size: 14px;
+  text-align: center;
+}
+
 .scanqrbutton {
   /*line-height: 20vh !important;*/
   width: 280px;

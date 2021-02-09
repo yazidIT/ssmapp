@@ -50,8 +50,12 @@
 
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
           <div class="biztrust-item3">(i) {{responseData.mainUrl}}</div>
-          <div class="biztrust-item3">(ii) {{responseData.addUrl}}</div>
-          <div class="biztrust-item3">(iii)</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0">(ii) {{responseData.addUrl[0]}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1">(iii) {{responseData.addUrl[1]}}</div>
+          <br>
+          <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2" ng-click="seeMoreUrl()">See More <i class="icon ion-chevron-down"></i> </div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2">(iv) {{responseData.addUrl[2]}}</div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3">(v) {{responseData.addUrl[3]}}</div>
         </ion-item>
 
       </div>

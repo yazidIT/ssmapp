@@ -1121,11 +1121,34 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 .controller('BizTrustResult', function($scope, $window, getBizTrust) {
 
+  $scope.seeMore = false;
+
+  var mockupUrl = [
+    "www.internet1.com.my",
+    "www.internet2.com.my",
+    "www.internet3.com.my",
+    "www.internet4.com.my",
+    "www.internet5.com.my",
+    "www.internet6.com.my"
+  ];
+
+  var urlused = [];
+
+  var numberofUrl = Math.floor(Math.random() * 5) + 1;
+
+  var i;
+  for (i = 0; i < numberofUrl; i++) {
+    urlused[i] = mockupUrl[i];
+  }
+
   $scope.invalidCodeFlag = false;
   $scope.noInfoFlag = false;
 
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
+  $scope.responseData.addUrl = mockupUrl;
+
+  console.log($scope.responseData);
 
   var currentdate = new Date();
   $scope.todayDate = currentdate.toLocaleDateString('en-MY');
@@ -1134,6 +1157,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var errorMsg = JSON.stringify($scope.responseData.errorMsg);
   console.log(errorMsg.indexOf("Invalid"));
   console.log(errorMsg.indexOf("Unparseable"))
+
   if(companydata.successCode !== "00") {
 
     if(errorMsg.indexOf("Invalid") > 0) {
@@ -1149,4 +1173,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     cordova.InAppBrowser.open( link, '_system');
   };
 
+  $scope.seeMoreUrl = function() {
+    $scope.seeMore = !$scope.seeMore;
+    console.log("See more click: " + $scope.seeMore );
+  }
 });
