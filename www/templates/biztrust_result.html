@@ -2,24 +2,21 @@
   <ion-nav-buttons side="right">
     <div ng-controller="CustomNavi">
       <div style="text-align: right">
-      <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/qr_code_icon.png" ng-click="goTo('app.biztrust_scan')"/>
+      <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/icon_qr.png" ng-click="goTo('app.biztrust_scan')"/>
       </div>
     </div>
   </ion-nav-buttons>
 
-<ion-content class="scroll" style="overflow:hidden;">
+<ion-content class="scroll" style="overflow:hidden;" overflow-scroll="false">
 
 <div class="bg-container" ng-app="starter.controllers" ng-controller="BizTrustResult">
   <div class="content">
 
-    <div class="card" style="padding-top:40px; padding-bottom:20px;
-                          margin-left:20px; margin-right:20px; margin-top: 40px;
+    <div class="card" style="padding-top:20px; padding-bottom:20px;
+                          margin-left:20px; margin-right:20px; margin-top: 20px;
                           border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
 
-      <div class="row" style="padding: 10px;">
-      </div>
-
-      <div class="row" style="padding: 10px;">
+      <div class="row">
         <div class="col">
           <div class="center1">
           <div style="font-size: 18px; color: #2E2F83; font-weight: bold;" translate="GREAT">Great!</div>
@@ -51,24 +48,20 @@
           <div class="biztrust-item">Status</div>
           <div class="biztrust-item2">{{responseData.statusDescription}}</div>
 
-        </ion-item>
-      </div>
-
-      <div class="row">
-        <ion-item class="item item-trns" style="margin: auto;">
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
           <div class="biztrust-item3">(i) {{responseData.mainUrl}}</div>
           <div class="biztrust-item3">(ii) {{responseData.addUrl}}</div>
           <div class="biztrust-item3">(iii)</div>
         </ion-item>
+
       </div>
 
     </div>
 
-  <div style="font-size:13px; text-align: left; margin-left: 20px;">
-    <label>{{'ASAT'|translate}}: {{todayDate}}</label><br>
-    <label>{{'GST_ASAT'|translate}}: {{asAtDate}}</label><br>
-  </div>
+    <div style="font-size:13px; text-align: left; margin-left: 20px;">
+      <label>{{'ASAT'|translate}}: {{todayDate}}</label><br>
+      <label>{{'GST_ASAT'|translate}}: {{asAtDate}}</label><br>
+    </div>
   </div>
 
 </div>

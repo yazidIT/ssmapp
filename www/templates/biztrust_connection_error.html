@@ -2,14 +2,14 @@
   <ion-nav-buttons side="right">
     <div ng-controller="CustomNavi">
       <div style="text-align: right">
-      <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/qr_code_icon.png" ng-click="goTo('app.biztrust_scan')"/>
+      <img style="height: 30%; width: 30%; object-fit: contain;" ng-src="img/icon_qr.png" ng-click="goTo('app.biztrust_scan')"/>
       </div>
     </div>
   </ion-nav-buttons>
 
 <ion-content class="scroll" style="overflow:hidden;">
 
-<div class="bg-container">
+<div class="bg-container" ng-app="starter.controllers" ng-controller="BizTrustResult">
   <div class="content">
 
     <div class="card" style="padding-top:40px; padding-bottom:20px;
@@ -43,7 +43,10 @@
       </div>
 
     </div>
-
+    <div style="font-size:13px; text-align: left; margin-left: 20px;">
+      <label>{{'ASAT'|translate}}: {{todayDate}}</label><br>
+      <label>{{'GST_ASAT'|translate}}: {{asAtDate}}</label><br>
+    </div>
   </div>
 
 </div>

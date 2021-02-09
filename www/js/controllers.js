@@ -1128,7 +1128,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.responseData = companydata;
 
   var currentdate = new Date();
-  $scope.todayDate = currentdate.toLocaleDateString('en-MY') + " " + currentdate.toLocaleTimeString();
+  $scope.todayDate = currentdate.toLocaleDateString('en-MY');
 
   console.log(">>>>>> " + JSON.stringify($scope.responseData));
   var errorMsg = JSON.stringify($scope.responseData.errorMsg);
