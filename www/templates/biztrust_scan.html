@@ -3,7 +3,7 @@
     {{ 'MENU_09'|translate }}
   </ion-nav-title>
 
-<ion-content style="overflow:hidden;">
+<ion-content class="scroll" style="overflow:hidden;" overflow-scroll="false">
 
 <div class="biztrust-bgtukar">
 
@@ -20,7 +20,7 @@
   </div>
 
   <div style="padding-top:5px; padding-bottom:20px;
-                          margin-left:50px; margin-right:50px;
+                          margin-left:30px; margin-right:30px;
                           border-radius: 0px;"
                           ng-controller="BizTrustCtrl" ng-click="scanQR()">
     <center>
@@ -43,9 +43,6 @@
   </center>
   </div>
 
-</div>
-
-<div>
   <div style="margin-top: 20px;">
   <center>
     <div><img style='height: 30%; width: 30%; object-fit: contain' ng-src="img/logo_ssm_v3.png"/></div>
@@ -55,7 +52,7 @@
   <div style="margin-top: 20px; margin-bottom: 10px;" ng-controller="CustomNavi">
   <center>
     <button class="button button-small button-positive" ng-click="goTo('app.biztrust_userguide')">
-      <strong><font color="F9EC00"><div>User Guide</div></font></strong>
+      <strong><font color="F9EC00"><div translate="USERGUIDE">User Guide</div></font></strong>
     </button>
   </center>
   </div>

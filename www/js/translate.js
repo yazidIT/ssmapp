@@ -162,7 +162,8 @@ var translations = {
         "BIZTRUSTOBJ": "OBJECTIVE",
         "BIZTRUSTOBJCONTENT": "The objective of SSM BizTrust business starter kit is to strengthen the compliance with business entities through the provisions of the Acts administered by SSM with validation through SSM BizTrust QR code.",
         "BIZTRUSTFUNC": "FUNCTION",
-        "BIZTRUSTFUNCCONTENT": "This method of reviewing merchant information via SSM BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address (if any)."
+        "BIZTRUSTFUNCCONTENT": "This method of reviewing merchant information via SSM BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address (if any).",
+        "USERGUIDE": "User Guide"
     },
 
 
@@ -329,6 +330,7 @@ var translations = {
         "BIZTRUSTOBJ": "OBJEKTIF",
         "BIZTRUSTOBJCONTENT": "Objektif SSM BizTrust business starter kit ini adalah untuk memperkasakan pematuhan ke atas entiti-entiti perniagaaan melalui peruntukan akta-akta yang ditadbir oleh SSM dengan adanya pengesahan melalui kod QR SSM BizTrust.",
         "BIZTRUSTFUNC": "FUNGSI",
-        "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, status serta alamat URL perniagaan (sekiranya ada)."
+        "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, status serta alamat URL perniagaan (sekiranya ada).",
+        "USERGUIDE": "Panduan Pengguna"
 	}
 }

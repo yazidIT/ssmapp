@@ -402,7 +402,7 @@ ion-item label font.ng-binding{
 }
 .scroll{
     background-color: white;
-    height: 100%;
+    height: 110%;
 }
 
 .ssmmenu-left{
@@ -727,7 +727,7 @@ select#mySelect{
 
 .scanqrbutton {
   /*line-height: 20vh !important;*/
-  width: 250px;
+  width: 280px;
 }
 
 .col{
@@ -750,13 +750,9 @@ select#mySelect{
 }
 
 .biztrust-bgtukar {
-  /*    background: url(../img/background1.png);*/
       background-color: white;
-      background-repeat: repeat;
-      background-size: full;
-      background-position: center;
-      width: auto;
-      height: auto;
+      width: 100%;
+      height: 100%;
       margin: auto;
       z-index: 2;
       position: relative;
@@ -834,7 +830,7 @@ select#mySelect{
 .bg-container{
   width: 100%;
   height: 100%;
-  border: 1px solid #000;
+  border: 0px solid #000;
   position: relative;
 }
 .bg-container .content{
