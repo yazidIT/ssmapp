@@ -854,8 +854,8 @@ select#mySelect{
   background-image: url("../img/logo_biztrust.png");
   background-repeat:no-repeat;
   background-position: center;
-  background-size: 60%;
-  opacity: 0.2;
+  background-size: 80%;
+  opacity: 0.1;
 }
 
 .item.item-trns {

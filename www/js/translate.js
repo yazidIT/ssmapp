@@ -156,8 +156,13 @@ var translations = {
         "CONNECTIONLOST": "Connection Lost!",
         "CHECKCONNECTION": "Check your internet connection and try again",
         "PLEASECONTACTENQUIRY": "Please contact enquiry@ssm.com.my for further clarification.",
-        "PLEASESCANAGAIN" : "Please scan QR Code again."
-
+        "PLEASESCANAGAIN" : "Please scan QR Code again.",
+        "BIZTRUSTINTRO" : "INTRODUCTION",
+        "BIZTRUSTINTROCONTENT": "SSM BizTrust is a business starter kit that serves as digital identification of business entities registered with the Companies Commission of Malaysia (SSM).",
+        "BIZTRUSTOBJ": "OBJECTIVE",
+        "BIZTRUSTOBJCONTENT": "The objective of SSM BizTrust business starter kit is to strengthen the compliance with business entities through the provisions of the Acts administered by SSM with validation through SSM BizTrust QR code.",
+        "BIZTRUSTFUNC": "FUNCTION",
+        "BIZTRUSTFUNCCONTENT": "This method of reviewing merchant information via SSM BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address (if any)."
     },
 
 
@@ -318,6 +323,12 @@ var translations = {
         "CONNECTIONLOST": "Tiada Rangkaian!",
         "CHECKCONNECTION": "Periksa sambungan internet anda dan cuba lagi",
         "PLEASECONTACTENQUIRY": "Sila hubungi enquiry@ssm.com.my untuk maklumat selanjutnya.",
-        "PLEASESCANAGAIN" : "Sila imbas kod QR sekali lagi."
+        "PLEASESCANAGAIN" : "Sila imbas kod QR sekali lagi.",
+        "BIZTRUSTINTRO" : "PENGENALAN",
+        "BIZTRUSTINTROCONTENT": "SSM BizTrust merupakan satu (1) business starter kit yang berfungsi sebagai satu (1) pengesahan dan pengenalan identiti digital (digital identification) kepada entiti perniagaan yang berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM)",
+        "BIZTRUSTOBJ": "OBJEKTIF",
+        "BIZTRUSTOBJCONTENT": "Objektif SSM BizTrust business starter kit ini adalah untuk memperkasakan pematuhan ke atas entiti-entiti perniagaaan melalui peruntukan akta-akta yang ditadbir oleh SSM dengan adanya pengesahan melalui kod QR SSM BizTrust.",
+        "BIZTRUSTFUNC": "FUNGSI",
+        "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, status serta alamat URL perniagaan (sekiranya ada)."
 	}
 }

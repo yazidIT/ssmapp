@@ -4,6 +4,15 @@
     {{ 'MENU_09'|translate }}
   </ion-nav-title>
 
+  <ion-nav-buttons side="right">
+
+    <div ng-controller="CustomNavi">
+      <div style="float: right;" ng-click="goBack()">
+        <button class="button button-small icon ion-close" style="background: #F9EC00; color: black"></button>
+      </div>
+    </div>
+  </ion-nav-buttons>
+
 <ion-content class="scroll" style="overflow:hidden;">
 
 <div class="bg-container">
@@ -14,39 +23,49 @@
                           border-radius: 0px; background: rgba(0, 0, 0, 0.0)">
 
       <div class="row" style="padding: 10px;">
-        <div style="font-size: 18px; color: #2E2F83; text-align: left;">What is SSM Biztrust?</div>
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div style="font-size: 16px; text-align: center; font-weight: bold;" translate="BIZTRUSTINTRO">INTRODUCTION</div>
+        </div>
+        <div class="col col-10"></div>
       </div>
 
       <div class="row" style="padding: 10px;">
 
-        <div style="font-size: 14px; color: #2E2F83; text-align: justify;">Contrary to popular belief, Lorem Ipsum is not simply random
-        text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
-        Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</div>
+        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTINTROCONTENT">SSM BizTrust is a business starter kit that serves
+        as digital identification of business entities registered with the Companies Commission of Malaysia (SSM).</div>
 
       </div>
 
       <div class="row" style="padding: 10px;">
-        <div style="font-size: 18px; color: #2E2F83; text-align: left;">Objective</div>
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div style="font-size: 16px; text-align: center; font-weight: bold;" translate="BIZTRUSTOBJ">OBJECTIVE</div>
+        </div>
+        <div class="col col-10"></div>
       </div>
 
       <div class="row" style="padding: 10px;">
 
-        <div style="font-size: 14px; color: #2E2F83; text-align: justify;">Contrary to popular belief, Lorem Ipsum is not simply random
-        text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTOBJCONTENT">The objective of SSM BizTrust business starter
+        kit is to strengthen the compliance with business entities through the provisions of the Acts administered by SSM with
+        validation through SSM BizTrust QR code.</div>
 
       </div>
 
       <div class="row" style="padding: 10px;">
-        <div style="font-size: 18px; color: #2E2F83; text-align: left;">Function</div>
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div style="font-size: 16px; text-align: center; font-weight: bold;" translate="BIZTRUSTFUNC">FUNCTION</div>
+        </div>
+        <div class="col col-10"></div>
       </div>
 
       <div class="row" style="padding: 10px;">
 
-        <div style="font-size: 14px; color: #2E2F83; text-align: justify;">Contrary to popular belief, Lorem Ipsum is not simply random
-        text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
-        Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</div>
+        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTFUNCCONTENT">This method of reviewing merchant information via SSM
+        BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address
+        (if any)</div>
 
       </div>
 

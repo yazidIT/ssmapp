@@ -208,6 +208,15 @@
     }
   })
 
+  .state('app.biztrust_userguide', {
+    url: '/biztrust',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/biztrust_user_guide.html'
+      }
+    }
+  })
+
   .state('app.biztrust_scan', {
     url: '/biztrust_scan',
     views: {
