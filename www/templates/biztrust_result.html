@@ -49,7 +49,7 @@
           <div class="biztrust-item2">{{responseData.statusDescription}}</div>
 
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
-          <div class="biztrust-item3">(i) {{responseData.mainUrl}}</div>
+          <div class="biztrust-item3" ng-if="responseData.mainUrl">(i) {{responseData.mainUrl}}</div>
           <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0">(ii) {{responseData.addUrl[0]}}</div>
           <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1">(iii) {{responseData.addUrl[1]}}</div>
           <br>
