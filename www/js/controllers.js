@@ -1071,7 +1071,22 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   var startQRScan = function() {
 
-    $cordovaBarcodeScanner.scan().then(function(imageData) {
+    var lang = currTranslateSvc.getData();
+    var scannerOptions = {
+      // preferFrontCamera : true, // iOS and Android
+      // showFlipCameraButton : true, // iOS and Android
+      showTorchButton : true, // iOS and Android
+      // torchOn: true, // Android, launch with the torch switched on (if available)
+      // saveHistory: true, // Android, save scan history (default false)
+      prompt : lang.QRSCANPROMPT, // Android
+      resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      //formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+      // orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+      // disableAnimations : true, // iOS
+      // disableSuccessBeep: false // iOS and Android
+    };
+
+    $cordovaBarcodeScanner.scan(scannerOptions).then(function(imageData) {
 
         console.log("QR Code Data -> " + imageData.text);
         console.log("Barcode Format -> " + imageData.format);
@@ -1095,7 +1110,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         return;
     }
 
-    getBizTrust.loadUserData(lang.MENU_08).then(function(result) {
+    getBizTrust.loadUserData(lang.MENU_09).then(function(result) {
 
       console.log(JSON.stringify(result));
 
@@ -1110,11 +1125,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         return;
       }
 
-        $state.go('app.biztrust_result');
+      $state.go('app.biztrust_result');
 
+    }, function(err) {
+      console.log("Error in controller: " + JSON.stringify(err));
+      if(err.status === -1)
+        $state.go('app.biztrust_connection_error');
     });
-
-    // $scope.queryData = eQuerySvc.getData();
   }
 
 })

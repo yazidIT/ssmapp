@@ -28,7 +28,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "ionic-plugin-keyboard": "^2.2.1",
-    "phonegap-plugin-barcodescanner": "git+https://github.com/wildabeast/BarcodeScanner.git",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
     "semver": "^6.3.0"
   },
   "devDependencies": {
@@ -73,8 +73,10 @@
       "cordova-plugin-compat": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-ionic-webview": {},
-      "phonegap-plugin-barcodescanner": {},
-      "cordova-plugin-android-permissions": {}
+      "cordova-plugin-android-permissions": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     }
   }
 }

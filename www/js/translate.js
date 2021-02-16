@@ -164,7 +164,8 @@ var translations = {
         "BIZTRUSTFUNC": "FUNCTION",
         "BIZTRUSTFUNCCONTENT": "This method of reviewing merchant information via SSM BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address (if any).",
         "USERGUIDE": "User Guide",
-        "WHOOPS": "Whoops!"
+        "WHOOPS": "Whoops!",
+        "QRSCANPROMPT": "Place QR code inside the scan area"
     },
 
 
@@ -333,6 +334,7 @@ var translations = {
         "BIZTRUSTFUNC": "FUNGSI",
         "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, status serta alamat URL perniagaan (sekiranya ada).",
         "USERGUIDE": "Panduan Pengguna",
-        "WHOOPS": "Alamak!"
+        "WHOOPS": "Alamak!",
+        "QRSCANPROMPT": "Sila pastikan kod QR di dalam kawasan imbasan"
 	}
 }
