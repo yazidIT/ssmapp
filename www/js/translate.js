@@ -165,7 +165,8 @@ var translations = {
         "BIZTRUSTFUNCCONTENT": "This method of reviewing merchant information via SSM BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address (if any).",
         "USERGUIDE": "User Guide",
         "WHOOPS": "Whoops!",
-        "QRSCANPROMPT": "Place QR code inside the scan area"
+        "QRSCANPROMPT": "Place QR code inside the scan area",
+        "SEEMORE": "See More"
     },
 
 
@@ -312,13 +313,13 @@ var translations = {
         "SCANQR" : "Imbas QR",
         "ERRORCAMERAPERMISSION" : "MySSM Imbas QR kod memerlukan akses ke KAMERA. Sila pastikan akses di berikan.",
         "WELCOMEUSER": "Selamat Datang",
-        "TAPSCREENTOSCAN": "Sentuh Skrin Untuk Imbasan",
+        "TAPSCREENTOSCAN": "Sentuh Skrin Untuk Imbas",
         "VALIDQRCODE": "QR Code BizTrust Sah",
         "INVALIDQRCODE": "Kod QR SSM BizTrust Tidak Sah",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Sentuh logo BizTrust di atas untuk memulakan imbasan QR Code<br><br>2. Arahkan kotak imbasan ke QR Code BizTrust<br><br>3. Jika imbasan berjaya, keputusan akan di paparkan di skrin</font>",
         "CORPORATEINFO": "MAKLUMAT KORPORAT",
-        "BTREGNUMBER": "Nombor Pendaftaran",
-        "GREAT": "Bagus!",
+        "BTREGNUMBER": "No. Pendaftaran",
+        "GREAT": "Hebat!",
         "INFORMATIONNOTFOUND": "Tiada maklumat di temui",
         "TRYAGAIN": "Cuba Lagi",
         "NAME": "Nama",
@@ -328,13 +329,14 @@ var translations = {
         "PLEASECONTACTENQUIRY": "Sila hubungi <font color='#FF5733'>enquiry@ssm.com.my</font> untuk maklumat selanjutnya.",
         "PLEASESCANAGAIN" : "Sila imbas kod QR sekali lagi.",
         "BIZTRUSTINTRO" : "PENGENALAN",
-        "BIZTRUSTINTROCONTENT": "SSM BizTrust merupakan satu (1) business starter kit yang berfungsi sebagai satu (1) pengesahan dan pengenalan identiti digital (digital identification) kepada entiti perniagaan yang berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM)",
+        "BIZTRUSTINTROCONTENT": "SSM BizTrust merupakan satu (1) <i>business starter kit</i> yang berfungsi sebagai satu (1) pengesahan dan pengenalan identiti digital (<i>digital identification</i>) kepada entiti perniagaan yang berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM)",
         "BIZTRUSTOBJ": "OBJEKTIF",
-        "BIZTRUSTOBJCONTENT": "Objektif SSM BizTrust business starter kit ini adalah untuk memperkasakan pematuhan ke atas entiti-entiti perniagaaan melalui peruntukan akta-akta yang ditadbir oleh SSM dengan adanya pengesahan melalui kod QR SSM BizTrust.",
+        "BIZTRUSTOBJCONTENT": "Objektif SSM BizTrust <i>business starter kit</i> ini adalah untuk memperkasakan pematuhan ke atas entiti-entiti perniagaaan melalui peruntukan Akta-akta yang ditadbir oleh SSM dengan adanya pengesahan melalui kod QR SSM BizTrust.",
         "BIZTRUSTFUNC": "FUNGSI",
-        "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, status serta alamat URL perniagaan (sekiranya ada).",
+        "BIZTRUSTFUNCCONTENT": "Kaedah semakan maklumat peniaga melalui kod QR SSM BizTrust ini akan memaparkan maklumat seperti nama perniagaan, nombor pendaftaran perniagaan status serta alamat URL perniagaan (sekiranya ada).",
         "USERGUIDE": "Panduan Pengguna",
         "WHOOPS": "Alamak!",
-        "QRSCANPROMPT": "Sila pastikan kod QR di dalam kawasan imbasan"
+        "QRSCANPROMPT": "Sila pastikan kod QR di dalam kawasan imbasan",
+        "SEEMORE": "Lihat Lagi"
 	}
 }
