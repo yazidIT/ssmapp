@@ -10,11 +10,11 @@
 <ion-content class="scroll" style="overflow:hidden;" overflow-scroll="false">
 
 <div class="bg-container" ng-app="starter.controllers" ng-controller="BizTrustResult">
-  <div class="content">
+  <div class="content vertical-center">
 
     <div class="card" style="padding-top:20px; padding-bottom:20px;
                           margin-left:20px; margin-right:20px; margin-top: 20px;
-                          border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
+                          border-radius: 15px; background: rgba(255, 255, 255, 0.0)">
 
       <div class="row">
         <div class="col">
@@ -52,7 +52,7 @@
           <div class="biztrust-item3" ng-if="responseData.mainUrl">(i) {{responseData.mainUrl}}</div>
           <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0">(ii) {{responseData.addUrl[0]}}</div>
           <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1">(iii) {{responseData.addUrl[1]}}</div>
-          <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()">See More <i class="icon ion-chevron-down"></i> </div>
+          <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
           <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2">(iv) {{responseData.addUrl[2]}}</div>
           <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3">(v) {{responseData.addUrl[3]}}</div>
         </ion-item>
