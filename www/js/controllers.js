@@ -1136,7 +1136,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
 })
 
-.controller('BizTrustResult', function($scope, $window, getBizTrust) {
+.controller('BizTrustResult', function($scope, $window, $sce, getBizTrust, currTranslateSvc) {
 
   $scope.seeMore = false;
 
@@ -1194,6 +1194,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.seeMore = !$scope.seeMore;
     console.log("See more click: " + $scope.seeMore );
   }
+
+  var trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+  var lang = currTranslateSvc.getData();
+  $scope.pleaseContactSsm = trustAsHtml(lang.PLEASECONTACTENQUIRY);
+
 })
 
 .controller('BizTrustPage', function($scope, $sce, currTranslateSvc) {
