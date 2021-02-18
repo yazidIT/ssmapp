@@ -1194,4 +1194,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     $scope.seeMore = !$scope.seeMore;
     console.log("See more click: " + $scope.seeMore );
   }
+})
+
+.controller('BizTrustPage', function($scope, $sce, currTranslateSvc) {
+  var trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+  var lang = currTranslateSvc.getData();
+  $scope.biztrustIntroContent = trustAsHtml(lang.BIZTRUSTINTROCONTENT);
+  $scope.biztrustObjContent = trustAsHtml(lang.BIZTRUSTOBJCONTENT);
 });

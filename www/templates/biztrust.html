@@ -20,7 +20,7 @@
 
     <div style="padding-top:40px; padding-bottom:20px;
                           margin-left:20px; margin-right:20px;
-                          border-radius: 0px; background: rgba(0, 0, 0, 0.0)">
+                          border-radius: 0px; background: rgba(0, 0, 0, 0.0)" ng-controller="BizTrustPage">
 
       <div class="row" style="padding: 10px;">
         <div class="col col-10"></div>
@@ -32,7 +32,7 @@
 
       <div class="row" style="padding: 10px;">
 
-        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTINTROCONTENT">SSM BizTrust is a business starter kit that serves
+        <div style="font-size: 14px; text-align: justify;" ng-bind-html="biztrustIntroContent">SSM BizTrust is a business starter kit that serves
         as digital identification of business entities registered with the Companies Commission of Malaysia (SSM).</div>
 
       </div>
@@ -47,7 +47,7 @@
 
       <div class="row" style="padding: 10px;">
 
-        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTOBJCONTENT">The objective of SSM BizTrust business starter
+        <div style="font-size: 14px; text-align: justify;" ng-bind-html="biztrustObjContent">The objective of SSM BizTrust business starter
         kit is to strengthen the compliance with business entities through the provisions of the Acts administered by SSM with
         validation through SSM BizTrust QR code.</div>
 
