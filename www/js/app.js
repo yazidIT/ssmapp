@@ -70,7 +70,7 @@
 /**
  * routing for pages
  */
-.config(function($stateProvider, $compileProvider, $urlRouterProvider, $translateProvider) {
+.config(function($stateProvider, $compileProvider, $urlRouterProvider, $translateProvider, $ionicConfigProvider) {
 
   // var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file|ionic):|data:image\//;
   // $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
@@ -81,6 +81,8 @@
   // sanitize the images to open ionic://localhost/ on iOS
   var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file|content|blob|ms-appx|ms-appx-web|x-wmapp0|ionic):|data:image\//;
   $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
+
+  $ionicConfigProvider.navBar.alignTitle('center');
 
   $stateProvider
 
