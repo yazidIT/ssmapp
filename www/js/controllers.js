@@ -1210,4 +1210,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var lang = currTranslateSvc.getData();
   $scope.biztrustIntroContent = trustAsHtml(lang.BIZTRUSTINTROCONTENT);
   $scope.biztrustObjContent = trustAsHtml(lang.BIZTRUSTOBJCONTENT);
+})
+
+.controller('BizTrustScanPage', function($scope, langSvc) {
+
+  if(langSvc.getLang() !== "en")
+    $scope.tigaLangkah = true;
+  else
+    $scope.tigaLangkah = false;
+
 });
