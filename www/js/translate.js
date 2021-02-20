@@ -166,7 +166,8 @@ var translations = {
         "USERGUIDE": "User Guide",
         "WHOOPS": "Whoops!",
         "QRSCANPROMPT": "Place QR code inside the scan area",
-        "SEEMORE": "See More"
+        "SEEMORE": "See More",
+        "CHECKSSMBIZTRUST": "Check SSM BizTrust information through MySSM application."
     },
 
 
@@ -338,6 +339,7 @@ var translations = {
         "USERGUIDE": "Panduan Pengguna",
         "WHOOPS": "Alamak!",
         "QRSCANPROMPT": "Sila pastikan kod QR di dalam kawasan imbasan",
-        "SEEMORE": "Lihat Lagi"
+        "SEEMORE": "Lihat Lagi",
+        "CHECKSSMBIZTRUST": "Semak maklumat SSM BizTrust melalui aplikasi MySSM."
 	}
 }
