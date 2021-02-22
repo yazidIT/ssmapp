@@ -1,5 +1,27 @@
 /* Empty. Add your own CSS if you like */
-
+/* this pushes down the ion-header-bar for 'notch' iPhones */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: 44px;
+  margin-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  margin-top: env(safe-area-inset-top) ;
+}
+/* this is for parent of ion-nav-title for 'notch' iPhones */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+  margin-top: 0px;
+}
+/* this pushes down ion-content for 'notch' iPhones */
+.platform-ios.platform-cordova:not(.fullscreen) .has-header:not(.bar-subheader) {
+  top: 44px;  /* this needs to match the height set for ion-header-bar */
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top) ;
+}
+/* this pushes button tab bar up from behind iPhone HOME button */
+.tabs {
+  /* padding not needed, but it eliminates a 1px border at top of nav bar */
+  padding-top:0px !important;  /* over rides .tabs @media i ionic.app.css */
+  margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}
 
 /* indent text XXX pixel*/
 .indented
