@@ -1,14 +1,21 @@
-<ion-view>
+<ion-view hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <div ng-controller="CustomNavi">
+      <button class="button button-clear" ng-click="goTo('app.main')">
+      <i class="icon ion-ios-arrow-back title-class"></i>
+      <span class="title-class" >Back</span>
+      </button>
+    </div>
+  </ion-nav-buttons>
 
   <ion-nav-title class="title-class">
     {{ 'MENU_09'|translate }}
   </ion-nav-title>
 
   <ion-nav-buttons side="right">
-
     <div ng-controller="CustomNavi">
       <div style="text-align: right">
-      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/x_close.png" ng-click="goBack()"/>
+      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/x_close.png" ng-click="goTo('app.main')"/>
       </div>
     </div>
   </ion-nav-buttons>
