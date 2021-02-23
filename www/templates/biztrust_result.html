@@ -58,12 +58,12 @@
           <div class="biztrust-item2">{{responseData.statusDescription}}</div>
 
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
-          <div class="biztrust-item3" ng-if="responseData.mainUrl">(i) {{responseData.mainUrl}}</div>
-          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0">(ii) {{responseData.addUrl[0]}}</div>
-          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1">(iii) {{responseData.addUrl[1]}}</div>
+          <div class="biztrust-item3" ng-if="responseData.mainUrl" ng-click="openXLink('https://' + responseData.mainUrl)">(i) {{responseData.mainUrl}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0" ng-click="openXLink('https://' + responseData.addUrl[0])">(ii) {{responseData.addUrl[0]}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1" ng-click="openXLink('https://' + responseData.addUrl[1])">(iii) {{responseData.addUrl[1]}}</div>
           <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2">(iv) {{responseData.addUrl[2]}}</div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3">(v) {{responseData.addUrl[3]}}</div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2" ng-click="openXLink('https://' + responseData.addUrl[2])">(iv) {{responseData.addUrl[2]}}</div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3" ng-click="openXLink('https://' + responseData.addUrl[3])">(v) {{responseData.addUrl[3]}}</div>
         </ion-item>
 
       </div>

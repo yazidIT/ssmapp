@@ -1171,9 +1171,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
   }
 
-  $window.OpenLink = function(link) {
-    cordova.InAppBrowser.open( link, '_system');
-  };
+  $scope.openXLink = function(httpLink) {
+    console.log("OpenXLink called: " + httpLink);
+    cordova.InAppBrowser.open(httpLink,'_system','location=yes');
+  }
 
   $scope.seeMoreUrl = function() {
     $scope.seeMore = !$scope.seeMore;
