@@ -856,7 +856,7 @@ select#mySelect{
   z-index:-99;
   background-image: url("../img/logo_biztrust.png");
   background-repeat:no-repeat;
-  background-position: center;
+  background-position: 50% 30%;
   background-size: 80%;
   opacity: 0.1;
 }
@@ -870,7 +870,7 @@ select#mySelect{
 .vertical-center {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 35%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
