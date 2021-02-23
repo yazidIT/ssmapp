@@ -1171,6 +1171,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
   }
 
+  $scope.openUrlXLink = function(url) {
+    var finalUrl = url;
+    if(!url.startsWith('http'))
+      finalUrl = 'https://' + url;
+    cordova.InAppBrowser.open(finalUrl,'_system','location=yes');
+  }
+
   $scope.openXLink = function(httpLink) {
     console.log("OpenXLink called: " + httpLink);
     cordova.InAppBrowser.open(httpLink,'_system','location=yes');
