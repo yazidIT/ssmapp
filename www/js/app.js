@@ -84,7 +84,7 @@
   $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
 
   $ionicConfigProvider.navBar.alignTitle('center');
-
+  $ionicConfigProvider.backButton.text('Back').icon('ion-chevron-left').previousTitleText(false);
   $stateProvider
 
   // .state('login', {
@@ -230,6 +230,7 @@
   })
 
   .state('app.biztrust_result', {
+    cache: false,
     url: '/biztrust_result',
     views: {
       'menuContent': {

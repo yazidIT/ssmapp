@@ -1125,7 +1125,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         return;
       }
 
-      $state.go('app.biztrust_result');
+      if($state.current.name === 'app.biztrust_result') {
+        $state.go($state.current, {}, {reload: true});
+      } else {
+        $state.go('app.biztrust_result');
+      }
 
     }, function(err) {
       console.log("Error in controller: " + JSON.stringify(err));
@@ -1140,30 +1144,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   $scope.seeMore = false;
 
-  // var mockupUrl = [
-  //   "www.internet1.com.my",
-  //   "www.internet2.com.my",
-  //   "www.internet3.com.my",
-  //   "www.internet4.com.my",
-  //   "www.internet5.com.my",
-  //   "www.internet6.com.my"
-  // ];
-
-  // var urlused = [];
-
-  // var numberofUrl = Math.floor(Math.random() * 5) + 1;
-
-  // var i;
-  // for (i = 0; i < numberofUrl; i++) {
-  //   urlused[i] = mockupUrl[i];
-  // }
-
   $scope.invalidCodeFlag = false;
   $scope.noInfoFlag = false;
 
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
-  // $scope.responseData.addUrl = mockupUrl;
 
   console.log($scope.responseData);
 
@@ -1186,9 +1171,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
   }
 
-  $window.OpenLink = function(link) {
-    cordova.InAppBrowser.open( link, '_system');
-  };
+  $scope.openXLink = function(httpLink) {
+    console.log("OpenXLink called: " + httpLink);
+    cordova.InAppBrowser.open(httpLink,'_system','location=yes');
+  }
 
   $scope.seeMoreUrl = function() {
     $scope.seeMore = !$scope.seeMore;
