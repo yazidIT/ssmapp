@@ -83,7 +83,7 @@
   $compileProvider.imgSrcSanitizationWhitelist(imgSrcSanitizationWhitelist);
 
   $ionicConfigProvider.navBar.alignTitle('center');
-
+  $ionicConfigProvider.backButton.text('Back').icon('ion-chevron-left').previousTitleText(false);
   $stateProvider
 
   // .state('login', {
