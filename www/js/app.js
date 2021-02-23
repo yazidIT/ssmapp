@@ -229,6 +229,7 @@
   })
 
   .state('app.biztrust_result', {
+    cache: false,
     url: '/biztrust_result',
     views: {
       'menuContent': {
