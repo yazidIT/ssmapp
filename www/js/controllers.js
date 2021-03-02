@@ -1143,12 +1143,50 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('BizTrustResult', function($scope, $window, $sce, getBizTrust, currTranslateSvc) {
 
   $scope.seeMore = false;
-
   $scope.invalidCodeFlag = false;
   $scope.noInfoFlag = false;
+  $scope.entityStatus = "";
 
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
+
+  var lang = currTranslateSvc.getData();
+  var status = companydata.statusCode;
+
+  if(status === "A")
+    $scope.entityStatus = lang.STAT_ACTIVE;
+  else if(status === "E")
+    $scope.entityStatus = lang.STAT_EXISTING;
+  else if(status === 'W' || status === 'M')
+    $scope.entityStatus = lang.STAT_WINDINGUP;
+  else if(status === 'D')
+    $scope.entityStatus = lang.STAT_DISSOLVED;
+  else if(status === 'R')
+    $scope.entityStatus = lang.STAT_REMOVE;
+  else if(status === 'C')
+    $scope.entityStatus = lang.STAT_CEASEDBUSINESS;
+  else if(status === 'X')
+    $scope.entityStatus = lang.STAT_NULLVOIDCOURT;
+  else if(status === 'B')
+    $scope.entityStatus = lang.STAT_DISSOLVEDCONVERSIONLLP;
+  else if(status === 'Y')
+    $scope.entityStatus = lang.STAT_STRUKOFFWINDUPCOURT;
+  else if(status === 'L')
+    $scope.entityStatus = lang.STAT_EXPIRED;
+  else if(status === 'T')
+    $scope.entityStatus = lang.STAT_TERMINATED;
+  else if(status === 'S')
+    $scope.entityStatus = lang.STAT_STRIKEOFF;
+  else if(status === 'CW')
+    $scope.entityStatus = lang.STAT_WINDUPCOURT;
+  else if(status === 'VW')
+    $scope.entityStatus = lang.STAT_WINDUPVOLUNTARY;
+  else if(status === 'ES')
+    $scope.entityStatus = lang.STAT_STRIKINGOFF;
+  else if(status === 'EV')
+    $scope.entityStatus = lang.STAT_WINDINGUPVOLUNTARY;
+  else if(status === 'EC')
+    $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 
   console.log($scope.responseData);
 
@@ -1191,7 +1229,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var trustAsHtml = function(string) {
     return $sce.trustAsHtml(string);
   };
-  var lang = currTranslateSvc.getData();
+
   $scope.pleaseContactSsm = trustAsHtml(lang.PLEASECONTACTENQUIRY);
 
 })

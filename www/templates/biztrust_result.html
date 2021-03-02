@@ -55,7 +55,7 @@
           <div class="biztrust-item2">{{responseData.entityName}}</div>
 
           <div class="biztrust-item">Status</div>
-          <div class="biztrust-item2">{{responseData.statusDescription}}</div>
+          <div class="biztrust-item2">{{entityStatus}}</div>
 
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
           <div class="biztrust-item3" ng-if="responseData.mainUrl" ng-click="openUrlXLink(responseData.mainUrl)">(i) {{responseData.mainUrl}}</div>
