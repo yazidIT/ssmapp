@@ -1,5 +1,3 @@
-// Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -68,9 +66,7 @@
 
 })
 
-/**
- * routing for pages
- */
+
 .config(function($stateProvider, $compileProvider, $urlRouterProvider, $translateProvider, $ionicConfigProvider) {
 
   // var imgSrcSanitizationWhitelist = /^\s*(https?|ftp|file|ionic):|data:image\//;
@@ -85,19 +81,22 @@
 
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.backButton.text('Back').icon('ion-chevron-left').previousTitleText(false);
+
+  for(lang in translations){
+    $translateProvider.translations(lang, translations[lang]);
+  }
+
+  $translateProvider.preferredLanguage('en');
+  // $translateProvider.useSanitizeValueStrategy( 'sanitize' );
+
+  /**
+   * routing for pages
+   */
   $stateProvider
-
-  // .state('login', {
-  //   url: '/login',
-  //   templateUrl: 'templates/mainlogin.html',
-  //   controller: 'AppCtrl'
-  // })
-
   .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    //controller: 'AppCtrl'
   })
 
   .state('app.main', {
@@ -105,7 +104,6 @@
     views: {
       'menuContent': {
         templateUrl: 'templates/main.html',
-        //controller: 'MainController'
       }
     }
   })
@@ -116,7 +114,6 @@
     views: {
       'menuContent': {
         templateUrl: 'templates/news.html',
-        //controller: 'NewsCtrl'
       }
     }
   })
@@ -268,16 +265,6 @@
       }
     })
 
-  // .state('app.bahasamalaysia', {
-  //     url: '/bahasamalaysia',
-  //     views: {
-  //       'menuContent': {
-  //         templateUrl: 'templates/bahasamalaysia.html',
-  //         controller: 'BMCtrl'
-  //       }
-  //     }
-  //   })
-
   .state('app.error', {
       url: '/error',
       cache: false, //Close because we do duplicate data -> just simple fixing:)
@@ -288,14 +275,6 @@
       }
     });
 
-  // if none of the above states are matched, use this as the fallback
-  //$urlRouterProvider.otherwise('/home');
-
-  for(lang in translations){
-    $translateProvider.translations(lang, translations[lang]);
-  }
-
-  $translateProvider.preferredLanguage('en');
 })
  .run(function($rootScope){
       $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams){
@@ -303,7 +282,6 @@
         var states = ['app.main'];
 
         if(states.indexOf(toState.name) > -1) {
-//            console.log('OK');
           $rootScope.hideBar=true;
         } else {
           $rootScope.hideBar=false;
