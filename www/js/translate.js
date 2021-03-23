@@ -143,8 +143,8 @@ var translations = {
         "ERRORCAMERAPERMISSION" : "MySSM Scan QR code require access to CAMERA. Please enabled camera permission.",
         "WELCOMEUSER": "Welcome User",
         "TAPSCREENTOSCAN": "Tap screen to scan",
-        "VALIDQRCODE": "Valid QR Code BizTrust",
-        "INVALIDQRCODE": "Invalid QR Code SSM BizTrust",
+        "VALIDQRCODE": "Valid SSM BizTrust QR Code",
+        "INVALIDQRCODE": "Invalid SSM BizTrust QR Code",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Tap BizTrust logo above to start scanning QR Code<br><br>2. Point the scanner window to the BizTrust QR Code<br><br>3. Upon successful scanning, user will be presented with the result.</font>",
         "CORPORATEINFO": "CORPORATE INFORMATION",
         "BTREGNUMBER": "Registration No.",
@@ -167,7 +167,8 @@ var translations = {
         "WHOOPS": "Whoops!",
         "QRSCANPROMPT": "Place QR code inside the scan area",
         "SEEMORE": "See More",
-        "CHECKSSMBIZTRUST": "Check SSM BizTrust information through MySSM application."
+        "CHECKSSMBIZTRUST": "Check SSM BizTrust information through MySSM application.",
+        "PROCEED": "Proceed"
     },
 
 
@@ -330,7 +331,6 @@ var translations = {
         "PLEASECONTACTENQUIRY": "Sila hubungi <span style='color:#FF5733'>enquiry@ssm.com.my</span> untuk maklumat selanjutnya.",
         "PLEASESCANAGAIN" : "Sila imbas kod QR sekali lagi.",
         "BIZTRUSTINTRO" : "PENGENALAN",
-        //"BIZTRUSTINTROCONTENT": "<span style='color: #89a000; font-style:italic;'>Hello world</span>",
         "BIZTRUSTINTROCONTENT": "SSM BizTrust merupakan satu (1) <span style='font-style:italic;'>business starter kit</span> yang berfungsi sebagai satu (1) pengesahan dan pengenalan identiti digital (<span style='font-style:italic;'>digital identification</span>) kepada entiti-entiti perniagaan yang berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM).",
         "BIZTRUSTOBJ": "OBJEKTIF",
         "BIZTRUSTOBJCONTENT": "Objektif SSM BizTrust <span style='font-style:italic;'>business starter kit</span> ini adalah untuk memperkasakan pematuhan ke atas entiti-entiti perniagaaan melalui peruntukan Akta-akta yang ditadbir oleh SSM dengan adanya pengesahan melalui kod QR SSM BizTrust.",
@@ -340,6 +340,7 @@ var translations = {
         "WHOOPS": "Alamak!",
         "QRSCANPROMPT": "Sila pastikan kod QR di dalam kawasan imbasan",
         "SEEMORE": "Lihat Lagi",
-        "CHECKSSMBIZTRUST": "Semak maklumat SSM BizTrust melalui aplikasi MySSM."
+        "CHECKSSMBIZTRUST": "Semak maklumat SSM BizTrust melalui aplikasi MySSM.",
+        "PROCEED": "Teruskan"
 	}
 }
