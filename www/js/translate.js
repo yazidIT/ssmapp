@@ -298,7 +298,7 @@ var translations = {
         "STAT_NULLVOIDCOURT": "Batal dan Tidak Sah Atas Arahan Mahkamah",
         "STAT_DISSOLVEDCONVERSIONLLP": "Tutup Ubah ke LLP",
         "STAT_STRUKOFFWINDUPCOURT": "Batal and Tutup Atas Arahan Mahkamah",
-        "STAT_EXPIRED": "Lupus",
+        "STAT_EXPIRED": "Luput",
         "STAT_TERMINATED": "Tamat",
         "STAT_STRIKEOFF": "Batal",
         "STAT_WINDUPCOURT": "Penutupan Atas Arahan Mahkamah",
