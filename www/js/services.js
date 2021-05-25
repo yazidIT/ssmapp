@@ -802,16 +802,22 @@ angular.module('myServices', [])
   }
 })
 
-.factory('contactData', function($http) {
+.factory('contactData', function($http, deviceAuth) {
 
-  var contactDataDoc;
   var contactDataLibrary;
 
   function loadContactData() {
 
-    contactDataDoc = "json/contact.json";
-    return $http.get(contactDataDoc).success(data => {
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    // var header = { "Authorization" : authHeader };
+    var urlFinal = "https://m.ssm.com.my/apiv2/index.php/json/contact";
+    return $http({
+      method: 'GET',
+      url: urlFinal
+      // headers: header
+    }).success(data => {
 
+      console.log(JSON.stringify(data));
       contactDataLibrary = data;
       return contactDataLibrary;
     })
