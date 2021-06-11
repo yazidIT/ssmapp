@@ -1,20 +1,29 @@
-<ion-view>
-  <ion-nav-buttons side="right">
+<ion-view hide-back-button="true">
+  <ion-nav-buttons side="left">
     <div ng-controller="CustomNavi">
+      <button class="button button-clear" ng-click="goTo('app.biztrust_scan')">
+      <i class="icon ion-ios-arrow-back title-class"></i>
+      <span class="title-class">Back</span>
+      </button>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <div ng-controller="BizTrustCtrl">
       <div style="text-align: right">
-      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/x_close.png" ng-click="goTo('app.biztrust_scan')"/>
+      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/icon_qr.png" ng-click="scanQR()"/>
       </div>
     </div>
   </ion-nav-buttons>
 
 <ion-content class="scroll" style="overflow:hidden;" overflow-scroll="false">
 
-<div class="bg-container" ng-app="starter.controllers" ng-controller="BizTrustResult">
-  <div class="content">
+<div class="bg-containeroutput" ng-app="starter.controllers" ng-controller="BizTrustResult">
+  <div class="content vertical-center">
 
     <div class="card" style="padding-top:20px; padding-bottom:20px;
                           margin-left:20px; margin-right:20px; margin-top: 20px;
-                          border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
+                          border-radius: 15px; background: rgba(255, 255, 255, 0.0)">
 
       <div class="row">
         <div class="col">
@@ -46,16 +55,15 @@
           <div class="biztrust-item2">{{responseData.entityName}}</div>
 
           <div class="biztrust-item">Status</div>
-          <div class="biztrust-item2">{{responseData.statusDescription}}</div>
+          <div class="biztrust-item2">{{entityStatus}}</div>
 
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
-          <div class="biztrust-item3">(i) {{responseData.mainUrl}}</div>
-          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0">(ii) {{responseData.addUrl[0]}}</div>
-          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1">(iii) {{responseData.addUrl[1]}}</div>
-          <br>
-          <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2" ng-click="seeMoreUrl()">See More <i class="icon ion-chevron-down"></i> </div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2">(iv) {{responseData.addUrl[2]}}</div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3">(v) {{responseData.addUrl[3]}}</div>
+          <div class="biztrust-item3" ng-if="responseData.mainUrl" ng-click="openUrlXLink(responseData.mainUrl)">(i) {{responseData.mainUrl}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0" ng-click="openUrlXLink(responseData.addUrl[0])">(ii) {{responseData.addUrl[0]}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1" ng-click="openUrlXLink(responseData.addUrl[1])">(iii) {{responseData.addUrl[1]}}</div>
+          <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2" ng-click="openUrlXLink(responseData.addUrl[2])">(iv) {{responseData.addUrl[2]}}</div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3" ng-click="openUrlXLink(responseData.addUrl[3])">(v) {{responseData.addUrl[3]}}</div>
         </ion-item>
 
       </div>
@@ -64,7 +72,6 @@
 
     <div style="font-size:13px; text-align: left; margin-left: 20px;">
       <label>{{'ASAT'|translate}}: {{todayDate}}</label><br>
-      <label>{{'GST_ASAT'|translate}}: {{asAtDate}}</label><br>
     </div>
   </div>
 

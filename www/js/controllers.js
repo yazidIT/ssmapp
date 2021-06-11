@@ -1071,7 +1071,22 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   var startQRScan = function() {
 
-    $cordovaBarcodeScanner.scan().then(function(imageData) {
+    var lang = currTranslateSvc.getData();
+    var scannerOptions = {
+      // preferFrontCamera : true, // iOS and Android
+      // showFlipCameraButton : true, // iOS and Android
+      showTorchButton : true, // iOS and Android
+      // torchOn: true, // Android, launch with the torch switched on (if available)
+      // saveHistory: true, // Android, save scan history (default false)
+      prompt : lang.QRSCANPROMPT, // Android
+      resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      //formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+      // orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+      // disableAnimations : true, // iOS
+      // disableSuccessBeep: false // iOS and Android
+    };
+
+    $cordovaBarcodeScanner.scan(scannerOptions).then(function(imageData) {
 
         console.log("QR Code Data -> " + imageData.text);
         console.log("Barcode Format -> " + imageData.format);
@@ -1095,7 +1110,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         return;
     }
 
-    getBizTrust.loadUserData(lang.MENU_08).then(function(result) {
+    getBizTrust.loadUserData(lang.MENU_09).then(function(result) {
 
       console.log(JSON.stringify(result));
 
@@ -1110,43 +1125,68 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
         return;
       }
 
+      if($state.current.name === 'app.biztrust_result') {
+        $state.go($state.current, {}, {reload: true});
+      } else {
         $state.go('app.biztrust_result');
+      }
 
+    }, function(err) {
+      console.log("Error in controller: " + JSON.stringify(err));
+      if(err.status === -1)
+        $state.go('app.biztrust_connection_error');
     });
-
-    // $scope.queryData = eQuerySvc.getData();
   }
 
 })
 
-.controller('BizTrustResult', function($scope, $window, getBizTrust) {
+.controller('BizTrustResult', function($scope, $window, $sce, getBizTrust, currTranslateSvc) {
 
   $scope.seeMore = false;
-
-  var mockupUrl = [
-    "www.internet1.com.my",
-    "www.internet2.com.my",
-    "www.internet3.com.my",
-    "www.internet4.com.my",
-    "www.internet5.com.my",
-    "www.internet6.com.my"
-  ];
-
-  var urlused = [];
-
-  var numberofUrl = Math.floor(Math.random() * 5) + 1;
-
-  var i;
-  for (i = 0; i < numberofUrl; i++) {
-    urlused[i] = mockupUrl[i];
-  }
-
   $scope.invalidCodeFlag = false;
   $scope.noInfoFlag = false;
+  $scope.entityStatus = "";
 
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
-  $scope.responseData.addUrl = mockupUrl;
+
+  var lang = currTranslateSvc.getData();
+  var status = companydata.statusCode;
+
+  if(status === "A")
+    $scope.entityStatus = lang.STAT_ACTIVE;
+  else if(status === "E")
+    $scope.entityStatus = lang.STAT_EXISTING;
+  else if(status === 'W' || status === 'M')
+    $scope.entityStatus = lang.STAT_WINDINGUP;
+  else if(status === 'D')
+    $scope.entityStatus = lang.STAT_DISSOLVED;
+  else if(status === 'R')
+    $scope.entityStatus = lang.STAT_REMOVE;
+  else if(status === 'C')
+    $scope.entityStatus = lang.STAT_CEASEDBUSINESS;
+  else if(status === 'X')
+    $scope.entityStatus = lang.STAT_NULLVOIDCOURT;
+  else if(status === 'B')
+    $scope.entityStatus = lang.STAT_DISSOLVEDCONVERSIONLLP;
+  else if(status === 'Y')
+    $scope.entityStatus = lang.STAT_STRUKOFFWINDUPCOURT;
+  else if(status === 'L')
+    $scope.entityStatus = lang.STAT_EXPIRED;
+  else if(status === 'T')
+    $scope.entityStatus = lang.STAT_TERMINATED;
+  else if(status === 'S')
+    $scope.entityStatus = lang.STAT_STRIKEOFF;
+  else if(status === 'CW')
+    $scope.entityStatus = lang.STAT_WINDUPCOURT;
+  else if(status === 'VW')
+    $scope.entityStatus = lang.STAT_WINDUPVOLUNTARY;
+  else if(status === 'ES')
+    $scope.entityStatus = lang.STAT_STRIKINGOFF;
+  else if(status === 'EV')
+    $scope.entityStatus = lang.STAT_WINDINGUPVOLUNTARY;
+  else if(status === 'EC')
+    $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 
   console.log($scope.responseData);
 
@@ -1169,12 +1209,45 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
     }
   }
 
-  $window.OpenLink = function(link) {
-    cordova.InAppBrowser.open( link, '_system');
-  };
+  $scope.openUrlXLink = function(url) {
+    var finalUrl = url;
+    if(!url.startsWith('http'))
+      finalUrl = 'https://' + url;
+    cordova.InAppBrowser.open(finalUrl,'_system','location=yes');
+  }
+
+  $scope.openXLink = function(httpLink) {
+    console.log("OpenXLink called: " + httpLink);
+    cordova.InAppBrowser.open(httpLink,'_system','location=yes');
+  }
 
   $scope.seeMoreUrl = function() {
     $scope.seeMore = !$scope.seeMore;
     console.log("See more click: " + $scope.seeMore );
   }
+
+  var trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+
+  $scope.pleaseContactSsm = trustAsHtml(lang.PLEASECONTACTENQUIRY);
+
+})
+
+.controller('BizTrustPage', function($scope, $sce, currTranslateSvc) {
+  var trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+  var lang = currTranslateSvc.getData();
+  $scope.biztrustIntroContent = trustAsHtml(lang.BIZTRUSTINTROCONTENT);
+  $scope.biztrustObjContent = trustAsHtml(lang.BIZTRUSTOBJCONTENT);
+})
+
+.controller('BizTrustScanPage', function($scope, langSvc) {
+
+  if(langSvc.getLang() !== "en")
+    $scope.tigaLangkah = true;
+  else
+    $scope.tigaLangkah = false;
+
 });

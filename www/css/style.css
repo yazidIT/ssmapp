@@ -1,5 +1,27 @@
 /* Empty. Add your own CSS if you like */
-
+/* this pushes down the ion-header-bar for 'notch' iPhones */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: 44px;
+  margin-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  margin-top: env(safe-area-inset-top) ;
+}
+/* this is for parent of ion-nav-title for 'notch' iPhones */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+  margin-top: 0px;
+}
+/* this pushes down ion-content for 'notch' iPhones */
+.platform-ios.platform-cordova:not(.fullscreen) .has-header:not(.bar-subheader) {
+  top: 44px;  /* this needs to match the height set for ion-header-bar */
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top) ;
+}
+/* this pushes button tab bar up from behind iPhone HOME button */
+.tabs {
+  /* padding not needed, but it eliminates a 1px border at top of nav bar */
+  padding-top:0px !important;  /* over rides .tabs @media i ionic.app.css */
+  margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}
 
 /* indent text XXX pixel*/
 .indented
@@ -408,13 +430,13 @@ ion-item label font.ng-binding{
 .ssmmenu-left{
     height: 100%;
     background-color: #2e2f83;
-    margin-top: 80px;
+    margin-top: 120px;
 /*    font-weight: bold;*/
     font-family: "MyriadPro";
 }
 ion-header-bar.bar.menu-logo{
     background-color: white !important;
-     height: auto;
+     height: 120px;
 }
 div.menu-logo{
     height: 120px;
@@ -437,7 +459,7 @@ div.menu-logo{
     display: block;
     width: 120%;
     padding-right: -40px;
-     padding-right: 10px;
+    padding-right: 10px;
     padding-left: -10px;
     position: absolute;
     margin-left: -10px;
@@ -734,7 +756,7 @@ select#mySelect{
 
 .scanqrbutton {
   /*line-height: 20vh !important;*/
-  width: 280px;
+  width: 260px;
 }
 
 .col{
@@ -759,7 +781,7 @@ select#mySelect{
 .biztrust-bgtukar {
       background-color: white;
       width: 100%;
-      height: 100%;
+      height: 120%;
       margin: auto;
       z-index: 2;
       position: relative;
@@ -856,8 +878,35 @@ select#mySelect{
   z-index:-99;
   background-image: url("../img/logo_biztrust.png");
   background-repeat:no-repeat;
-  background-position: center;
+  background-position: 50% 30%;
   background-size: 80%;
+  opacity: 0.1;
+}
+
+.bg-containeroutput{
+  width: 100%;
+  height: 100%;
+  border: 0px solid #000;
+  position: relative;
+}
+.bg-containeroutput .content{
+  position: absolute;
+  z-index:999;
+  text-align: center;
+  width: 100%;
+}
+.bg-containeroutput::after{
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index:-99;
+  background-image: url("../img/logo_biztrust.png");
+  background-repeat:no-repeat;
+  background-position: 50% 30%;
+  background-size: 90%;
   opacity: 0.1;
 }
 
@@ -865,4 +914,47 @@ select#mySelect{
 	border-color: rgba(0, 0, 0, 0);
 	background-color: rgba(0, 0, 0, 0);
 	color: white;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 35%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vertical-centererror {
+  margin: 0;
+  position: absolute;
+  top: 35%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.bg-containererror{
+  width: 100%;
+  height: 100%;
+  border: 0px solid #000;
+  position: relative;
+}
+.bg-containererror .content{
+  position: absolute;
+  z-index:999;
+  text-align: center;
+  width: 100%;
+}
+.bg-containererror::after{
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index:-99;
+  background-image: url("../img/logo_biztrust.png");
+  background-repeat:no-repeat;
+  background-position: 50% 20%;
+  background-size: 90%;
+  opacity: 0.1;
 }

@@ -1,27 +1,35 @@
-<ion-view>
-  <ion-nav-buttons side="right">
+<ion-view hide-back-button="true">
+  <ion-nav-buttons side="left">
     <div ng-controller="CustomNavi">
+      <button class="button button-clear" ng-click="goTo('app.biztrust_scan')">
+      <i class="icon ion-ios-arrow-back title-class"></i>
+      <span class="title-class">Back</span>
+      </button>
+    </div>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <div ng-controller="BizTrustCtrl">
       <div style="text-align: right">
-      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/x_close.png" ng-click="goTo('app.biztrust_scan')"/>
+      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/icon_qr.png" ng-click="scanQR()"/>
       </div>
     </div>
   </ion-nav-buttons>
 
 <ion-content class="scroll" style="overflow:hidden;">
 
-<div class="bg-container" ng-app="starter.controllers" ng-controller="BizTrustResult">
-  <div class="content">
+<div class="bg-containererror" ng-app="starter.controllers" ng-controller="BizTrustResult">
+  <div class="content vertical-centererror">
 
     <div class="card" style="padding-top:20px; padding-bottom:20px;
                           margin-left:20px; margin-right:20px; margin-top: 40px;
-                          border-radius: 15px; background: rgba(255, 255, 255, 0.7)">
+                          border-radius: 15px; background: rgba(255, 255, 255, 0.0)">
 
     <div ng-controller="BizTrustResult">
       <div ng-hide="!noInfoFlag">
 
         <div class="row">
           <div style="margin-top: 20px;">
-          <img style='height: 60%; width: 60%; object-fit: contain;' ng-src="img/error_no_info.png"/>
+          <img style='height: 100%; width: 100%; object-fit: contain;' ng-src="img/error_no_info.png"/>
           </div>
         </div>
 
@@ -49,7 +57,7 @@
           <div class="col col-10"></div>
           <div class="col col-80">
             <div class="center1">
-            <div style="font-size: 18px; color: black;" translate="PLEASECONTACTENQUIRY">Please contact enquiry@ssm.com.my for further clarification.</div>
+            <div style="font-size: 18px; color: black;" ng-bind-html="pleaseContactSsm">Please contact enquiry@ssm.com.my for further clarification.</div>
             </div>
           </div>
           <div class="col col-10"></div>
@@ -84,22 +92,12 @@
 
         </div>
 
-        <div class="row" style="padding: 10px;">
-          <div class="col col-10"></div>
-          <div class="col col-80">
-            <div class="center1">
-            <div style="font-size: 18px; color: black;" translate="PLEASESCANAGAIN">Please scan QR Code again.</div>
-            </div>
-          </div>
-          <div class="col col-10"></div>
-        </div>
       </div>
     </div>
 
     </div>
     <div style="font-size:13px; text-align: left; margin-left: 20px;">
       <label>{{'ASAT'|translate}}: {{todayDate}}</label><br>
-      <label>{{'GST_ASAT'|translate}}: {{asAtDate}}</label><br>
     </div>
   </div>
 
