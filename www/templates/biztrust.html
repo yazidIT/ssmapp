@@ -1,0 +1,107 @@
+<ion-view hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <div ng-controller="CustomNavi">
+      <button class="button button-clear" ng-click="goTo('app.main')">
+      <i class="icon ion-ios-arrow-back title-class"></i>
+      <span class="title-class" >Back</span>
+      </button>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-nav-title class="title-class">
+    {{ 'MENU_09'|translate }}
+  </ion-nav-title>
+
+  <ion-nav-buttons side="right">
+    <div ng-controller="CustomNavi">
+      <div style="text-align: right">
+      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/x_close.png" ng-click="goTo('app.main')"/>
+      </div>
+    </div>
+  </ion-nav-buttons>
+
+<ion-content class="scroll" style="overflow:hidden;" overflow-scroll="false">
+
+<div class="bg-container">
+  <div class="content">
+
+    <div style="padding-top:40px; padding-bottom:20px;
+                          margin-left:20px; margin-right:20px;
+                          border-radius: 0px; background: rgba(0, 0, 0, 0.0)">
+
+      <div class="row" style="padding: 10px;">
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div style="font-size: 16px; text-align: center; font-weight: bold;" translate="BIZTRUSTINTRO">INTRODUCTION</div>
+        </div>
+        <div class="col col-10"></div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+
+        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTINTROCONTENT">SSM BizTrust is a business starter kit that serves
+        as digital identification of business entities registered with the Companies Commission of Malaysia (SSM).</div>
+
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div style="font-size: 16px; text-align: center; font-weight: bold;" translate="BIZTRUSTOBJ">OBJECTIVE</div>
+        </div>
+        <div class="col col-10"></div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+
+        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTOBJCONTENT">The objective of SSM BizTrust business starter
+        kit is to strengthen the compliance with business entities through the provisions of the Acts administered by SSM with
+        validation through SSM BizTrust QR code.</div>
+
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div class="col col-10"></div>
+        <div class="col col-80">
+          <div style="font-size: 16px; text-align: center; font-weight: bold;" translate="BIZTRUSTFUNC">FUNCTION</div>
+        </div>
+        <div class="col col-10"></div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+
+        <div style="font-size: 14px; text-align: justify;" translate="BIZTRUSTFUNCCONTENT">This method of reviewing merchant information via SSM
+        BizTrust QR code will display infomratin such as business name, business registration number, status and business URL address
+        (if any)</div>
+
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div class="col col-10">
+        </div>
+        <div class="col col-80">
+          <div class="center1">
+            <div style="padding-top:20px;" ng-controller="CustomNavi">
+              <button class="button button-medium button-positive findbutton" ng-click="goTo('app.biztrust_scan')">
+                <strong><font color="F9EC00"><div translate="PROCEED">Find</div></font></strong>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col col-10">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</ion-content>
+
+  <div ng-controller="BrowseLink" class="biztrust-ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+
+</ion-view>
+
+

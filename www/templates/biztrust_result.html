@@ -1,0 +1,85 @@
+<ion-view hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <div ng-controller="CustomNavi">
+      <button class="button button-clear" ng-click="goTo('app.biztrust_scan')">
+      <i class="icon ion-ios-arrow-back title-class"></i>
+      <span class="title-class">Back</span>
+      </button>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <div ng-controller="BizTrustCtrl">
+      <div style="text-align: right">
+      <img style="height: 32px; width: 32px; object-fit: contain;" ng-src="img/icon_qr.png" ng-click="scanQR()"/>
+      </div>
+    </div>
+  </ion-nav-buttons>
+
+<ion-content class="scroll" style="overflow:hidden;" overflow-scroll="false">
+
+<div class="bg-containeroutput" ng-app="starter.controllers" ng-controller="BizTrustResult">
+  <div class="content vertical-center">
+
+    <div class="card" style="padding-top:20px; padding-bottom:20px;
+                          margin-left:20px; margin-right:20px; margin-top: 20px;
+                          border-radius: 15px; background: rgba(255, 255, 255, 0.0)">
+
+      <div class="row">
+        <div class="col">
+          <div class="center1">
+          <div style="font-size: 18px; color: #2E2F83; font-weight: bold;" translate="GREAT">Great!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-10">
+        </div>
+        <div class="col col-80">
+          <div class="center1">
+            <div class="biztrust-title" translate="CORPORATEINFO">CORPORATE INFORMATION</div>
+          </div>
+        </div>
+        <div class="col col-10">
+        </div>
+      </div>
+
+      <div class="row">
+        <ion-item class="item item-trns" style="margin: auto;">
+
+          <div class="biztrust-item" translate="BTREGNUMBER">Registration Number</div>
+          <div class="biztrust-item2">{{responseData.entityNoNew}} ({{responseData.entityNo}}-{{responseData.checkDigit}})</div>
+
+          <div class="biztrust-item" translate="NAME">Name</div>
+          <div class="biztrust-item2">{{responseData.entityName}}</div>
+
+          <div class="biztrust-item">Status</div>
+          <div class="biztrust-item2">{{entityStatus}}</div>
+
+          <div class="biztrust-item" translate="URLLINKS">URL Links</div>
+          <div class="biztrust-item3" ng-if="responseData.mainUrl" ng-click="openUrlXLink(responseData.mainUrl)">(i) {{responseData.mainUrl}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0" ng-click="openUrlXLink(responseData.addUrl[0])">(ii) {{responseData.addUrl[0]}}</div>
+          <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1" ng-click="openUrlXLink(responseData.addUrl[1])">(iii) {{responseData.addUrl[1]}}</div>
+          <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2" ng-click="openUrlXLink(responseData.addUrl[2])">(iv) {{responseData.addUrl[2]}}</div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3" ng-click="openUrlXLink(responseData.addUrl[3])">(v) {{responseData.addUrl[3]}}</div>
+        </ion-item>
+
+      </div>
+
+    </div>
+
+    <div style="font-size:13px; text-align: left; margin-left: 20px;">
+      <label>{{'ASAT'|translate}}: {{todayDate}}</label><br>
+    </div>
+  </div>
+
+</div>
+
+</ion-content>
+
+  <div ng-controller="BrowseLink" class="biztrust-ssmfooter"><center><a ng-click="openXLink('https://www.ssm.com.my')">{{'SSM'|translate}} <span ng-if="appversion">. {{'VERSION'|translate}} {{appversion}} </span>©</a></center></div>
+
+</ion-view>
+

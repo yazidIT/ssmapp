@@ -85,11 +85,25 @@ angular.module('myServices', [])
         });
     }
 
+    var generalAlert = function(title, message){
+      var alertPopup = $ionicPopup.alert({
+          title: title,
+          template: "<center>" + message + "</center>",
+          buttons: [
+            { text: '<b class="title-class">OK</b>',
+              type: 'button-positive',
+              onTap: function(e) {}
+            }
+          ]
+        });
+    };
+
     return {
         noInternet  : noInternet,
         serverFail  : serverFail,
         noRecord    : noRecord,
-        serverBusy  : serverBusy
+        serverBusy  : serverBusy,
+        generalAlert : generalAlert
     };
 })
 
@@ -144,6 +158,10 @@ angular.module('myServices', [])
     label: lang.MENU_07,
     icon: 'icon-icon2_eS',
     dest: 'app.esearch'
+  },{
+    label: lang.MENU_09,
+    icon: 'icon-html-five',
+    dest: 'app.biztrust'
   }];
 
     return buttons;
@@ -778,16 +796,22 @@ angular.module('myServices', [])
   }
 })
 
-.factory('contactData', function($http) {
+.factory('contactData', function($http, deviceAuth) {
 
-  var contactDataDoc;
   var contactDataLibrary;
 
   function loadContactData() {
 
-    contactDataDoc = "json/contact.json";
-    return $http.get(contactDataDoc).success(data => {
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    // var header = { "Authorization" : authHeader };
+    var urlFinal = "https://m.ssm.com.my/apiv2/index.php/json/contact";
+    return $http({
+      method: 'GET',
+      url: urlFinal
+      // headers: header
+    }).success(data => {
 
+      console.log(JSON.stringify(data));
       contactDataLibrary = data;
       return contactDataLibrary;
     })
@@ -796,6 +820,65 @@ angular.module('myServices', [])
 
   return {
     loadContactData: loadContactData
+  }
+})
+
+/**
+ * BizTrust service
+ */
+.factory('getBizTrust', function($http, $ionicLoading, deviceAuth, eQuerySvc, config, popupError) {
+
+  var resultData;
+
+  var loadingShow = function() {
+    $ionicLoading.show({
+      template: '<p translate="SEARCHING">Searching ...</p><ion-spinner></ion-spinner>'
+    });
+  };
+
+  var loadingHide = function(){
+    $ionicLoading.hide();
+  };
+
+  function loadUserData(title) {
+
+    var qrcodeData = eQuerySvc.getData();
+
+    loadingShow();
+
+    var queryUrl = 'qr/resolve';
+    var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
+    var header = { "Authorization" : authHeader };
+    var urlFinal = config.apiv2url + queryUrl;
+    var qrcodeobject = "?qrcode=" + qrcodeData.first;
+
+    var postUsers = $http({
+      method: 'POST',
+      url: urlFinal + qrcodeobject,
+      headers: header
+    }).success(function(result) {
+
+        resultData = result;
+        return result;
+
+    }).error(function(data, status) {
+      console.log(JSON.stringify(data));
+      //popupError.serverFail(title,false,status);
+      return status;
+
+    }).finally(function() {
+      loadingHide();
+    });
+    return postUsers;
+  };
+
+  function getData(){
+    return resultData;
+  };
+
+  return {
+    loadUserData : loadUserData,
+    getData: getData
   }
 });
 

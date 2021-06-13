@@ -1,8 +1,15 @@
 <ion-view>
+
   <ion-nav-title class="title-class">
     {{ 'MENU_07'|translate }}
   </ion-nav-title>
-
+<!--
+  <ion-nav-buttons side="right">
+    <div ng-controller="SearchInfo">
+    <button class="button button-icon button-clear ion-qr-scanner" style="color:yellow;" ng-click="scanQR()"></button>
+    </div>
+  </ion-nav-buttons>
+-->
 <ion-content ng-app="starter.controllers" ng-controller="CmpndMenuCtrl as mc">
 
 <div class="bgtukar">
@@ -57,7 +64,7 @@
 </div>
 
 <div ng-controller="BrowseLink" class="item" align="center" target="_blank"
-   ng-click="openXLink('https://www.ssm.com.my/sites/default/files/basic_pages/esearch_bi_bm.pdf')">
+   ng-click="openXLink('https://www.ssm.com.my/Pages/Quick_Link/e-Search.aspx')">
   <font color="#2E2F83">{{'DOWNLOAD'|translate}} : <u>{{'MANUALDESC'|translate}}</u></font>
 </div>
 </div>

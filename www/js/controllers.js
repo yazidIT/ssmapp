@@ -101,6 +101,23 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.buttons = myFmFactory.getButtons(currTranslateSvc.getData());
 })
 
+.controller('CustomNavi', function($scope, $ionicHistory, $state) {
+
+  $scope.goBack = function(){
+    var v = $ionicHistory.viewHistory();
+    if(!v.backView){
+        $state.go('app.main');
+    }
+    else{
+        $ionicHistory.goBack();
+    }
+  };
+
+  $scope.goTo = function(target){
+    $state.go(target);
+  };
+})
+
 /***
  * click on url link on pages
  */
@@ -523,9 +540,13 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 /**
  * E-search
  */
-.controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork) {
+.controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork,
+  $cordovaBarcodeScanner) {
 
-  $scope.input.entityType = "ROC";
+    if($scope.input === undefined)
+      console.log('$scope.input undefined');
+    else
+      $scope.input.entityType = "ROC";
 
   $scope.showResult = function() {
     var lang = currTranslateSvc.getData();
@@ -542,7 +563,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
           return;
       }
 
-      if($scope.input.entityType === "LLP") {
+      if($scope.input !== undefined && $scope.input.entityType === "LLP") {
         if(result.length == 0) {
           $scope.input.entityNo = "";
           return;
@@ -581,6 +602,51 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $window.OpenLink = function(link) {
     cordova.InAppBrowser.open( link, '_system');
   };
+
+  $scope.scanQR = function() {
+
+    console.log("Scan QR ....");
+    var permissions = cordova.plugins.permissions;
+
+    permissions.checkPermission(permissions.CAMERA, function( status ){
+
+      if ( status.hasPermission ) {
+        startQRScan();
+      }
+
+      else {
+
+        permissions.requestPermission(permissions.CAMERA, function(status){
+          if( status.hasPermission )
+            startQRScan();
+        })
+      }
+    });
+
+  }
+
+  var startQRScan = function() {
+
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        popupError.generalAlert("E-Search QR Scanner", imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+        searchInfoQR("112233");
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+  }
+
+  var searchInfoQR = function(data) {
+
+      var queryData = {
+        first: "ROC",
+        query: data
+      };
+      eQuerySvc.setData(queryData);
+      $scope.showResult();
+
+  }
 
 })
 
@@ -739,6 +805,46 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 })
 
 /**
+ * QR Scanner
+ */
+.controller("QRScan", function($scope, $cordovaBarcodeScanner) {
+
+  $scope.scanQR = function() {
+
+    console.log("Scan QR ....");
+    var permissions = cordova.plugins.permissions;
+
+    permissions.checkPermission(permissions.CAMERA, function( status ){
+
+      if ( status.hasPermission ) {
+        startQRScan();
+      }
+
+      else {
+
+        permissions.requestPermission(permissions.CAMERA, function(status){
+          if( status.hasPermission )
+            startQRScan();
+        })
+      }
+    });
+
+  }
+
+  var startQRScan = function() {
+
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        alert(imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+  }
+
+})
+
+/**
  * Office location
  */
 .controller('ContactUs', function($scope, langSvc, contactData, $localStorage) {
@@ -890,5 +996,220 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
         viewContacts(result.data.data.defaultId);
     });
+
+})
+
+/**
+ * BizTrust
+ */
+.controller('BizTrustCtrl', function($scope, $window, getBizTrust, $state, eQuerySvc, currTranslateSvc, $cordovaNetwork,
+  $cordovaBarcodeScanner) {
+
+  $window.OpenLink = function(link) {
+    cordova.InAppBrowser.open( link, '_system');
+  };
+
+  $scope.scanQR = function() {
+
+    console.log("Scan QR ....");
+    var permissions = cordova.plugins.permissions;
+
+    permissions.checkPermission(permissions.CAMERA, function( status ){
+
+      if ( status.hasPermission ) {
+        startQRScan();
+      }
+
+      else {
+
+        permissions.requestPermission(permissions.CAMERA, function(status){
+          if( status.hasPermission )
+            startQRScan();
+        })
+      }
+    });
+
+  }
+
+  var startQRScan = function() {
+
+    var lang = currTranslateSvc.getData();
+    var scannerOptions = {
+      // preferFrontCamera : true, // iOS and Android
+      // showFlipCameraButton : true, // iOS and Android
+      showTorchButton : true, // iOS and Android
+      // torchOn: true, // Android, launch with the torch switched on (if available)
+      // saveHistory: true, // Android, save scan history (default false)
+      prompt : lang.QRSCANPROMPT, // Android
+      resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      //formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+      // orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+      // disableAnimations : true, // iOS
+      // disableSuccessBeep: false // iOS and Android
+    };
+
+    $cordovaBarcodeScanner.scan(scannerOptions).then(function(imageData) {
+
+        console.log("QR Code Data -> " + imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+
+        var qrcodeData = eQuerySvc.getData();
+        qrcodeData.first = imageData.text;
+        eQuerySvc.setData(qrcodeData);
+        showResult();
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+  }
+
+  var showResult = function() {
+    var lang = currTranslateSvc.getData();
+    //OfflineCheck
+    if(window.cordova && $cordovaNetwork.isOffline()){
+        // popupError.noInternet(lang.ERROR_TITLE);
+        $state.go('app.biztrust_connection_error');
+        return;
+    }
+
+    getBizTrust.loadUserData(lang.MENU_09).then(function(result) {
+
+      console.log(JSON.stringify(result));
+
+      if(result.data.success == false) {
+        console.log("Error - "+result.data);
+        return;
+      }
+
+      if(result.data.response.successCode != "00") {
+
+        $state.go('app.biztrust_error');
+        return;
+      }
+
+      if($state.current.name === 'app.biztrust_result') {
+        $state.go($state.current, {}, {reload: true});
+      } else {
+        $state.go('app.biztrust_result');
+      }
+
+    }, function(err) {
+      console.log("Error in controller: " + JSON.stringify(err));
+      if(err.status === -1)
+        $state.go('app.biztrust_connection_error');
+    });
+  }
+
+})
+
+.controller('BizTrustResult', function($scope, $window, $sce, getBizTrust, currTranslateSvc) {
+
+  $scope.seeMore = false;
+  $scope.invalidCodeFlag = false;
+  $scope.noInfoFlag = false;
+  $scope.entityStatus = "";
+
+  var companydata = getBizTrust.getData().response;
+  $scope.responseData = companydata;
+
+  var lang = currTranslateSvc.getData();
+  var status = companydata.statusCode;
+
+  if(status === "A")
+    $scope.entityStatus = lang.STAT_ACTIVE;
+  else if(status === "E")
+    $scope.entityStatus = lang.STAT_EXISTING;
+  else if(status === 'W' || status === 'M')
+    $scope.entityStatus = lang.STAT_WINDINGUP;
+  else if(status === 'D')
+    $scope.entityStatus = lang.STAT_DISSOLVED;
+  else if(status === 'R')
+    $scope.entityStatus = lang.STAT_REMOVE;
+  else if(status === 'C')
+    $scope.entityStatus = lang.STAT_CEASEDBUSINESS;
+  else if(status === 'X')
+    $scope.entityStatus = lang.STAT_NULLVOIDCOURT;
+  else if(status === 'B')
+    $scope.entityStatus = lang.STAT_DISSOLVEDCONVERSIONLLP;
+  else if(status === 'Y')
+    $scope.entityStatus = lang.STAT_STRUKOFFWINDUPCOURT;
+  else if(status === 'L')
+    $scope.entityStatus = lang.STAT_EXPIRED;
+  else if(status === 'T')
+    $scope.entityStatus = lang.STAT_TERMINATED;
+  else if(status === 'S')
+    $scope.entityStatus = lang.STAT_STRIKEOFF;
+  else if(status === 'CW')
+    $scope.entityStatus = lang.STAT_WINDUPCOURT;
+  else if(status === 'VW')
+    $scope.entityStatus = lang.STAT_WINDUPVOLUNTARY;
+  else if(status === 'ES')
+    $scope.entityStatus = lang.STAT_STRIKINGOFF;
+  else if(status === 'EV')
+    $scope.entityStatus = lang.STAT_WINDINGUPVOLUNTARY;
+  else if(status === 'EC')
+    $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
+
+  console.log($scope.responseData);
+
+  var currentdate = new Date();
+  $scope.todayDate = currentdate.toLocaleDateString('en-MY');
+
+  console.log(">>>>>> " + JSON.stringify($scope.responseData));
+  var errorMsg = JSON.stringify($scope.responseData.errorMsg);
+  console.log(errorMsg.indexOf("Invalid"));
+  console.log(errorMsg.indexOf("Unparseable"))
+
+  if(companydata.successCode !== "00") {
+
+    if(errorMsg.indexOf("Invalid") > 0) {
+      $scope.invalidCodeFlag = true;
+    } else if (errorMsg.indexOf("Unparseable") > 0) {
+      $scope.invalidCodeFlag = true;
+    } else {
+      $scope.noInfoFlag = true;
+    }
+  }
+
+  $scope.openUrlXLink = function(url) {
+    var finalUrl = url;
+    if(!url.startsWith('http'))
+      finalUrl = 'https://' + url;
+    cordova.InAppBrowser.open(finalUrl,'_system','location=yes');
+  }
+
+  $scope.openXLink = function(httpLink) {
+    console.log("OpenXLink called: " + httpLink);
+    cordova.InAppBrowser.open(httpLink,'_system','location=yes');
+  }
+
+  $scope.seeMoreUrl = function() {
+    $scope.seeMore = !$scope.seeMore;
+    console.log("See more click: " + $scope.seeMore );
+  }
+
+  var trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+
+  $scope.pleaseContactSsm = trustAsHtml(lang.PLEASECONTACTENQUIRY);
+
+})
+
+.controller('BizTrustPage', function($scope, $sce, currTranslateSvc) {
+  var trustAsHtml = function(string) {
+    return $sce.trustAsHtml(string);
+  };
+  var lang = currTranslateSvc.getData();
+  $scope.biztrustIntroContent = trustAsHtml(lang.BIZTRUSTINTROCONTENT);
+  $scope.biztrustObjContent = trustAsHtml(lang.BIZTRUSTOBJCONTENT);
+})
+
+.controller('BizTrustScanPage', function($scope, langSvc) {
+
+  if(langSvc.getLang() !== "en")
+    $scope.tigaLangkah = true;
+  else
+    $scope.tigaLangkah = false;
 
 });
