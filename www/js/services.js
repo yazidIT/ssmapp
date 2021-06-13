@@ -9,6 +9,7 @@ angular.module('myServices', [])
 .constant('config', {
     apiUrl: 'https://m.ssm.com.my/api/',
     apiv2url: 'https://m.ssm.com.my/apiv2/index.php/',
+    apiv2urldev: 'https://m.ssm.com.my/apiv2/index.php/dev/'
 })
 
 /**
@@ -855,7 +856,7 @@ angular.module('myServices', [])
     var queryUrl = 'qr/resolve';
     var authHeader = 'Bearer' + ' ' + deviceAuth.getDevInfo().token;
     var header = { "Authorization" : authHeader };
-    var urlFinal = config.apiv2url + queryUrl;
+    var urlFinal = config.apiv2urldev + queryUrl;
     var qrcodeobject = "?qrcode=" + qrcodeData.first;
 
     var postUsers = $http({
