@@ -1150,11 +1150,29 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
 
-  const addUrlSize = $scope.responseData.addUrl.length;
+  const concatarray = (...arrays) => [].concat(...arrays.filter(Array.isArray));
+  // console.log(concatarray($scope.responseData.mainUrl, $scope.responseData.addUrl));
+  const urlList = concatarray($scope.responseData.mainUrl, $scope.responseData.addUrl);
+  const urlListSize = urlList.length;
+
+  $scope.mainurl = [];
   $scope.moreaddurl = [];
-  if( addUrlSize > 2) {
-    $scope.moreaddurl = $scope.responseData.addUrl.slice(2, addUrlSize + 1);
+  if(urlListSize > 3) {
+    $scope.mainurl = urlList.slice(0, 3);
+    $scope.moreaddurl = urlList.slice(3, urlListSize + 1);
+  } else {
+    $scope.mainurl = urlList.slice(0, urlListSize + 1);
   }
+
+  // console.log(urlList);
+  // console.log($scope.mainurl);
+  // console.log($scope.moreurl2);
+
+  // const addUrlSize = $scope.responseData.addUrl.length;
+  // $scope.moreaddurl = [];
+  // if( addUrlSize > 2) {
+  //   $scope.moreaddurl = $scope.responseData.addUrl.slice(2, addUrlSize + 1);
+  // }
 
   var lang = currTranslateSvc.getData();
   var status = companydata.statusCode;
@@ -1194,7 +1212,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   else if(status === 'EC')
     $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 
-  console.log($scope.responseData);
+  // console.log($scope.responseData);
 
   var currentdate = new Date();
   $scope.todayDate = currentdate.toLocaleDateString('en-MY');

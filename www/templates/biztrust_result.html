@@ -58,20 +58,15 @@
           <div class="biztrust-item2">{{entityStatus}}</div>
 
           <div class="biztrust-item" translate="URLLINKS">URL Links</div>
+          <!--
           <div class="biztrust-item3" ng-if="responseData.mainUrl" ng-click="openUrlXLink(responseData.mainUrl)">(i) {{responseData.mainUrl}}</div>
           <div class="biztrust-item3" ng-if="responseData.addUrl.length > 0" ng-click="openUrlXLink(responseData.addUrl[0])">(ii) {{responseData.addUrl[0]}}</div>
           <div class="biztrust-item3" ng-if="responseData.addUrl.length > 1" ng-click="openUrlXLink(responseData.addUrl[1])">(iii) {{responseData.addUrl[1]}}</div>
           <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
-
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-repeat="url in moreaddurl" ng-click="openUrlXLink(url)">({{toRoman($index + 4)}}) {{url}}</div>
-          <br>
-          <!--
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 2" ng-click="openUrlXLink(responseData.addUrl[2])">(iv) {{responseData.addUrl[2]}}</div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 3" ng-click="openUrlXLink(responseData.addUrl[3])">(v) {{responseData.addUrl[3]}}</div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 4" ng-click="openUrlXLink(responseData.addUrl[4])">(vi) {{responseData.addUrl[4]}}</div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 5" ng-click="openUrlXLink(responseData.addUrl[5])">(vii) {{responseData.addUrl[5]}}</div>
-          <div ng-hide="!seeMore" class="biztrust-item3" ng-if="responseData.addUrl.length > 6" ng-click="openUrlXLink(responseData.addUrl[6])">(viii) {{responseData.addUrl[6]}}</div>
           -->
+          <div ng-if="mainurl" class="biztrust-item3" ng-repeat="url in mainurl" ng-click="openUrlXLink(url)">({{toRoman($index + 1)}}) {{url}}</div>
+          <div class="biztrust-item4" ng-if="moreaddurl.length > 3 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
+          <div ng-hide="!seeMore" class="biztrust-item3" ng-repeat="url in moreaddurl" ng-click="openUrlXLink(url)">({{toRoman($index + 4)}}) {{url}}</div>
         </ion-item>
 
       </div>
