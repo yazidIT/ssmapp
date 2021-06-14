@@ -1150,6 +1150,12 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
 
+  const addUrlSize = $scope.responseData.addUrl.length;
+  $scope.moreaddurl = [];
+  if( addUrlSize > 2) {
+    $scope.moreaddurl = $scope.responseData.addUrl.slice(2, addUrlSize + 1);
+  }
+
   var lang = currTranslateSvc.getData();
   var status = companydata.statusCode;
 
@@ -1224,6 +1230,16 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.seeMoreUrl = function() {
     $scope.seeMore = !$scope.seeMore;
     console.log("See more click: " + $scope.seeMore );
+  }
+
+  $scope.toRoman = function convert(num) {
+    if(num < 1){ return "";}
+    if(num >= 40){ return "xl" + convert(num - 40);}
+    if(num >= 10){ return "x" + convert(num - 10);}
+    if(num >= 9){ return "ix" + convert(num - 9);}
+    if(num >= 5){ return "v" + convert(num - 5);}
+    if(num >= 4){ return "iv" + convert(num - 4);}
+    if(num >= 1){ return "i" + convert(num - 1);}
   }
 
   var trustAsHtml = function(string) {
