@@ -543,11 +543,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 .controller('SearchInfo', function($scope, $window, $state, eQuerySvc, getSearch, currTranslateSvc, popupError, $cordovaNetwork,
   $cordovaBarcodeScanner) {
 
-    if($scope.input === undefined)
-      console.log('$scope.input undefined');
-    else
-      $scope.input.entityType = "ROC";
-
   $scope.showResult = function() {
     var lang = currTranslateSvc.getData();
     //OfflineCheck
@@ -605,7 +600,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   $scope.scanQR = function() {
 
-    console.log("Scan QR ....");
     var permissions = cordova.plugins.permissions;
 
     permissions.checkPermission(permissions.CAMERA, function( status ){
@@ -629,11 +623,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     $cordovaBarcodeScanner.scan().then(function(imageData) {
         popupError.generalAlert("E-Search QR Scanner", imageData.text);
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
         searchInfoQR("112233");
     }, function(error) {
-        console.log("An error happened -> " + error);
     });
   }
 
@@ -811,7 +802,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   $scope.scanQR = function() {
 
-    console.log("Scan QR ....");
     var permissions = cordova.plugins.permissions;
 
     permissions.checkPermission(permissions.CAMERA, function( status ){
@@ -835,10 +825,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     $cordovaBarcodeScanner.scan().then(function(imageData) {
         alert(imageData.text);
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
     }, function(error) {
-        console.log("An error happened -> " + error);
     });
   }
 
@@ -1011,7 +998,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   $scope.scanQR = function() {
 
-    console.log("Scan QR ....");
     var permissions = cordova.plugins.permissions;
 
     permissions.checkPermission(permissions.CAMERA, function( status ){
@@ -1050,16 +1036,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     $cordovaBarcodeScanner.scan(scannerOptions).then(function(imageData) {
 
-        console.log("QR Code Data -> " + imageData.text);
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
-
         var qrcodeData = eQuerySvc.getData();
         qrcodeData.first = imageData.text;
         eQuerySvc.setData(qrcodeData);
         showResult();
     }, function(error) {
-        console.log("An error happened -> " + error);
     });
   }
 
@@ -1074,10 +1055,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
     getBizTrust.loadUserData(lang.MENU_09).then(function(result) {
 
-      console.log(JSON.stringify(result));
-
       if(result.data.success == false) {
-        console.log("Error - "+result.data);
         return;
       }
 
@@ -1094,7 +1072,6 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
       }
 
     }, function(err) {
-      console.log("Error in controller: " + JSON.stringify(err));
       if(err.status === -1)
         $state.go('app.biztrust_connection_error');
     });
@@ -1150,15 +1127,10 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   else if(status === 'EC')
     $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 
-  console.log($scope.responseData);
-
   var currentdate = new Date();
   $scope.todayDate = currentdate.toLocaleDateString('en-MY');
 
-  console.log(">>>>>> " + JSON.stringify($scope.responseData));
   var errorMsg = JSON.stringify($scope.responseData.errorMsg);
-  console.log(errorMsg.indexOf("Invalid"));
-  console.log(errorMsg.indexOf("Unparseable"))
 
   if(companydata.successCode !== "00") {
 
@@ -1179,13 +1151,11 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   }
 
   $scope.openXLink = function(httpLink) {
-    console.log("OpenXLink called: " + httpLink);
     cordova.InAppBrowser.open(httpLink,'_system','location=yes');
   }
 
   $scope.seeMoreUrl = function() {
     $scope.seeMore = !$scope.seeMore;
-    console.log("See more click: " + $scope.seeMore );
   }
 
   var trustAsHtml = function(string) {

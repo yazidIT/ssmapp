@@ -810,8 +810,6 @@ angular.module('myServices', [])
       url: urlFinal
       // headers: header
     }).success(data => {
-
-      console.log(JSON.stringify(data));
       contactDataLibrary = data;
       return contactDataLibrary;
     })
@@ -862,8 +860,6 @@ angular.module('myServices', [])
         return result;
 
     }).error(function(data, status) {
-      console.log(JSON.stringify(data));
-      //popupError.serverFail(title,false,status);
       return status;
 
     }).finally(function() {
