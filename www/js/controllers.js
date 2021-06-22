@@ -1152,7 +1152,7 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
 
   const concatarray = (...arrays) => [].concat(...arrays.filter(Array.isArray));
   // console.log(concatarray($scope.responseData.mainUrl, $scope.responseData.addUrl));
-  const urlList = concatarray($scope.responseData.mainUrl, $scope.responseData.addUrl);
+  const urlList = concatarray($scope.responseData.url, $scope.responseData.mainUrl, $scope.responseData.addUrl);
   const urlListSize = urlList.length;
 
   $scope.mainurl = [];
