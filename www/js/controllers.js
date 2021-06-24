@@ -1089,9 +1089,17 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   var companydata = getBizTrust.getData().response;
   $scope.responseData = companydata;
 
+  var urlarray = [];
+  if($scope.responseData.url != null)
+    urlarray.push($scope.responseData.url);
+
+  var mainurlarray = [];
+  if($scope.responseData.mainUrl != null)
+    mainurlarray.push($scope.responseData.mainUrl);
+
   const concatarray = (...arrays) => [].concat(...arrays.filter(Array.isArray));
   // console.log(concatarray($scope.responseData.mainUrl, $scope.responseData.addUrl));
-  const urlList = concatarray($scope.responseData.mainUrl, $scope.responseData.addUrl);
+  const urlList = concatarray(urlarray, mainurlarray, $scope.responseData.addUrl);
   const urlListSize = urlList.length;
 
   $scope.mainurl = [];
