@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>100206597122-mrj5au7sil4fsvdr2dqnsddn8cbi2mb9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.100206597122-mrj5au7sil4fsvdr2dqnsddn8cbi2mb9</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>100206597122-vv3cbs1hjgkvj6jbau4ihmt9dl3or0el.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBe4brjk1f1cwLFIkmewS4Zu2QOroII20Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>100206597122</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>my.ssm.ssmappmobile.official</string>
+	<key>PROJECT_ID</key>
+	<string>myssm-77c9e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>myssm-77c9e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:100206597122:ios:2290900d95510c8dae831b</string>
+	<key>DATABASE_URL</key>
+	<string>https://myssm-77c9e.firebaseio.com</string>
+</dict>
+</plist>
