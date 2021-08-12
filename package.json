@@ -5,6 +5,7 @@
   "dependencies": {
     "@ionic-native/network": "^5.28.0",
     "bower": "^1.8.8",
+    "build": "0.1.4",
     "cordova-minify": "0.0.15",
     "cordova-plugin-android-permissions": "^1.1.2",
     "cordova-plugin-androidx-adapter": "^1.1.3",

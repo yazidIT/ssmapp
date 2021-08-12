@@ -319,7 +319,7 @@ var translations = {
         "VALIDQRCODE": "Kod QR SSM BizTrust Sah",
         "INVALIDQRCODE": "Kod QR SSM BizTrust Tidak Sah",
         "QRCODEGUIDE": "<font color='#2E2F83'>1. Sentuh logo BizTrust di atas untuk memulakan imbasan QR Code<br><br>2. Arahkan kotak imbasan ke QR Code BizTrust<br><br>3. Jika imbasan berjaya, keputusan akan di paparkan di skrin</font>",
-        "CORPORATEINFO": "MAKLUMAT ENTITY",
+        "CORPORATEINFO": "MAKLUMAT ENTITI",
         "BTREGNUMBER": "No. Pendaftaran",
         "GREAT": "Hebat!",
         "INFORMATIONNOTFOUND": "Tiada maklumat di temui",
