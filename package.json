@@ -4,6 +4,7 @@
   "description": "ssmMobile: Suruhanjaya Syarikat Malaysia",
   "dependencies": {
     "@ionic-native/network": "^5.28.0",
+    "@ionic/v1-toolkit": "^3.2.0",
     "bower": "^1.8.8",
     "build": "0.1.4",
     "cordova-minify": "0.0.15",
