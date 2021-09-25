@@ -1210,15 +1210,8 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   else if(status === 'EC')
     $scope.entityStatus = lang.STAT_WINDINGUPCOURT;
 
-  // console.log($scope.responseData);
-
   var currentdate = new Date();
   $scope.todayDate = currentdate.toLocaleDateString('en-MY');
-
-  console.log(">>>>>> " + JSON.stringify($scope.responseData));
-  var errorMsg = JSON.stringify($scope.responseData.errorMsg);
-  console.log(errorMsg.indexOf("Invalid"));
-  console.log(errorMsg.indexOf("Unparseable"))
 
   if(companydata.successCode !== "00") {
 

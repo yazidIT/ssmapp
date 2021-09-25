@@ -65,7 +65,7 @@
           <div class="biztrust-item4" ng-if="responseData.addUrl.length > 2 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
           -->
           <div ng-if="mainurl" class="biztrust-item3" ng-repeat="url in mainurl" ng-click="openUrlXLink(url)">({{toRoman($index + 1)}}) {{url}}</div>
-          <div class="biztrust-item4" ng-if="moreaddurl.length > 3 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
+          <div class="biztrust-item4" ng-if="moreaddurl.length > 0 && !seeMore" ng-click="seeMoreUrl()" translate="SEEMORE">See More <i class="icon ion-chevron-down"></i> </div>
           <div ng-hide="!seeMore" class="biztrust-item3" ng-repeat="url in moreaddurl" ng-click="openUrlXLink(url)">({{toRoman($index + 4)}}) {{url}}</div>
         </ion-item>
 
