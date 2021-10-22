@@ -1148,19 +1148,43 @@ angular.module('starter.controllers', ['myServices','ngStorage'])
   $scope.entityStatus = "";
 
   var companydata = getBizTrust.getData().response;
+
+  // var companydata = {
+  //   "errorMsg":null,
+  //   "successCode":"00",
+  //   "entityNo":"003054420",
+  //   "checkDigit":"K",
+  //   "entityNoNew":"201903339755",
+  //   "entityName":"HEDGES OIL TRADING",
+  //   "statusCode":"A",
+  //   "statusDescription":"ACTIVE",
+  //   "url":null,
+  //   "mainUrl":"www.thestar.com.my",
+  //   // "addUrl":["www.thestar1.com.my", "www.thestar2.com.my", "www.thestar3.com.my", "www.thestar4.com.my",
+  //   //           "www.thestar.com.my", "www.thestar5.com.my", "www.thestar3.com.my"],
+  //   "addUrl": [],
+  //   "version":2,
+  //   "entityType":"ROB"
+  // };
+
   $scope.responseData = companydata;
 
-  // var urlarray = [];
-  // if($scope.responseData.url != null)
-  //   urlarray.push($scope.responseData.url);
+  // Process mainUrl - if null, set to empty array
+  var mainurlarray = [];
+  if($scope.responseData.mainUrl != null)
+    mainurlarray.push($scope.responseData.mainUrl);
 
-  // var mainurlarray = [];
-  // if($scope.responseData.mainUrl != null)
-  //   mainurlarray.push($scope.responseData.mainUrl);
+  // Process addUrl - if null, set to empty array
+  var addurlarray = [];
+  if($scope.responseData.addUrl != null)
+    addurlarray = $scope.responseData.addUrl;
 
   const concatarray = (...arrays) => [].concat(...arrays.filter(Array.isArray));
+  const arr = concatarray(mainurlarray, addurlarray);
 
-  const urlList = $scope.responseData.addUrl;
+  var urlList = arr.filter(function(elem, index, self) {
+    return index === self.indexOf(elem);
+  })
   const urlListSize = urlList.length;
 
   $scope.mainurl = [];
